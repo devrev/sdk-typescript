@@ -13,6 +13,8 @@ export declare namespace SnapWidgets {
     interface Options {
         environment?: core.Supplier<environments.DevRevEnvironment | string>;
         token?: core.Supplier<core.BearerToken | undefined>;
+        /** Override the X-DevRev-Version header */
+        xDevRevVersion?: "2024-01-24";
         fetcher?: core.FetchFunction;
     }
 
@@ -23,6 +25,8 @@ export declare namespace SnapWidgets {
         maxRetries?: number;
         /** A hook to abort the request. */
         abortSignal?: AbortSignal;
+        /** Override the X-DevRev-Version header */
+        xDevRevVersion?: "2024-01-24";
     }
 }
 
@@ -105,7 +109,8 @@ export class SnapWidgets {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },

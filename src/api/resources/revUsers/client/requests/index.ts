@@ -1,9 +1,7 @@
 export { type RevUsersCreateRequest } from "./RevUsersCreateRequest";
 export { type RevUsersDeleteRequest } from "./RevUsersDeleteRequest";
-export { type RevUsersGetQuery } from "./RevUsersGetQuery";
 export { type RevUsersGetRequest } from "./RevUsersGetRequest";
 export { type LinkRevUserToRevOrgRequest } from "./LinkRevUserToRevOrgRequest";
-export { type RevUsersListQuery } from "./RevUsersListQuery";
 export { type RevUsersListRequest } from "./RevUsersListRequest";
 export { type UnlinkRevUserFromRevOrgRequest } from "./UnlinkRevUserFromRevOrgRequest";
 export { type RevUsersUpdateRequest } from "./RevUsersUpdateRequest";

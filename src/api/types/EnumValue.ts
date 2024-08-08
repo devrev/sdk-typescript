@@ -3,13 +3,13 @@
  */
 
 /**
- * Enum Value defines the structure for an enum.
+ * The properties of an enum value.
  */
 export interface EnumValue {
-    /** Unique ID of the enum value. This is immutable. */
+    /** The uiique ID of the enum value. */
     id: number;
-    /** Display label of the enum value. This is mutable. */
+    /** The display label of the enum value. */
     label: string;
-    /** Order number of the enum value. This is mutable. */
+    /** Used for determining the relative order of the enum value. */
     ordinal: number;
 }

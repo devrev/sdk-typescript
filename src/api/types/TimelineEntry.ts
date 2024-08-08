@@ -4,9 +4,13 @@
 
 import * as DevRev from "../index";
 
-export type TimelineEntry = DevRev.TimelineEntry.TimelineComment;
+export type TimelineEntry = DevRev.TimelineEntry.TimelineChangeEvent | DevRev.TimelineEntry.TimelineComment;
 
 export declare namespace TimelineEntry {
+    interface TimelineChangeEvent extends DevRev.TimelineChangeEvent {
+        type: "timeline_change_event";
+    }
+
     interface TimelineComment extends DevRev.TimelineComment {
         type: "timeline_comment";
     }

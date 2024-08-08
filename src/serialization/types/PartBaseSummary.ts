@@ -5,17 +5,20 @@
 import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
+import { UserSummary } from "./UserSummary";
 import { AtomBaseSummary } from "./AtomBaseSummary";
 
 export const PartBaseSummary: core.serialization.ObjectSchema<serializers.PartBaseSummary.Raw, DevRev.PartBaseSummary> =
     core.serialization
         .object({
             name: core.serialization.string(),
+            ownedBy: core.serialization.property("owned_by", core.serialization.list(UserSummary)),
         })
         .extend(AtomBaseSummary);
 
 export declare namespace PartBaseSummary {
     interface Raw extends AtomBaseSummary.Raw {
         name: string;
+        owned_by: UserSummary.Raw[];
     }
 }

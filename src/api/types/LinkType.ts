@@ -9,6 +9,7 @@ export type LinkType =
     | "custom_link"
     | "developed_with"
     | "imports"
+    | "is_analyzed_by"
     | "is_dependent_on"
     | "is_duplicate_of"
     | "is_merged_into"
@@ -21,6 +22,7 @@ export const LinkType = {
     CustomLink: "custom_link",
     DevelopedWith: "developed_with",
     Imports: "imports",
+    IsAnalyzedBy: "is_analyzed_by",
     IsDependentOn: "is_dependent_on",
     IsDuplicateOf: "is_duplicate_of",
     IsMergedInto: "is_merged_into",

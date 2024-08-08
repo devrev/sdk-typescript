@@ -10,6 +10,7 @@ export const LinkType: core.serialization.Schema<serializers.LinkType.Raw, DevRe
     "custom_link",
     "developed_with",
     "imports",
+    "is_analyzed_by",
     "is_dependent_on",
     "is_duplicate_of",
     "is_merged_into",
@@ -24,6 +25,7 @@ export declare namespace LinkType {
         | "custom_link"
         | "developed_with"
         | "imports"
+        | "is_analyzed_by"
         | "is_dependent_on"
         | "is_duplicate_of"
         | "is_merged_into"

@@ -7,6 +7,8 @@ import * as DevRev from "../../api/index";
 import * as core from "../../core";
 import { TimelineCommentSummary } from "./TimelineCommentSummary";
 import { UserSummary } from "./UserSummary";
+import { TimelineEntryPanel } from "./TimelineEntryPanel";
+import { AtomSummary } from "./AtomSummary";
 
 export const CommentSearchSummary: core.serialization.ObjectSchema<
     serializers.CommentSearchSummary.Raw,
@@ -15,6 +17,9 @@ export const CommentSearchSummary: core.serialization.ObjectSchema<
     comment: TimelineCommentSummary.optional(),
     createdBy: core.serialization.property("created_by", UserSummary.optional()),
     createdDate: core.serialization.property("created_date", core.serialization.date().optional()),
+    object: core.serialization.string().optional(),
+    panels: core.serialization.list(TimelineEntryPanel).optional(),
+    references: core.serialization.list(AtomSummary).optional(),
     snippet: core.serialization.string().optional(),
 });
 
@@ -23,6 +28,9 @@ export declare namespace CommentSearchSummary {
         comment?: TimelineCommentSummary.Raw | null;
         created_by?: UserSummary.Raw | null;
         created_date?: string | null;
+        object?: string | null;
+        panels?: TimelineEntryPanel.Raw[] | null;
+        references?: AtomSummary.Raw[] | null;
         snippet?: string | null;
     }
 }

@@ -13,6 +13,8 @@ export declare namespace Schedules {
     interface Options {
         environment?: core.Supplier<environments.DevRevEnvironment | string>;
         token?: core.Supplier<core.BearerToken | undefined>;
+        /** Override the X-DevRev-Version header */
+        xDevRevVersion?: "2024-01-24";
         fetcher?: core.FetchFunction;
     }
 
@@ -23,6 +25,8 @@ export declare namespace Schedules {
         maxRetries?: number;
         /** A hook to abort the request. */
         abortSignal?: AbortSignal;
+        /** Override the X-DevRev-Version header */
+        xDevRevVersion?: "2024-01-24";
     }
 }
 
@@ -70,7 +74,8 @@ export class Schedules {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -85,147 +90,6 @@ export class Schedules {
         });
         if (_response.ok) {
             return serializers.OrgScheduleFragmentsCreateResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        serializers.ErrorBadRequest.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        serializers.ErrorUnauthorized.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        serializers.ErrorForbidden.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        serializers.ErrorTooManyRequests.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        serializers.ErrorInternalServerError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        serializers.ErrorServiceUnavailable.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Gets an organization schedule fragment.
-     *
-     * @param {DevRev.OrgScheduleFragmentsGetQuery} request
-     * @param {Schedules.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link DevRev.BadRequestError}
-     * @throws {@link DevRev.UnauthorizedError}
-     * @throws {@link DevRev.ForbiddenError}
-     * @throws {@link DevRev.TooManyRequestsError}
-     * @throws {@link DevRev.InternalServerError}
-     * @throws {@link DevRev.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.schedules.orgScheduleFragmentsGet({
-     *         id: "id"
-     *     })
-     */
-    public async orgScheduleFragmentsGet(
-        request: DevRev.OrgScheduleFragmentsGetQuery,
-        requestOptions?: Schedules.RequestOptions
-    ): Promise<DevRev.OrgScheduleFragmentsGetResponse> {
-        const { id } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        _queryParams["id"] = id;
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "org-schedule-fragments.get"
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.OrgScheduleFragmentsGetResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -351,7 +215,8 @@ export class Schedules {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -490,7 +355,8 @@ export class Schedules {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -613,12 +479,12 @@ export class Schedules {
      * @throws {@link DevRev.ServiceUnavailableError}
      *
      * @example
-     *     await client.schedules.create({
+     *     await client.schedules.orgSchedulesCreate({
      *         name: "name",
      *         timezone: "timezone"
      *     })
      */
-    public async create(
+    public async orgSchedulesCreate(
         request: DevRev.OrgSchedulesCreateRequest,
         requestOptions?: Schedules.RequestOptions
     ): Promise<DevRev.OrgSchedulesCreateResponse> {
@@ -632,7 +498,8 @@ export class Schedules {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -741,147 +608,6 @@ export class Schedules {
     /**
      * Gets an organization schedule.
      *
-     * @param {DevRev.OrgSchedulesGetQuery} request
-     * @param {Schedules.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link DevRev.BadRequestError}
-     * @throws {@link DevRev.UnauthorizedError}
-     * @throws {@link DevRev.ForbiddenError}
-     * @throws {@link DevRev.TooManyRequestsError}
-     * @throws {@link DevRev.InternalServerError}
-     * @throws {@link DevRev.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.schedules.get({
-     *         id: "id"
-     *     })
-     */
-    public async get(
-        request: DevRev.OrgSchedulesGetQuery,
-        requestOptions?: Schedules.RequestOptions
-    ): Promise<DevRev.OrgSchedulesGetResponse> {
-        const { id } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        _queryParams["id"] = id;
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "org-schedules.get"
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.OrgSchedulesGetResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        serializers.ErrorBadRequest.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        serializers.ErrorUnauthorized.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        serializers.ErrorForbidden.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        serializers.ErrorTooManyRequests.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        serializers.ErrorInternalServerError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        serializers.ErrorServiceUnavailable.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Gets an organization schedule.
-     *
      * @param {DevRev.OrgSchedulesGetRequest} request
      * @param {Schedules.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -893,11 +619,11 @@ export class Schedules {
      * @throws {@link DevRev.ServiceUnavailableError}
      *
      * @example
-     *     await client.schedules.getPost({
+     *     await client.schedules.orgSchedulesGetPost({
      *         id: "id"
      *     })
      */
-    public async getPost(
+    public async orgSchedulesGetPost(
         request: DevRev.OrgSchedulesGetRequest,
         requestOptions?: Schedules.RequestOptions
     ): Promise<DevRev.OrgSchedulesGetResponse> {
@@ -911,7 +637,8 @@ export class Schedules {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -1020,172 +747,6 @@ export class Schedules {
     /**
      * Gets list of organization schedules.
      *
-     * @param {DevRev.OrgSchedulesListQuery} request
-     * @param {Schedules.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link DevRev.BadRequestError}
-     * @throws {@link DevRev.UnauthorizedError}
-     * @throws {@link DevRev.ForbiddenError}
-     * @throws {@link DevRev.TooManyRequestsError}
-     * @throws {@link DevRev.InternalServerError}
-     * @throws {@link DevRev.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.schedules.list()
-     */
-    public async list(
-        request: DevRev.OrgSchedulesListQuery = {},
-        requestOptions?: Schedules.RequestOptions
-    ): Promise<DevRev.OrgSchedulesListResponse> {
-        const { createdById, cursor, limit, mode, status } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        if (createdById != null) {
-            if (Array.isArray(createdById)) {
-                _queryParams["created_by_id"] = createdById.map((item) => item);
-            } else {
-                _queryParams["created_by_id"] = createdById;
-            }
-        }
-
-        if (cursor != null) {
-            _queryParams["cursor"] = cursor;
-        }
-
-        if (limit != null) {
-            _queryParams["limit"] = limit.toString();
-        }
-
-        if (mode != null) {
-            _queryParams["mode"] = mode;
-        }
-
-        if (status != null) {
-            if (Array.isArray(status)) {
-                _queryParams["status"] = status.map((item) => item);
-            } else {
-                _queryParams["status"] = status;
-            }
-        }
-
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "org-schedules.list"
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.OrgSchedulesListResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        serializers.ErrorBadRequest.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        serializers.ErrorUnauthorized.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        serializers.ErrorForbidden.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        serializers.ErrorTooManyRequests.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        serializers.ErrorInternalServerError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        serializers.ErrorServiceUnavailable.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Gets list of organization schedules.
-     *
      * @param {DevRev.OrgSchedulesListRequest} request
      * @param {Schedules.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -1197,9 +758,9 @@ export class Schedules {
      * @throws {@link DevRev.ServiceUnavailableError}
      *
      * @example
-     *     await client.schedules.listPost()
+     *     await client.schedules.orgSchedulesListPost()
      */
-    public async listPost(
+    public async orgSchedulesListPost(
         request: DevRev.OrgSchedulesListRequest = {},
         requestOptions?: Schedules.RequestOptions
     ): Promise<DevRev.OrgSchedulesListResponse> {
@@ -1213,7 +774,8 @@ export class Schedules {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -1334,12 +896,12 @@ export class Schedules {
      * @throws {@link DevRev.ServiceUnavailableError}
      *
      * @example
-     *     await client.schedules.setFuture({
+     *     await client.schedules.orgSchedulesSetFuture({
      *         id: "id",
      *         orgScheduleFragmentId: "org_schedule_fragment_id"
      *     })
      */
-    public async setFuture(
+    public async orgSchedulesSetFuture(
         request: DevRev.OrgSchedulesSetFutureRequest,
         requestOptions?: Schedules.RequestOptions
     ): Promise<DevRev.OrgSchedulesSetFutureResponse> {
@@ -1353,7 +915,8 @@ export class Schedules {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -1473,12 +1036,12 @@ export class Schedules {
      * @throws {@link DevRev.ServiceUnavailableError}
      *
      * @example
-     *     await client.schedules.transition({
+     *     await client.schedules.orgSchedulesTransition({
      *         id: "id",
      *         status: DevRev.OrgScheduleStatus.Archived
      *     })
      */
-    public async transition(
+    public async orgSchedulesTransition(
         request: DevRev.OrgSchedulesTransitionRequest,
         requestOptions?: Schedules.RequestOptions
     ): Promise<DevRev.OrgSchedulesTransitionResponse> {
@@ -1492,7 +1055,8 @@ export class Schedules {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -1613,11 +1177,11 @@ export class Schedules {
      * @throws {@link DevRev.ServiceUnavailableError}
      *
      * @example
-     *     await client.schedules.update({
+     *     await client.schedules.orgSchedulesUpdate({
      *         id: "id"
      *     })
      */
-    public async update(
+    public async orgSchedulesUpdate(
         request: DevRev.OrgSchedulesUpdateRequest,
         requestOptions?: Schedules.RequestOptions
     ): Promise<DevRev.OrgSchedulesUpdateResponse> {
@@ -1631,7 +1195,8 @@ export class Schedules {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -1730,218 +1295,6 @@ export class Schedules {
                         body: _response.error.body,
                     });
             }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * @param {Schedules.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.schedules.fragmentsCreate()
-     */
-    public async fragmentsCreate(requestOptions?: Schedules.RequestOptions): Promise<void> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "fragments.create"
-            ),
-            method: "POST",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return;
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.DevRevError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * @param {Schedules.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.schedules.fragmentsGet()
-     */
-    public async fragmentsGet(requestOptions?: Schedules.RequestOptions): Promise<void> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "fragments.get"
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return;
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.DevRevError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * @param {Schedules.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.schedules.fragmentsGetPost()
-     */
-    public async fragmentsGetPost(requestOptions?: Schedules.RequestOptions): Promise<void> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "fragments.get"
-            ),
-            method: "POST",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return;
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.DevRevError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * @param {Schedules.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @example
-     *     await client.schedules.fragmentsTransition()
-     */
-    public async fragmentsTransition(requestOptions?: Schedules.RequestOptions): Promise<void> {
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "fragments.transition"
-            ),
-            method: "POST",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return;
-        }
-
-        if (_response.error.reason === "status-code") {
-            throw new errors.DevRevError({
-                statusCode: _response.error.statusCode,
-                body: _response.error.body,
-            });
         }
 
         switch (_response.error.reason) {

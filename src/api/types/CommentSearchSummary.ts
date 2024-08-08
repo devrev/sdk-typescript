@@ -9,6 +9,12 @@ export interface CommentSearchSummary {
     createdBy?: DevRev.UserSummary;
     /** Timestamp when the comment was created. */
     createdDate?: Date;
+    /** The object that the Timeline entry belongs to. */
+    object?: string;
+    /** Display panels for the comment entry. */
+    panels?: DevRev.TimelineEntryPanel[];
+    /** The objects referenced in the comment. */
+    references?: DevRev.AtomSummary[];
     /** Text snippet where the search hit occurred. */
     snippet?: string;
 }

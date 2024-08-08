@@ -26,6 +26,7 @@ export type AtomSummary =
     | DevRev.AtomSummary.Task
     | DevRev.AtomSummary.TenantFragment
     | DevRev.AtomSummary.Ticket
+    | DevRev.AtomSummary.TimelineChangeEvent
     | DevRev.AtomSummary.TimelineComment
     | DevRev.AtomSummary.Webhook;
 
@@ -112,6 +113,10 @@ export declare namespace AtomSummary {
 
     interface Ticket extends DevRev.TicketSummary {
         type: "ticket";
+    }
+
+    interface TimelineChangeEvent extends DevRev.AtomBaseSummary {
+        type: "timeline_change_event";
     }
 
     interface TimelineComment extends DevRev.AtomBaseSummary {

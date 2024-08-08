@@ -40,6 +40,7 @@ export const AtomSummary: core.serialization.Schema<serializers.AtomSummary.Raw,
             task: WorkBaseSummary,
             tenant_fragment: AtomBaseSummary,
             ticket: TicketSummary,
+            timeline_change_event: AtomBaseSummary,
             timeline_comment: AtomBaseSummary,
             webhook: AtomBaseSummary,
         })
@@ -71,6 +72,7 @@ export declare namespace AtomSummary {
         | AtomSummary.Task
         | AtomSummary.TenantFragment
         | AtomSummary.Ticket
+        | AtomSummary.TimelineChangeEvent
         | AtomSummary.TimelineComment
         | AtomSummary.Webhook;
 
@@ -156,6 +158,10 @@ export declare namespace AtomSummary {
 
     interface Ticket extends TicketSummary.Raw {
         type: "ticket";
+    }
+
+    interface TimelineChangeEvent extends AtomBaseSummary.Raw {
+        type: "timeline_change_event";
     }
 
     interface TimelineComment extends AtomBaseSummary.Raw {

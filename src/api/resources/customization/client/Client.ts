@@ -5,14 +5,16 @@
 import * as environments from "../../../../environments";
 import * as core from "../../../../core";
 import * as DevRev from "../../../index";
-import urlJoin from "url-join";
 import * as serializers from "../../../../serialization/index";
+import urlJoin from "url-join";
 import * as errors from "../../../../errors/index";
 
 export declare namespace Customization {
     interface Options {
         environment?: core.Supplier<environments.DevRevEnvironment | string>;
         token?: core.Supplier<core.BearerToken | undefined>;
+        /** Override the X-DevRev-Version header */
+        xDevRevVersion?: "2024-01-24";
         fetcher?: core.FetchFunction;
     }
 
@@ -23,6 +25,8 @@ export declare namespace Customization {
         maxRetries?: number;
         /** A hook to abort the request. */
         abortSignal?: AbortSignal;
+        /** Override the X-DevRev-Version header */
+        xDevRevVersion?: "2024-01-24";
     }
 }
 
@@ -31,175 +35,6 @@ export declare namespace Customization {
  */
 export class Customization {
     constructor(protected readonly _options: Customization.Options = {}) {}
-
-    /**
-     * Gets the aggregated schema.
-     *
-     * @param {DevRev.AggregatedSchemaGetQuery} request
-     * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link DevRev.BadRequestError}
-     * @throws {@link DevRev.UnauthorizedError}
-     * @throws {@link DevRev.ForbiddenError}
-     * @throws {@link DevRev.NotFoundError}
-     * @throws {@link DevRev.TooManyRequestsError}
-     * @throws {@link DevRev.InternalServerError}
-     * @throws {@link DevRev.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.customization.aggregatedSchemaGet({
-     *         customSchemaFragmentIds: "string",
-     *         leafType: "string",
-     *         stockSchemaFragmentId: "string"
-     *     })
-     */
-    public async aggregatedSchemaGet(
-        request: DevRev.AggregatedSchemaGetQuery = {},
-        requestOptions?: Customization.RequestOptions
-    ): Promise<DevRev.AggregatedSchemaGetResponse> {
-        const { customSchemaFragmentIds, leafType, stockSchemaFragmentId } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        if (customSchemaFragmentIds != null) {
-            if (Array.isArray(customSchemaFragmentIds)) {
-                _queryParams["custom_schema_fragment_ids"] = customSchemaFragmentIds.map((item) => item);
-            } else {
-                _queryParams["custom_schema_fragment_ids"] = customSchemaFragmentIds;
-            }
-        }
-
-        if (leafType != null) {
-            _queryParams["leaf_type"] = leafType;
-        }
-
-        if (stockSchemaFragmentId != null) {
-            _queryParams["stock_schema_fragment_id"] = stockSchemaFragmentId;
-        }
-
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "schemas.aggregated.get"
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.AggregatedSchemaGetResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        serializers.ErrorBadRequest.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        serializers.ErrorUnauthorized.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        serializers.ErrorForbidden.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 404:
-                    throw new DevRev.NotFoundError(
-                        serializers.ErrorNotFound.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        serializers.ErrorTooManyRequests.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        serializers.ErrorInternalServerError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        serializers.ErrorServiceUnavailable.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
 
     /**
      * Gets the aggregated schema.
@@ -234,7 +69,8 @@ export class Customization {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -247,158 +83,6 @@ export class Customization {
         });
         if (_response.ok) {
             return serializers.AggregatedSchemaGetResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        serializers.ErrorBadRequest.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        serializers.ErrorUnauthorized.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        serializers.ErrorForbidden.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 404:
-                    throw new DevRev.NotFoundError(
-                        serializers.ErrorNotFound.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        serializers.ErrorTooManyRequests.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        serializers.ErrorInternalServerError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        serializers.ErrorServiceUnavailable.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Gets a custom schema fragment.
-     *
-     * @param {DevRev.CustomSchemaFragmentsGetQuery} request
-     * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link DevRev.BadRequestError}
-     * @throws {@link DevRev.UnauthorizedError}
-     * @throws {@link DevRev.ForbiddenError}
-     * @throws {@link DevRev.NotFoundError}
-     * @throws {@link DevRev.TooManyRequestsError}
-     * @throws {@link DevRev.InternalServerError}
-     * @throws {@link DevRev.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.customization.customSchemaFragmentsGet({
-     *         id: "string"
-     *     })
-     */
-    public async customSchemaFragmentsGet(
-        request: DevRev.CustomSchemaFragmentsGetQuery,
-        requestOptions?: Customization.RequestOptions
-    ): Promise<DevRev.CustomSchemaFragmentsGetResponse> {
-        const { id } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        _queryParams["id"] = id;
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "schemas.custom.get"
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.CustomSchemaFragmentsGetResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -535,7 +219,8 @@ export class Customization {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -654,208 +339,6 @@ export class Customization {
     /**
      * Lists custom schema fragments.
      *
-     * @param {DevRev.CustomSchemaFragmentsListQuery} request
-     * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link DevRev.BadRequestError}
-     * @throws {@link DevRev.UnauthorizedError}
-     * @throws {@link DevRev.ForbiddenError}
-     * @throws {@link DevRev.TooManyRequestsError}
-     * @throws {@link DevRev.InternalServerError}
-     * @throws {@link DevRev.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.customization.customSchemaFragmentsList()
-     */
-    public async customSchemaFragmentsList(
-        request: DevRev.CustomSchemaFragmentsListQuery = {},
-        requestOptions?: Customization.RequestOptions
-    ): Promise<DevRev.CustomSchemaFragmentsListResponse> {
-        const { app, cursor, deprecated, leafType, limit, mode, prune, sortBy, subtype, types } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        if (app != null) {
-            if (Array.isArray(app)) {
-                _queryParams["app"] = app.map((item) => item);
-            } else {
-                _queryParams["app"] = app;
-            }
-        }
-
-        if (cursor != null) {
-            _queryParams["cursor"] = cursor;
-        }
-
-        if (deprecated != null) {
-            _queryParams["deprecated"] = deprecated.toString();
-        }
-
-        if (leafType != null) {
-            if (Array.isArray(leafType)) {
-                _queryParams["leaf_type"] = leafType.map((item) => item);
-            } else {
-                _queryParams["leaf_type"] = leafType;
-            }
-        }
-
-        if (limit != null) {
-            _queryParams["limit"] = limit.toString();
-        }
-
-        if (mode != null) {
-            _queryParams["mode"] = mode;
-        }
-
-        if (prune != null) {
-            if (Array.isArray(prune)) {
-                _queryParams["prune"] = prune.map((item) => item);
-            } else {
-                _queryParams["prune"] = prune;
-            }
-        }
-
-        if (sortBy != null) {
-            if (Array.isArray(sortBy)) {
-                _queryParams["sort_by"] = sortBy.map((item) => item);
-            } else {
-                _queryParams["sort_by"] = sortBy;
-            }
-        }
-
-        if (subtype != null) {
-            if (Array.isArray(subtype)) {
-                _queryParams["subtype"] = subtype.map((item) => item);
-            } else {
-                _queryParams["subtype"] = subtype;
-            }
-        }
-
-        if (types != null) {
-            if (Array.isArray(types)) {
-                _queryParams["types"] = types.map((item) => item);
-            } else {
-                _queryParams["types"] = types;
-            }
-        }
-
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "schemas.custom.list"
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.CustomSchemaFragmentsListResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        serializers.ErrorBadRequest.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        serializers.ErrorUnauthorized.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        serializers.ErrorForbidden.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        serializers.ErrorTooManyRequests.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        serializers.ErrorInternalServerError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        serializers.ErrorServiceUnavailable.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Lists custom schema fragments.
-     *
      * @param {DevRev.CustomSchemaFragmentsListRequest} request
      * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -883,7 +366,8 @@ export class Customization {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -1040,7 +524,8 @@ export class Customization {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -1149,163 +634,6 @@ export class Customization {
     /**
      * Gets a stock schema fragment.
      *
-     * @param {DevRev.StockSchemaFragmentsGetQuery} request
-     * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link DevRev.BadRequestError}
-     * @throws {@link DevRev.UnauthorizedError}
-     * @throws {@link DevRev.ForbiddenError}
-     * @throws {@link DevRev.NotFoundError}
-     * @throws {@link DevRev.TooManyRequestsError}
-     * @throws {@link DevRev.InternalServerError}
-     * @throws {@link DevRev.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.customization.stockSchemaFragmentsGet()
-     */
-    public async stockSchemaFragmentsGet(
-        request: DevRev.StockSchemaFragmentsGetQuery = {},
-        requestOptions?: Customization.RequestOptions
-    ): Promise<DevRev.StockSchemaFragmentsGetResponse> {
-        const { id, leafType } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        if (id != null) {
-            _queryParams["id"] = id;
-        }
-
-        if (leafType != null) {
-            _queryParams["leaf_type"] = leafType;
-        }
-
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "schemas.stock.get"
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.StockSchemaFragmentsGetResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        serializers.ErrorBadRequest.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        serializers.ErrorUnauthorized.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        serializers.ErrorForbidden.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 404:
-                    throw new DevRev.NotFoundError(
-                        serializers.ErrorNotFound.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        serializers.ErrorTooManyRequests.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        serializers.ErrorInternalServerError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        serializers.ErrorServiceUnavailable.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Gets a stock schema fragment.
-     *
      * @param {DevRev.StockSchemaFragmentsGetRequest} request
      * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -1334,7 +662,8 @@ export class Customization {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -1453,184 +782,6 @@ export class Customization {
     /**
      * Lists stock schema fragments.
      *
-     * @param {DevRev.StockSchemaFragmentsListQuery} request
-     * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link DevRev.BadRequestError}
-     * @throws {@link DevRev.UnauthorizedError}
-     * @throws {@link DevRev.ForbiddenError}
-     * @throws {@link DevRev.TooManyRequestsError}
-     * @throws {@link DevRev.InternalServerError}
-     * @throws {@link DevRev.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.customization.stockSchemaFragmentsList()
-     */
-    public async stockSchemaFragmentsList(
-        request: DevRev.StockSchemaFragmentsListQuery = {},
-        requestOptions?: Customization.RequestOptions
-    ): Promise<DevRev.StockSchemaFragmentsListResponse> {
-        const { cursor, filterPreset, leafType, limit, mode, prune, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        if (cursor != null) {
-            _queryParams["cursor"] = cursor;
-        }
-
-        if (filterPreset != null) {
-            _queryParams["filter_preset"] = filterPreset;
-        }
-
-        if (leafType != null) {
-            if (Array.isArray(leafType)) {
-                _queryParams["leaf_type"] = leafType.map((item) => item);
-            } else {
-                _queryParams["leaf_type"] = leafType;
-            }
-        }
-
-        if (limit != null) {
-            _queryParams["limit"] = limit.toString();
-        }
-
-        if (mode != null) {
-            _queryParams["mode"] = mode;
-        }
-
-        if (prune != null) {
-            if (Array.isArray(prune)) {
-                _queryParams["prune"] = prune.map((item) => item);
-            } else {
-                _queryParams["prune"] = prune;
-            }
-        }
-
-        if (sortBy != null) {
-            if (Array.isArray(sortBy)) {
-                _queryParams["sort_by"] = sortBy.map((item) => item);
-            } else {
-                _queryParams["sort_by"] = sortBy;
-            }
-        }
-
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "schemas.stock.list"
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.StockSchemaFragmentsListResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        serializers.ErrorBadRequest.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        serializers.ErrorUnauthorized.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        serializers.ErrorForbidden.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        serializers.ErrorTooManyRequests.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        serializers.ErrorInternalServerError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        serializers.ErrorServiceUnavailable.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Lists stock schema fragments.
-     *
      * @param {DevRev.StockSchemaFragmentsListRequest} request
      * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -1658,7 +809,8 @@ export class Customization {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -1671,156 +823,6 @@ export class Customization {
         });
         if (_response.ok) {
             return serializers.StockSchemaFragmentsListResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        serializers.ErrorBadRequest.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        serializers.ErrorUnauthorized.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        serializers.ErrorForbidden.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        serializers.ErrorTooManyRequests.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        serializers.ErrorInternalServerError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        serializers.ErrorServiceUnavailable.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Lists subtypes.
-     *
-     * @param {DevRev.SubtypesListQuery} request
-     * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link DevRev.BadRequestError}
-     * @throws {@link DevRev.UnauthorizedError}
-     * @throws {@link DevRev.ForbiddenError}
-     * @throws {@link DevRev.TooManyRequestsError}
-     * @throws {@link DevRev.InternalServerError}
-     * @throws {@link DevRev.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.customization.subtypesList()
-     */
-    public async subtypesList(
-        request: DevRev.SubtypesListQuery = {},
-        requestOptions?: Customization.RequestOptions
-    ): Promise<DevRev.SubtypesListResponse> {
-        const { leafType, leafTypes } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        if (leafType != null) {
-            _queryParams["leaf_type"] = leafType;
-        }
-
-        if (leafTypes != null) {
-            if (Array.isArray(leafTypes)) {
-                _queryParams["leaf_types"] = leafTypes.map((item) => item);
-            } else {
-                _queryParams["leaf_types"] = leafTypes;
-            }
-        }
-
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "schemas.subtypes.list"
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.SubtypesListResponse.parseOrThrow(_response.body, {
                 unrecognizedObjectKeys: "passthrough",
                 allowUnrecognizedUnionMembers: true,
                 allowUnrecognizedEnumValues: true,
@@ -1944,7 +946,8 @@ export class Customization {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -2084,7 +1087,8 @@ export class Customization {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -2193,158 +1197,6 @@ export class Customization {
     /**
      * Gets a custom stage.
      *
-     * @param {DevRev.CustomStagesGetQuery} request
-     * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link DevRev.BadRequestError}
-     * @throws {@link DevRev.UnauthorizedError}
-     * @throws {@link DevRev.ForbiddenError}
-     * @throws {@link DevRev.NotFoundError}
-     * @throws {@link DevRev.TooManyRequestsError}
-     * @throws {@link DevRev.InternalServerError}
-     * @throws {@link DevRev.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.customization.customStagesGet({
-     *         id: "id"
-     *     })
-     */
-    public async customStagesGet(
-        request: DevRev.CustomStagesGetQuery,
-        requestOptions?: Customization.RequestOptions
-    ): Promise<DevRev.CustomStagesGetResponse> {
-        const { id } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        _queryParams["id"] = id;
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "stages.custom.get"
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.CustomStagesGetResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        serializers.ErrorBadRequest.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        serializers.ErrorUnauthorized.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        serializers.ErrorForbidden.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 404:
-                    throw new DevRev.NotFoundError(
-                        serializers.ErrorNotFound.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        serializers.ErrorTooManyRequests.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        serializers.ErrorInternalServerError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        serializers.ErrorServiceUnavailable.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Gets a custom stage.
-     *
      * @param {DevRev.CustomStagesGetRequest} request
      * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -2375,7 +1227,8 @@ export class Customization {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -2494,176 +1347,6 @@ export class Customization {
     /**
      * Lists custom stages.
      *
-     * @param {DevRev.CustomStagesListQuery} request
-     * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link DevRev.BadRequestError}
-     * @throws {@link DevRev.UnauthorizedError}
-     * @throws {@link DevRev.ForbiddenError}
-     * @throws {@link DevRev.TooManyRequestsError}
-     * @throws {@link DevRev.InternalServerError}
-     * @throws {@link DevRev.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.customization.customStagesList()
-     */
-    public async customStagesList(
-        request: DevRev.CustomStagesListQuery = {},
-        requestOptions?: Customization.RequestOptions
-    ): Promise<DevRev.CustomStagesListResponse> {
-        const { cursor, limit, name, ordinal, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        if (cursor != null) {
-            _queryParams["cursor"] = cursor;
-        }
-
-        if (limit != null) {
-            _queryParams["limit"] = limit.toString();
-        }
-
-        if (name != null) {
-            if (Array.isArray(name)) {
-                _queryParams["name"] = name.map((item) => item);
-            } else {
-                _queryParams["name"] = name;
-            }
-        }
-
-        if (ordinal != null) {
-            if (Array.isArray(ordinal)) {
-                _queryParams["ordinal"] = ordinal.map((item) => item.toString());
-            } else {
-                _queryParams["ordinal"] = ordinal.toString();
-            }
-        }
-
-        if (sortBy != null) {
-            if (Array.isArray(sortBy)) {
-                _queryParams["sort_by"] = sortBy.map((item) => item);
-            } else {
-                _queryParams["sort_by"] = sortBy;
-            }
-        }
-
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "stages.custom.list"
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.CustomStagesListResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        serializers.ErrorBadRequest.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        serializers.ErrorUnauthorized.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        serializers.ErrorForbidden.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        serializers.ErrorTooManyRequests.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        serializers.ErrorInternalServerError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        serializers.ErrorServiceUnavailable.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Lists custom stages.
-     *
      * @param {DevRev.CustomStagesListRequest} request
      * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -2691,7 +1374,8 @@ export class Customization {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -2830,7 +1514,8 @@ export class Customization {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -2979,7 +1664,8 @@ export class Customization {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -3088,158 +1774,6 @@ export class Customization {
     /**
      * Gets a custom state.
      *
-     * @param {DevRev.CustomStatesGetQuery} request
-     * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link DevRev.BadRequestError}
-     * @throws {@link DevRev.UnauthorizedError}
-     * @throws {@link DevRev.ForbiddenError}
-     * @throws {@link DevRev.NotFoundError}
-     * @throws {@link DevRev.TooManyRequestsError}
-     * @throws {@link DevRev.InternalServerError}
-     * @throws {@link DevRev.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.customization.customStatesGet({
-     *         id: "id"
-     *     })
-     */
-    public async customStatesGet(
-        request: DevRev.CustomStatesGetQuery,
-        requestOptions?: Customization.RequestOptions
-    ): Promise<DevRev.CustomStatesGetResponse> {
-        const { id } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        _queryParams["id"] = id;
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "states.custom.get"
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.CustomStatesGetResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        serializers.ErrorBadRequest.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        serializers.ErrorUnauthorized.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        serializers.ErrorForbidden.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 404:
-                    throw new DevRev.NotFoundError(
-                        serializers.ErrorNotFound.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        serializers.ErrorTooManyRequests.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        serializers.ErrorInternalServerError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        serializers.ErrorServiceUnavailable.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Gets a custom state.
-     *
      * @param {DevRev.CustomStatesGetRequest} request
      * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -3270,7 +1804,8 @@ export class Customization {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -3389,180 +1924,6 @@ export class Customization {
     /**
      * Lists custom states.
      *
-     * @param {DevRev.CustomStatesListQuery} request
-     * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
-     *
-     * @throws {@link DevRev.BadRequestError}
-     * @throws {@link DevRev.UnauthorizedError}
-     * @throws {@link DevRev.ForbiddenError}
-     * @throws {@link DevRev.TooManyRequestsError}
-     * @throws {@link DevRev.InternalServerError}
-     * @throws {@link DevRev.ServiceUnavailableError}
-     *
-     * @example
-     *     await client.customization.customStatesList()
-     */
-    public async customStatesList(
-        request: DevRev.CustomStatesListQuery = {},
-        requestOptions?: Customization.RequestOptions
-    ): Promise<DevRev.CustomStatesListResponse> {
-        const { cursor, isFinal, limit, name, ordinal, sortBy } = request;
-        const _queryParams: Record<string, string | string[] | object | object[]> = {};
-        if (cursor != null) {
-            _queryParams["cursor"] = cursor;
-        }
-
-        if (isFinal != null) {
-            _queryParams["is_final"] = isFinal.toString();
-        }
-
-        if (limit != null) {
-            _queryParams["limit"] = limit.toString();
-        }
-
-        if (name != null) {
-            if (Array.isArray(name)) {
-                _queryParams["name"] = name.map((item) => item);
-            } else {
-                _queryParams["name"] = name;
-            }
-        }
-
-        if (ordinal != null) {
-            if (Array.isArray(ordinal)) {
-                _queryParams["ordinal"] = ordinal.map((item) => item.toString());
-            } else {
-                _queryParams["ordinal"] = ordinal.toString();
-            }
-        }
-
-        if (sortBy != null) {
-            if (Array.isArray(sortBy)) {
-                _queryParams["sort_by"] = sortBy.map((item) => item);
-            } else {
-                _queryParams["sort_by"] = sortBy;
-            }
-        }
-
-        const _response = await (this._options.fetcher ?? core.fetcher)({
-            url: urlJoin(
-                (await core.Supplier.get(this._options.environment)) ?? environments.DevRevEnvironment.Default,
-                "states.custom.list"
-            ),
-            method: "GET",
-            headers: {
-                Authorization: await this._getAuthorizationHeader(),
-                "X-Fern-Language": "JavaScript",
-                "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
-                "X-Fern-Runtime": core.RUNTIME.type,
-                "X-Fern-Runtime-Version": core.RUNTIME.version,
-            },
-            contentType: "application/json",
-            queryParameters: _queryParams,
-            requestType: "json",
-            timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
-            maxRetries: requestOptions?.maxRetries,
-            abortSignal: requestOptions?.abortSignal,
-        });
-        if (_response.ok) {
-            return serializers.CustomStatesListResponse.parseOrThrow(_response.body, {
-                unrecognizedObjectKeys: "passthrough",
-                allowUnrecognizedUnionMembers: true,
-                allowUnrecognizedEnumValues: true,
-                skipValidation: true,
-                breadcrumbsPrefix: ["response"],
-            });
-        }
-
-        if (_response.error.reason === "status-code") {
-            switch (_response.error.statusCode) {
-                case 400:
-                    throw new DevRev.BadRequestError(
-                        serializers.ErrorBadRequest.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 401:
-                    throw new DevRev.UnauthorizedError(
-                        serializers.ErrorUnauthorized.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 403:
-                    throw new DevRev.ForbiddenError(
-                        serializers.ErrorForbidden.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 429:
-                    throw new DevRev.TooManyRequestsError(
-                        serializers.ErrorTooManyRequests.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 500:
-                    throw new DevRev.InternalServerError(
-                        serializers.ErrorInternalServerError.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                case 503:
-                    throw new DevRev.ServiceUnavailableError(
-                        serializers.ErrorServiceUnavailable.parseOrThrow(_response.error.body, {
-                            unrecognizedObjectKeys: "passthrough",
-                            allowUnrecognizedUnionMembers: true,
-                            allowUnrecognizedEnumValues: true,
-                            skipValidation: true,
-                            breadcrumbsPrefix: ["response"],
-                        })
-                    );
-                default:
-                    throw new errors.DevRevError({
-                        statusCode: _response.error.statusCode,
-                        body: _response.error.body,
-                    });
-            }
-        }
-
-        switch (_response.error.reason) {
-            case "non-json":
-                throw new errors.DevRevError({
-                    statusCode: _response.error.statusCode,
-                    body: _response.error.rawBody,
-                });
-            case "timeout":
-                throw new errors.DevRevTimeoutError();
-            case "unknown":
-                throw new errors.DevRevError({
-                    message: _response.error.errorMessage,
-                });
-        }
-    }
-
-    /**
-     * Lists custom states.
-     *
      * @param {DevRev.CustomStatesListRequest} request
      * @param {Customization.RequestOptions} requestOptions - Request-specific configuration.
      *
@@ -3590,7 +1951,8 @@ export class Customization {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -3729,7 +2091,8 @@ export class Customization {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.17",
+                "X-Fern-SDK-Version": "0.0.2",
+                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },

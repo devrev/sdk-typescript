@@ -1,10 +1,8 @@
-export { type MetricDefinitionsListQuery } from "./MetricDefinitionsListQuery";
 export { type MetricDefinitionsListRequest } from "./MetricDefinitionsListRequest";
+export { type SlaTrackersGetRequest } from "./SlaTrackersGetRequest";
 export { type SlasAssignRequest } from "./SlasAssignRequest";
 export { type SlasCreateRequest } from "./SlasCreateRequest";
-export { type SlasGetQuery } from "./SlasGetQuery";
 export { type SlasGetRequest } from "./SlasGetRequest";
-export { type SlasListQuery } from "./SlasListQuery";
 export { type SlasListRequest } from "./SlasListRequest";
 export { type SlasTransitionRequest } from "./SlasTransitionRequest";
 export { type SlasUpdateRequest } from "./SlasUpdateRequest";

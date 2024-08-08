@@ -7,6 +7,8 @@ import * as DevRev from "../index";
 export interface Webhook extends DevRev.AtomBase {
     /** The event types that the webhook will receive. */
     eventTypes?: DevRev.WebhookEventType[];
+    /** Headers that are provided with every webhook invocation. */
+    headers?: DevRev.WebhookHeader[];
     /** The secret to use for verifying webhook events. */
     secret: string;
     status: DevRev.WebhookStatus;

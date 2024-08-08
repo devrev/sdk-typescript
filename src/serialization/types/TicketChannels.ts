@@ -7,8 +7,8 @@ import * as DevRev from "../../api/index";
 import * as core from "../../core";
 
 export const TicketChannels: core.serialization.Schema<serializers.TicketChannels.Raw, DevRev.TicketChannels> =
-    core.serialization.enum_(["email", "plug", "slack", "twilio"]);
+    core.serialization.enum_(["email", "plug", "slack", "twilio", "twilio_sms"]);
 
 export declare namespace TicketChannels {
-    type Raw = "email" | "plug" | "slack" | "twilio";
+    type Raw = "email" | "plug" | "slack" | "twilio" | "twilio_sms";
 }

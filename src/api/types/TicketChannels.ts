@@ -5,11 +5,12 @@
 /**
  * Channels of the ticket.
  */
-export type TicketChannels = "email" | "plug" | "slack" | "twilio";
+export type TicketChannels = "email" | "plug" | "slack" | "twilio" | "twilio_sms";
 
 export const TicketChannels = {
     Email: "email",
     Plug: "plug",
     Slack: "slack",
     Twilio: "twilio",
+    TwilioSms: "twilio_sms",
 } as const;

@@ -1,9 +1,6 @@
 export { type ConversationsCreateRequest } from "./ConversationsCreateRequest";
 export { type ConversationsDeleteRequest } from "./ConversationsDeleteRequest";
-export { type ConversationsExportQuery } from "./ConversationsExportQuery";
 export { type ConversationsExportRequest } from "./ConversationsExportRequest";
-export { type ConversationsGetQuery } from "./ConversationsGetQuery";
 export { type ConversationsGetRequest } from "./ConversationsGetRequest";
-export { type ConversationsListQuery } from "./ConversationsListQuery";
 export { type ConversationsListRequest } from "./ConversationsListRequest";
 export { type ConversationsUpdateRequest } from "./ConversationsUpdateRequest";

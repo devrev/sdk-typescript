@@ -20,6 +20,7 @@ export type TimelineEntryObjectType =
     | "rev_user"
     | "task"
     | "ticket"
+    | "timeline_change_event"
     | "timeline_comment";
 
 export const TimelineEntryObjectType = {
@@ -37,5 +38,6 @@ export const TimelineEntryObjectType = {
     RevUser: "rev_user",
     Task: "task",
     Ticket: "ticket",
+    TimelineChangeEvent: "timeline_change_event",
     TimelineComment: "timeline_comment",
 } as const;

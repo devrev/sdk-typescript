@@ -17,6 +17,8 @@ export type WebhookEventType =
     | "dev_user_updated"
     | "group_created"
     | "group_deleted"
+    | "group_member_added"
+    | "group_member_removed"
     | "group_updated"
     | "part_created"
     | "part_deleted"
@@ -56,6 +58,8 @@ export const WebhookEventType = {
     DevUserUpdated: "dev_user_updated",
     GroupCreated: "group_created",
     GroupDeleted: "group_deleted",
+    GroupMemberAdded: "group_member_added",
+    GroupMemberRemoved: "group_member_removed",
     GroupUpdated: "group_updated",
     PartCreated: "part_created",
     PartDeleted: "part_deleted",

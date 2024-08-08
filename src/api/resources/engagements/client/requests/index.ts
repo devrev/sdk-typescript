@@ -1,9 +1,6 @@
-export { type EngagementsCountQuery } from "./EngagementsCountQuery";
 export { type EngagementsCountRequest } from "./EngagementsCountRequest";
 export { type EngagementsCreateRequest } from "./EngagementsCreateRequest";
 export { type EngagementsDeleteRequest } from "./EngagementsDeleteRequest";
-export { type EngagementsGetQuery } from "./EngagementsGetQuery";
 export { type EngagementsGetRequest } from "./EngagementsGetRequest";
-export { type EngagementsListQuery } from "./EngagementsListQuery";
 export { type EngagementsListRequest } from "./EngagementsListRequest";
 export { type EngagementsUpdateRequest } from "./EngagementsUpdateRequest";

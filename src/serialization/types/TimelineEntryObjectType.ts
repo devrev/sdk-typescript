@@ -24,6 +24,7 @@ export const TimelineEntryObjectType: core.serialization.Schema<
     "rev_user",
     "task",
     "ticket",
+    "timeline_change_event",
     "timeline_comment",
 ]);
 
@@ -43,5 +44,6 @@ export declare namespace TimelineEntryObjectType {
         | "rev_user"
         | "task"
         | "ticket"
+        | "timeline_change_event"
         | "timeline_comment";
 }

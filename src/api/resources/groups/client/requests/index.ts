@@ -1,10 +1,7 @@
 export { type GroupsCreateRequest } from "./GroupsCreateRequest";
-export { type GroupsGetQuery } from "./GroupsGetQuery";
 export { type GroupsGetRequest } from "./GroupsGetRequest";
-export { type GroupsListQuery } from "./GroupsListQuery";
 export { type GroupsListRequest } from "./GroupsListRequest";
 export { type GroupMembersAddRequest } from "./GroupMembersAddRequest";
-export { type GroupMembersListQuery } from "./GroupMembersListQuery";
 export { type GroupMembersListRequest } from "./GroupMembersListRequest";
 export { type GroupMembersRemoveRequest } from "./GroupMembersRemoveRequest";
 export { type GroupsUpdateRequest } from "./GroupsUpdateRequest";

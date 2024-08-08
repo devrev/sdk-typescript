@@ -7,4 +7,6 @@ import * as DevRev from "../index";
 export interface PartBaseSummary extends DevRev.AtomBaseSummary {
     /** Name of the part. */
     name: string;
+    /** The users that own the part. */
+    ownedBy: DevRev.UserSummary[];
 }

@@ -1,9 +1,6 @@
-export { type ArticlesCountQuery } from "./ArticlesCountQuery";
 export { type ArticlesCountRequest } from "./ArticlesCountRequest";
 export { type ArticlesCreateRequest } from "./ArticlesCreateRequest";
 export { type ArticlesDeleteRequest } from "./ArticlesDeleteRequest";
-export { type GetArticleQuery } from "./GetArticleQuery";
 export { type ArticlesGetRequest } from "./ArticlesGetRequest";
-export { type ListArticlesQuery } from "./ListArticlesQuery";
 export { type ArticlesListRequest } from "./ArticlesListRequest";
 export { type ArticlesUpdateRequest } from "./ArticlesUpdateRequest";
