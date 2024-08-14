@@ -4,4 +4,11 @@
 
 import * as DevRev from "../index";
 
-export type CustomState = DevRev.AtomBase;
+export interface CustomState extends DevRev.AtomBase {
+    /** True if this is a final state. */
+    isFinal?: boolean;
+    /** The human readable name of the state. */
+    name?: string;
+    /** Ordinal used to identify system states. */
+    ordinal?: number;
+}

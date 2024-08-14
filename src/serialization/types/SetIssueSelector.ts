@@ -14,6 +14,7 @@ export const SetIssueSelector: core.serialization.ObjectSchema<
         "custom_fields",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
     ),
+    owners: core.serialization.list(core.serialization.string()).optional(),
     parts: core.serialization.list(core.serialization.string()).optional(),
     revOrgs: core.serialization.property("rev_orgs", core.serialization.list(core.serialization.string()).optional()),
     stageName: core.serialization.property(
@@ -27,6 +28,7 @@ export const SetIssueSelector: core.serialization.ObjectSchema<
 export declare namespace SetIssueSelector {
     interface Raw {
         custom_fields?: Record<string, unknown> | null;
+        owners?: string[] | null;
         parts?: string[] | null;
         rev_orgs?: string[] | null;
         stage_name?: string[] | null;

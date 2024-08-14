@@ -14,6 +14,7 @@ import { AtomBase } from "./AtomBase";
 
 export const WorkBase: core.serialization.ObjectSchema<serializers.WorkBase.Raw, DevRev.WorkBase> = core.serialization
     .object({
+        actualCloseDate: core.serialization.property("actual_close_date", core.serialization.date().optional()),
         appliesToPart: core.serialization.property("applies_to_part", PartSummary.optional()),
         artifacts: core.serialization.list(ArtifactSummary).optional(),
         body: core.serialization.string().optional(),
@@ -41,6 +42,7 @@ export const WorkBase: core.serialization.ObjectSchema<serializers.WorkBase.Raw,
 
 export declare namespace WorkBase {
     interface Raw extends AtomBase.Raw {
+        actual_close_date?: string | null;
         applies_to_part?: PartSummary.Raw | null;
         artifacts?: ArtifactSummary.Raw[] | null;
         body?: string | null;

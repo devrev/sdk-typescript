@@ -5,10 +5,22 @@
 import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
+import { CustomStateSummary } from "./CustomStateSummary";
 import { AtomBase } from "./AtomBase";
 
-export const CustomStage: core.serialization.ObjectSchema<serializers.CustomStage.Raw, DevRev.CustomStage> = AtomBase;
+export const CustomStage: core.serialization.ObjectSchema<serializers.CustomStage.Raw, DevRev.CustomStage> =
+    core.serialization
+        .object({
+            name: core.serialization.string().optional(),
+            ordinal: core.serialization.number().optional(),
+            state: CustomStateSummary.optional(),
+        })
+        .extend(AtomBase);
 
 export declare namespace CustomStage {
-    type Raw = AtomBase.Raw;
+    interface Raw extends AtomBase.Raw {
+        name?: string | null;
+        ordinal?: number | null;
+        state?: CustomStateSummary.Raw | null;
+    }
 }

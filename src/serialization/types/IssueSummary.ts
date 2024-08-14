@@ -6,17 +6,20 @@ import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
 import { IssuePriority } from "./IssuePriority";
+import { VistaGroupItemSummary } from "./VistaGroupItemSummary";
 import { WorkBaseSummary } from "./WorkBaseSummary";
 
 export const IssueSummary: core.serialization.ObjectSchema<serializers.IssueSummary.Raw, DevRev.IssueSummary> =
     core.serialization
         .object({
             priority: IssuePriority.optional(),
+            sprint: VistaGroupItemSummary.optional(),
         })
         .extend(WorkBaseSummary);
 
 export declare namespace IssueSummary {
     interface Raw extends WorkBaseSummary.Raw {
         priority?: IssuePriority.Raw | null;
+        sprint?: VistaGroupItemSummary.Raw | null;
     }
 }

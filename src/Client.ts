@@ -42,8 +42,8 @@ export declare namespace DevRevClient {
     interface Options {
         environment?: core.Supplier<environments.DevRevEnvironment | string>;
         token?: core.Supplier<core.BearerToken | undefined>;
-        /** Override the X-DevRev-Version header */
-        xDevRevVersion?: "2024-01-24";
+        /** Override the x-devrev-version header */
+        xDevrevVersion?: "2024-01-24";
         fetcher?: core.FetchFunction;
     }
 
@@ -54,8 +54,8 @@ export declare namespace DevRevClient {
         maxRetries?: number;
         /** A hook to abort the request. */
         abortSignal?: AbortSignal;
-        /** Override the X-DevRev-Version header */
-        xDevRevVersion?: "2024-01-24";
+        /** Override the x-devrev-version header */
+        xDevrevVersion?: "2024-01-24";
     }
 }
 

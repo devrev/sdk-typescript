@@ -13,8 +13,8 @@ export declare namespace EventSource {
     interface Options {
         environment?: core.Supplier<environments.DevRevEnvironment | string>;
         token?: core.Supplier<core.BearerToken | undefined>;
-        /** Override the X-DevRev-Version header */
-        xDevRevVersion?: "2024-01-24";
+        /** Override the x-devrev-version header */
+        xDevrevVersion?: "2024-01-24";
         fetcher?: core.FetchFunction;
     }
 
@@ -25,8 +25,8 @@ export declare namespace EventSource {
         maxRetries?: number;
         /** A hook to abort the request. */
         abortSignal?: AbortSignal;
-        /** Override the X-DevRev-Version header */
-        xDevRevVersion?: "2024-01-24";
+        /** Override the x-devrev-version header */
+        xDevrevVersion?: "2024-01-24";
     }
 }
 
@@ -69,8 +69,8 @@ export class EventSource {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.2",
-                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
+                "X-Fern-SDK-Version": "0.0.3",
+                "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -221,8 +221,8 @@ export class EventSource {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.2",
-                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
+                "X-Fern-SDK-Version": "0.0.3",
+                "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -374,8 +374,8 @@ export class EventSource {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.2",
-                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
+                "X-Fern-SDK-Version": "0.0.3",
+                "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },
@@ -524,8 +524,8 @@ export class EventSource {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.2",
-                "X-DevRev-Version": requestOptions?.xDevRevVersion ?? this._options?.xDevRevVersion ?? "2024-01-24",
+                "X-Fern-SDK-Version": "0.0.3",
+                "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
             },

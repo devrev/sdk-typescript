@@ -9,6 +9,8 @@ export interface SlaTracker extends DevRev.AtomBase {
     appliesToId?: string;
     /** Summary of the metrics target being tracked in the SLA tracker. */
     metricTargetSummaries: DevRev.ArchetypeMetricTarget[];
+    /** User, timestamp and metric Id of removed metrics. */
+    removedSlaMetricHistory?: DevRev.RemovedSlaMetricHistory[];
     sla?: DevRev.SlaSummary;
     /**
      * Details of the applicable SLA policy. Can be omitted if no sla

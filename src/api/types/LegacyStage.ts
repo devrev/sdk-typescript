@@ -10,5 +10,10 @@ import * as DevRev from "../index";
 export interface LegacyStage {
     /** Current stage name of the work item. */
     name: string;
+    /** Notes relevant to the stage. */
+    notes?: string;
+    /** Current stage number of the work item (sortable). */
+    ordinal?: number;
     stage?: DevRev.CustomStageSummary;
+    state?: DevRev.CustomStateSummary;
 }

@@ -5,7 +5,17 @@
 import * as DevRev from "../index";
 
 export interface WebhooksUpdateRequestHeaders {
+    /**
+     * The headers to be added to every webhook invocation. If a provided
+     * header is already specified for the webhook, its value is replaced.
+     */
     add?: DevRev.WebhookHeader[];
+    /**
+     * The headers to be removed from every webhook invocation. If a
+     * provided header is not specified for the webhook, then it's
+     * ignored.
+     */
     remove?: string[];
+    /** Sets the headers to include in every webhook invocation. */
     set?: DevRev.WebhookHeader[];
 }

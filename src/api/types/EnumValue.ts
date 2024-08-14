@@ -6,7 +6,7 @@
  * The properties of an enum value.
  */
 export interface EnumValue {
-    /** The uiique ID of the enum value. */
+    /** The unique ID of the enum value. */
     id: number;
     /** The display label of the enum value. */
     label: string;

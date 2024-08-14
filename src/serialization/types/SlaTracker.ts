@@ -6,6 +6,7 @@ import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
 import { ArchetypeMetricTarget } from "./ArchetypeMetricTarget";
+import { RemovedSlaMetricHistory } from "./RemovedSlaMetricHistory";
 import { SlaSummary } from "./SlaSummary";
 import { AtomBase } from "./AtomBase";
 
@@ -16,6 +17,10 @@ export const SlaTracker: core.serialization.ObjectSchema<serializers.SlaTracker.
             metricTargetSummaries: core.serialization.property(
                 "metric_target_summaries",
                 core.serialization.list(ArchetypeMetricTarget)
+            ),
+            removedSlaMetricHistory: core.serialization.property(
+                "removed_sla_metric_history",
+                core.serialization.list(RemovedSlaMetricHistory).optional()
             ),
             sla: SlaSummary.optional(),
             slaPolicyId: core.serialization.property("sla_policy_id", core.serialization.string().optional()),
@@ -28,6 +33,7 @@ export declare namespace SlaTracker {
     interface Raw extends AtomBase.Raw {
         applies_to_id?: string | null;
         metric_target_summaries: ArchetypeMetricTarget.Raw[];
+        removed_sla_metric_history?: RemovedSlaMetricHistory.Raw[] | null;
         sla?: SlaSummary.Raw | null;
         sla_policy_id?: string | null;
         stage?: string | null;

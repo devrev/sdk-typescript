@@ -13,7 +13,17 @@ export interface SetSlaSelector {
      * value is null, the field must have null value or not be present.
      */
     customFields?: Record<string, unknown>;
+    /**
+     * The SLA policy applies to the tickets or conversations of these
+     * groups.
+     */
+    groups?: string[];
     issueSelector?: DevRev.SetIssueSelector;
+    /**
+     * The SLA policy applies to the tickets or conversations of these
+     * owners.
+     */
+    owners?: string[];
     /** The SLA policy applies to the tickets of these parts. */
     parts?: string[];
     /** The SLA policy applies to conversations with these priorities. */
@@ -26,4 +36,6 @@ export interface SetSlaSelector {
     subtype?: string[];
     /** The SLA policy applies to items with these tags. */
     tags?: string[];
+    /** The SLA policy applies to tickets with these source channels. */
+    ticketSourceChannel?: string[];
 }

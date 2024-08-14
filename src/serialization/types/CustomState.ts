@@ -7,8 +7,19 @@ import * as DevRev from "../../api/index";
 import * as core from "../../core";
 import { AtomBase } from "./AtomBase";
 
-export const CustomState: core.serialization.ObjectSchema<serializers.CustomState.Raw, DevRev.CustomState> = AtomBase;
+export const CustomState: core.serialization.ObjectSchema<serializers.CustomState.Raw, DevRev.CustomState> =
+    core.serialization
+        .object({
+            isFinal: core.serialization.property("is_final", core.serialization.boolean().optional()),
+            name: core.serialization.string().optional(),
+            ordinal: core.serialization.number().optional(),
+        })
+        .extend(AtomBase);
 
 export declare namespace CustomState {
-    type Raw = AtomBase.Raw;
+    interface Raw extends AtomBase.Raw {
+        is_final?: boolean | null;
+        name?: string | null;
+        ordinal?: number | null;
+    }
 }

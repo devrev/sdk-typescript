@@ -6,4 +6,5 @@ import * as DevRev from "../index";
 
 export interface IssueSummary extends DevRev.WorkBaseSummary {
     priority?: DevRev.IssuePriority;
+    sprint?: DevRev.VistaGroupItemSummary;
 }

@@ -10,6 +10,8 @@ export interface SetIssueSelector {
      * values.
      */
     customFields?: Record<string, unknown>;
+    /** The SLA policy applies to the issues of these owners. */
+    owners?: string[];
     /** The SLA policy applies to the issues of these parts. */
     parts?: string[];
     /** The SLA policy applies to the issues of these revorgs. */

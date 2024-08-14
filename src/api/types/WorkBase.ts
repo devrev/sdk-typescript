@@ -5,6 +5,8 @@
 import * as DevRev from "../index";
 
 export interface WorkBase extends DevRev.AtomBase {
+    /** Timestamp when the work was actually completed. */
+    actualCloseDate?: Date;
     appliesToPart?: DevRev.PartSummary;
     /** The artifacts attached to the work item. */
     artifacts?: DevRev.ArtifactSummary[];

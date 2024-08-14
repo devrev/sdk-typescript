@@ -9303,6 +9303,71 @@ await client.snapIns.resourcesPost({
 </dl>
 </details>
 
+<details><summary><code>client.snapIns.<a href="/src/api/resources/snapIns/client/Client.ts">update</a>({ ...params }) -> DevRev.SnapInsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a snap-in.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.snapIns.update({
+    id: "id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.SnapInsUpdateRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SnapIns.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## snap-widgets
 
 <details><summary><code>client.snapWidgets.<a href="/src/api/resources/snapWidgets/client/Client.ts">create</a>({ ...params }) -> DevRev.SnapWidgetsCreateResponse</code></summary>

@@ -22,6 +22,9 @@ export const WebhookEventType: core.serialization.Schema<serializers.WebhookEven
         "group_member_added",
         "group_member_removed",
         "group_updated",
+        "link_created",
+        "link_deleted",
+        "link_updated",
         "part_created",
         "part_deleted",
         "part_updated",
@@ -65,6 +68,9 @@ export declare namespace WebhookEventType {
         | "group_member_added"
         | "group_member_removed"
         | "group_updated"
+        | "link_created"
+        | "link_deleted"
+        | "link_updated"
         | "part_created"
         | "part_deleted"
         | "part_updated"

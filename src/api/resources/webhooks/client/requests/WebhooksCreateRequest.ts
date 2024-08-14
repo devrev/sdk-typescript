@@ -13,6 +13,7 @@ import * as DevRev from "../../../../index";
 export interface WebhooksCreateRequest {
     /** The event types that the webhook endpoint will receive. */
     eventTypes?: DevRev.WebhookEventType[];
+    /** The headers to include in every webhook invocation. */
     headers?: DevRev.WebhookHeader[];
     /**
      * The secret to use when verifying webhook events. If provided, the
