@@ -9,6 +9,7 @@ import { AccessLevel } from "../../../../types/AccessLevel";
 import { ArticlesUpdateRequestAppliesToParts } from "../../../../types/ArticlesUpdateRequestAppliesToParts";
 import { ArticlesUpdateRequestArtifacts } from "../../../../types/ArticlesUpdateRequestArtifacts";
 import { ArticlesUpdateRequestAuthoredBy } from "../../../../types/ArticlesUpdateRequestAuthoredBy";
+import { CustomSchemaSpec } from "../../../../types/CustomSchemaSpec";
 import { ArticlesUpdateRequestExtractedContent } from "../../../../types/ArticlesUpdateRequestExtractedContent";
 import { ArticlesUpdateRequestOwnedBy } from "../../../../types/ArticlesUpdateRequestOwnedBy";
 import { ArticlesUpdateRequestReorder } from "../../../../types/ArticlesUpdateRequestReorder";
@@ -24,6 +25,11 @@ export const ArticlesUpdateRequest: core.serialization.Schema<
     appliesToParts: core.serialization.property("applies_to_parts", ArticlesUpdateRequestAppliesToParts.optional()),
     artifacts: ArticlesUpdateRequestArtifacts.optional(),
     authoredBy: core.serialization.property("authored_by", ArticlesUpdateRequestAuthoredBy.optional()),
+    customFields: core.serialization.property(
+        "custom_fields",
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+    ),
+    customSchemaSpec: core.serialization.property("custom_schema_spec", CustomSchemaSpec.optional()),
     description: core.serialization.string().optional(),
     extractedContent: core.serialization.property(
         "extracted_content",
@@ -48,6 +54,8 @@ export declare namespace ArticlesUpdateRequest {
         applies_to_parts?: ArticlesUpdateRequestAppliesToParts.Raw | null;
         artifacts?: ArticlesUpdateRequestArtifacts.Raw | null;
         authored_by?: ArticlesUpdateRequestAuthoredBy.Raw | null;
+        custom_fields?: Record<string, unknown> | null;
+        custom_schema_spec?: CustomSchemaSpec.Raw | null;
         description?: string | null;
         extracted_content?: ArticlesUpdateRequestExtractedContent.Raw | null;
         id: string;

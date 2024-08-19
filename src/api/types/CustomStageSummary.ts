@@ -4,4 +4,7 @@
 
 import * as DevRev from "../index";
 
-export type CustomStageSummary = DevRev.AtomBaseSummary;
+export interface CustomStageSummary extends DevRev.AtomBaseSummary {
+    /** The human readable name of the state. */
+    name?: string;
+}

@@ -15,6 +15,9 @@ export interface ArticlesUpdateRequest {
     appliesToParts?: DevRev.ArticlesUpdateRequestAppliesToParts;
     artifacts?: DevRev.ArticlesUpdateRequestArtifacts;
     authoredBy?: DevRev.ArticlesUpdateRequestAuthoredBy;
+    /** Application-defined custom fields. */
+    customFields?: Record<string, unknown>;
+    customSchemaSpec?: DevRev.CustomSchemaSpec;
     /**
      * Updated description of the article object, or unchanged if not
      * provided.

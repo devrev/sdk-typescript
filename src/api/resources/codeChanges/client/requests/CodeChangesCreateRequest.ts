@@ -6,14 +6,10 @@ import * as DevRev from "../../../../index";
 
 /**
  * @example
- *     {
- *         id: "id"
- *     }
+ *     {}
  */
-export interface CodeChangesUpdateRequest {
+export interface CodeChangesCreateRequest {
     /** Application-defined custom fields. */
     customFields?: Record<string, unknown>;
     customSchemaSpec?: DevRev.CustomSchemaSpec;
-    /** The ID of the code change object to be updated. */
-    id: string;
 }

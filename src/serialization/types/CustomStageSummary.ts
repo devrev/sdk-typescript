@@ -10,8 +10,14 @@ import { AtomBaseSummary } from "./AtomBaseSummary";
 export const CustomStageSummary: core.serialization.ObjectSchema<
     serializers.CustomStageSummary.Raw,
     DevRev.CustomStageSummary
-> = AtomBaseSummary;
+> = core.serialization
+    .object({
+        name: core.serialization.string().optional(),
+    })
+    .extend(AtomBaseSummary);
 
 export declare namespace CustomStageSummary {
-    type Raw = AtomBaseSummary.Raw;
+    interface Raw extends AtomBaseSummary.Raw {
+        name?: string | null;
+    }
 }

@@ -7,6 +7,7 @@ import * as DevRev from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { AccessLevel } from "../../../../types/AccessLevel";
 import { ArticleType } from "../../../../types/ArticleType";
+import { CustomSchemaSpec } from "../../../../types/CustomSchemaSpec";
 import { ArticlesCreateRequestResource } from "../../../../types/ArticlesCreateRequestResource";
 import { SetSharedWithMembership } from "../../../../types/SetSharedWithMembership";
 import { ArticleStatus } from "../../../../types/ArticleStatus";
@@ -26,6 +27,11 @@ export const ArticlesCreateRequest: core.serialization.Schema<
         "authored_by",
         core.serialization.list(core.serialization.string()).optional()
     ),
+    customFields: core.serialization.property(
+        "custom_fields",
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+    ),
+    customSchemaSpec: core.serialization.property("custom_schema_spec", CustomSchemaSpec.optional()),
     description: core.serialization.string().optional(),
     extractedContent: core.serialization.property(
         "extracted_content",
@@ -49,6 +55,8 @@ export declare namespace ArticlesCreateRequest {
         applies_to_parts: string[];
         article_type?: ArticleType.Raw | null;
         authored_by?: string[] | null;
+        custom_fields?: Record<string, unknown> | null;
+        custom_schema_spec?: CustomSchemaSpec.Raw | null;
         description?: string | null;
         extracted_content?: string[] | null;
         language?: string | null;

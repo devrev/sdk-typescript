@@ -13,6 +13,7 @@ import { WorkBase } from "./WorkBase";
 
 export const Issue: core.serialization.ObjectSchema<serializers.Issue.Raw, DevRev.Issue> = core.serialization
     .object({
+        actualStartDate: core.serialization.property("actual_start_date", core.serialization.date().optional()),
         developedWith: core.serialization.property("developed_with", core.serialization.list(PartSummary).optional()),
         priority: IssuePriority.optional(),
         slaTracker: core.serialization.property("sla_tracker", SlaTrackerSummary.optional()),
@@ -23,6 +24,7 @@ export const Issue: core.serialization.ObjectSchema<serializers.Issue.Raw, DevRe
 
 export declare namespace Issue {
     interface Raw extends WorkBase.Raw {
+        actual_start_date?: string | null;
         developed_with?: PartSummary.Raw[] | null;
         priority?: IssuePriority.Raw | null;
         sla_tracker?: SlaTrackerSummary.Raw | null;

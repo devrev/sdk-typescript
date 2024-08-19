@@ -1529,9 +1529,7 @@ Creates a code change object.
 <dd>
 
 ```typescript
-await client.codeChanges.create({
-    key: "value",
-});
+await client.codeChanges.create();
 ```
 
 </dd>
@@ -7900,6 +7898,69 @@ await client.revUsers.listPost();
 <dd>
 
 **request:** `DevRev.RevUsersListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RevUsers.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.revUsers.<a href="/src/api/resources/revUsers/client/Client.ts">scanPost</a>({ ...params }) -> DevRev.RevUsersScanResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Scans through all Rev users.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.revUsers.scanPost();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.RevUsersScanRequest`
 
 </dd>
 </dl>

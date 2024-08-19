@@ -5,6 +5,8 @@
 import * as DevRev from "../index";
 
 export interface Issue extends DevRev.WorkBase {
+    /** Actual start date for the object. */
+    actualStartDate?: Date;
     /** Parts associated based on git events. */
     developedWith?: DevRev.PartSummary[];
     priority?: DevRev.IssuePriority;

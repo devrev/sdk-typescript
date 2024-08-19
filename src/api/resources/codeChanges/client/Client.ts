@@ -50,12 +50,10 @@ export class CodeChanges {
      * @throws {@link DevRev.ServiceUnavailableError}
      *
      * @example
-     *     await client.codeChanges.create({
-     *         "key": "value"
-     *     })
+     *     await client.codeChanges.create()
      */
     public async create(
-        request: DevRev.CodeChangesCreateRequest,
+        request: DevRev.CodeChangesCreateRequest = {},
         requestOptions?: CodeChanges.RequestOptions
     ): Promise<DevRev.CodeChangesCreateResponse> {
         const _response = await (this._options.fetcher ?? core.fetcher)({
@@ -68,7 +66,7 @@ export class CodeChanges {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.3",
+                "X-Fern-SDK-Version": "0.0.4",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -207,7 +205,7 @@ export class CodeChanges {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.3",
+                "X-Fern-SDK-Version": "0.0.4",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -346,7 +344,7 @@ export class CodeChanges {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.3",
+                "X-Fern-SDK-Version": "0.0.4",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -483,7 +481,7 @@ export class CodeChanges {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.3",
+                "X-Fern-SDK-Version": "0.0.4",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -622,7 +620,7 @@ export class CodeChanges {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.3",
+                "X-Fern-SDK-Version": "0.0.4",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,

@@ -20,6 +20,9 @@ export interface ArticlesCreateRequest {
     articleType?: DevRev.ArticleType;
     /** The authors of the article. */
     authoredBy?: string[];
+    /** Application-defined custom fields. */
+    customFields?: Record<string, unknown>;
+    customSchemaSpec?: DevRev.CustomSchemaSpec;
     /** Description for the article. */
     description?: string;
     /** ID of the extracted content artifact. */

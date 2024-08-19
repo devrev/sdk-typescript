@@ -7,22 +7,20 @@ import * as DevRev from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { CustomSchemaSpec } from "../../../../types/CustomSchemaSpec";
 
-export const CodeChangesUpdateRequest: core.serialization.Schema<
-    serializers.CodeChangesUpdateRequest.Raw,
-    DevRev.CodeChangesUpdateRequest
+export const CodeChangesCreateRequest: core.serialization.Schema<
+    serializers.CodeChangesCreateRequest.Raw,
+    DevRev.CodeChangesCreateRequest
 > = core.serialization.object({
     customFields: core.serialization.property(
         "custom_fields",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
     ),
     customSchemaSpec: core.serialization.property("custom_schema_spec", CustomSchemaSpec.optional()),
-    id: core.serialization.string(),
 });
 
-export declare namespace CodeChangesUpdateRequest {
+export declare namespace CodeChangesCreateRequest {
     interface Raw {
         custom_fields?: Record<string, unknown> | null;
         custom_schema_spec?: CustomSchemaSpec.Raw | null;
-        id: string;
     }
 }
