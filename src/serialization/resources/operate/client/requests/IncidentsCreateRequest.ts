@@ -6,6 +6,7 @@ import * as serializers from "../../../../index";
 import * as DevRev from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { CustomSchemaSpec } from "../../../../types/CustomSchemaSpec";
+import { CreateImpactedCustomerDetails } from "../../../../types/CreateImpactedCustomerDetails";
 import { CreateStage } from "../../../../types/CreateStage";
 import { CreateTagWithValue } from "../../../../types/CreateTagWithValue";
 
@@ -13,6 +14,7 @@ export const IncidentsCreateRequest: core.serialization.Schema<
     serializers.IncidentsCreateRequest.Raw,
     DevRev.IncidentsCreateRequest
 > = core.serialization.object({
+    acknowledgedDate: core.serialization.property("acknowledged_date", core.serialization.date().optional()),
     appliesToParts: core.serialization.property(
         "applies_to_parts",
         core.serialization.list(core.serialization.string()).optional()
@@ -24,14 +26,23 @@ export const IncidentsCreateRequest: core.serialization.Schema<
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
     ),
     customSchemaSpec: core.serialization.property("custom_schema_spec", CustomSchemaSpec.optional()),
-    identifiedAt: core.serialization.property("identified_at", core.serialization.date().optional()),
+    identifiedDate: core.serialization.property("identified_date", core.serialization.date().optional()),
+    impact: CreateImpactedCustomerDetails.optional(),
     impactedCustomers: core.serialization.property(
         "impacted_customers",
         core.serialization.list(core.serialization.string()).optional()
     ),
+    mitigatedDate: core.serialization.property("mitigated_date", core.serialization.date().optional()),
     ownedBy: core.serialization.property("owned_by", core.serialization.list(core.serialization.string()).optional()),
-    resolvedAt: core.serialization.property("resolved_at", core.serialization.date().optional()),
+    pia: core.serialization.list(core.serialization.string()).optional(),
+    playbooks: core.serialization.list(core.serialization.string()).optional(),
+    relatedDocs: core.serialization.property(
+        "related_docs",
+        core.serialization.list(core.serialization.string()).optional()
+    ),
+    reportedBy: core.serialization.property("reported_by", core.serialization.number().optional()),
     severity: core.serialization.number().optional(),
+    source: core.serialization.number().optional(),
     stage: CreateStage.optional(),
     stakeholders: core.serialization.list(core.serialization.string()).optional(),
     tags: core.serialization.list(CreateTagWithValue).optional(),
@@ -41,16 +52,23 @@ export const IncidentsCreateRequest: core.serialization.Schema<
 
 export declare namespace IncidentsCreateRequest {
     interface Raw {
+        acknowledged_date?: string | null;
         applies_to_parts?: string[] | null;
         artifacts?: string[] | null;
         body?: string | null;
         custom_fields?: Record<string, unknown> | null;
         custom_schema_spec?: CustomSchemaSpec.Raw | null;
-        identified_at?: string | null;
+        identified_date?: string | null;
+        impact?: CreateImpactedCustomerDetails.Raw | null;
         impacted_customers?: string[] | null;
+        mitigated_date?: string | null;
         owned_by?: string[] | null;
-        resolved_at?: string | null;
+        pia?: string[] | null;
+        playbooks?: string[] | null;
+        related_docs?: string[] | null;
+        reported_by?: number | null;
         severity?: number | null;
+        source?: number | null;
         stage?: CreateStage.Raw | null;
         stakeholders?: string[] | null;
         tags?: CreateTagWithValue.Raw[] | null;

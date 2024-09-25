@@ -20,6 +20,11 @@ export const Ticket: core.serialization.ObjectSchema<serializers.Ticket.Raw, Dev
         needsResponse: core.serialization.property("needs_response", core.serialization.boolean().optional()),
         revOrg: core.serialization.property("rev_org", OrgSummary.optional()),
         sentiment: EnumValue.optional(),
+        sentimentModifiedDate: core.serialization.property(
+            "sentiment_modified_date",
+            core.serialization.date().optional()
+        ),
+        sentimentSummary: core.serialization.property("sentiment_summary", core.serialization.string().optional()),
         severity: TicketSeverity.optional(),
         slaTracker: core.serialization.property("sla_tracker", SlaTrackerSummary.optional()),
         sourceChannel: core.serialization.property("source_channel", core.serialization.string().optional()),
@@ -33,6 +38,8 @@ export declare namespace Ticket {
         needs_response?: boolean | null;
         rev_org?: OrgSummary.Raw | null;
         sentiment?: EnumValue.Raw | null;
+        sentiment_modified_date?: string | null;
+        sentiment_summary?: string | null;
         severity?: TicketSeverity.Raw | null;
         sla_tracker?: SlaTrackerSummary.Raw | null;
         source_channel?: string | null;

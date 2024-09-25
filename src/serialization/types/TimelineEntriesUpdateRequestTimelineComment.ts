@@ -17,6 +17,7 @@ export const TimelineEntriesUpdateRequestTimelineComment: core.serialization.Obj
     artifacts: TimelineEntriesUpdateRequestTimelineCommentArtifacts.optional(),
     body: core.serialization.string().optional(),
     bodyType: core.serialization.property("body_type", TimelineCommentBodyType.optional()),
+    externalRef: core.serialization.property("external_ref", core.serialization.string().optional()),
     linkPreviews: core.serialization.property(
         "link_previews",
         TimelineEntriesUpdateRequestTimelineCommentLinkPreviews.optional()
@@ -29,6 +30,7 @@ export declare namespace TimelineEntriesUpdateRequestTimelineComment {
         artifacts?: TimelineEntriesUpdateRequestTimelineCommentArtifacts.Raw | null;
         body?: string | null;
         body_type?: TimelineCommentBodyType.Raw | null;
+        external_ref?: string | null;
         link_previews?: TimelineEntriesUpdateRequestTimelineCommentLinkPreviews.Raw | null;
         snap_kit_body?: TimelineSnapKitBody.Raw | null;
     }

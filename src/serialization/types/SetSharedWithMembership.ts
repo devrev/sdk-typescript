@@ -6,11 +6,17 @@ import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
 
-export const SetSharedWithMembership: core.serialization.Schema<
+export const SetSharedWithMembership: core.serialization.ObjectSchema<
     serializers.SetSharedWithMembership.Raw,
     DevRev.SetSharedWithMembership
-> = core.serialization.record(core.serialization.string(), core.serialization.unknown());
+> = core.serialization.object({
+    member: core.serialization.string().optional(),
+    role: core.serialization.string().optional(),
+});
 
 export declare namespace SetSharedWithMembership {
-    type Raw = Record<string, unknown>;
+    interface Raw {
+        member?: string | null;
+        role?: string | null;
+    }
 }

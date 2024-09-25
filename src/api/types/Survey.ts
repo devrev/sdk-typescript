@@ -7,6 +7,8 @@ import * as DevRev from "../index";
 export interface Survey extends DevRev.AtomBase {
     /** Description of the survey. */
     description?: string;
+    /** Header of the survey. */
+    header?: string;
     /** Text posted when introducing the survey to the responder. */
     introductoryText?: string;
     /**
@@ -20,4 +22,6 @@ export interface Survey extends DevRev.AtomBase {
     schema?: DevRev.SchemaFieldDescriptor[];
     /** List of all the fields and their respective metadata in the schema. */
     schemaWithMetadata?: DevRev.SurveyFieldWithMetadata[];
+    /** Title of the survey. */
+    title?: string;
 }

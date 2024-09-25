@@ -17,6 +17,9 @@ export const WorksUpdateRequestTicket: core.serialization.ObjectSchema<
     isSpam: core.serialization.property("is_spam", core.serialization.boolean().optional()),
     needsResponse: core.serialization.property("needs_response", core.serialization.boolean().optional()),
     revOrg: core.serialization.property("rev_org", core.serialization.string().optional()),
+    sentiment: core.serialization.number().optional(),
+    sentimentModifiedDate: core.serialization.property("sentiment_modified_date", core.serialization.date().optional()),
+    sentimentSummary: core.serialization.property("sentiment_summary", core.serialization.string().optional()),
     severity: TicketSeverity.optional(),
 });
 
@@ -27,6 +30,9 @@ export declare namespace WorksUpdateRequestTicket {
         is_spam?: boolean | null;
         needs_response?: boolean | null;
         rev_org?: string | null;
+        sentiment?: number | null;
+        sentiment_modified_date?: string | null;
+        sentiment_summary?: string | null;
         severity?: TicketSeverity.Raw | null;
     }
 }

@@ -5,9 +5,10 @@
 /**
  * Source of the code change object.
  */
-export type CodeChangeSource = "bitbucket" | "github";
+export type CodeChangeSource = "azure_devops" | "bitbucket" | "github";
 
 export const CodeChangeSource = {
+    AzureDevops: "azure_devops",
     Bitbucket: "bitbucket",
     Github: "github",
 } as const;

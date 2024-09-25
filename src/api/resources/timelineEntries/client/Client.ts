@@ -45,6 +45,7 @@ export class TimelineEntries {
      * @throws {@link DevRev.BadRequestError}
      * @throws {@link DevRev.UnauthorizedError}
      * @throws {@link DevRev.ForbiddenError}
+     * @throws {@link DevRev.ConflictError}
      * @throws {@link DevRev.TooManyRequestsError}
      * @throws {@link DevRev.InternalServerError}
      * @throws {@link DevRev.ServiceUnavailableError}
@@ -60,7 +61,7 @@ export class TimelineEntries {
      *         visibility: DevRev.TimelineEntryVisibility.External,
      *         artifacts: ["string"],
      *         body: "string",
-     *         bodyType: DevRev.TimelineCommentBodyType.SnapKit,
+     *         bodyType: DevRev.TimelineCommentBodyType.Data,
      *         externalRef: "string",
      *         linkPreviews: ["string"],
      *         snapKitBody: {},
@@ -81,7 +82,7 @@ export class TimelineEntries {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.4",
+                "X-Fern-SDK-Version": "0.0.5",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -128,6 +129,16 @@ export class TimelineEntries {
                 case 403:
                     throw new DevRev.ForbiddenError(
                         serializers.ErrorForbidden.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 409:
+                    throw new DevRev.ConflictError(
+                        serializers.ErrorConflict.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,
@@ -220,7 +231,7 @@ export class TimelineEntries {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.4",
+                "X-Fern-SDK-Version": "0.0.5",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -361,7 +372,7 @@ export class TimelineEntries {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.4",
+                "X-Fern-SDK-Version": "0.0.5",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -511,7 +522,7 @@ export class TimelineEntries {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.4",
+                "X-Fern-SDK-Version": "0.0.5",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -637,6 +648,7 @@ export class TimelineEntries {
      * @throws {@link DevRev.BadRequestError}
      * @throws {@link DevRev.UnauthorizedError}
      * @throws {@link DevRev.ForbiddenError}
+     * @throws {@link DevRev.ConflictError}
      * @throws {@link DevRev.TooManyRequestsError}
      * @throws {@link DevRev.InternalServerError}
      * @throws {@link DevRev.ServiceUnavailableError}
@@ -647,7 +659,8 @@ export class TimelineEntries {
      *         id: "string",
      *         artifacts: {},
      *         body: "string",
-     *         bodyType: DevRev.TimelineCommentBodyType.SnapKit,
+     *         bodyType: DevRev.TimelineCommentBodyType.Data,
+     *         externalRef: "string",
      *         linkPreviews: {},
      *         snapKitBody: {}
      *     })
@@ -666,7 +679,7 @@ export class TimelineEntries {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.4",
+                "X-Fern-SDK-Version": "0.0.5",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -713,6 +726,16 @@ export class TimelineEntries {
                 case 403:
                     throw new DevRev.ForbiddenError(
                         serializers.ErrorForbidden.parseOrThrow(_response.error.body, {
+                            unrecognizedObjectKeys: "passthrough",
+                            allowUnrecognizedUnionMembers: true,
+                            allowUnrecognizedEnumValues: true,
+                            skipValidation: true,
+                            breadcrumbsPrefix: ["response"],
+                        })
+                    );
+                case 409:
+                    throw new DevRev.ConflictError(
+                        serializers.ErrorConflict.parseOrThrow(_response.error.body, {
                             unrecognizedObjectKeys: "passthrough",
                             allowUnrecognizedUnionMembers: true,
                             allowUnrecognizedEnumValues: true,

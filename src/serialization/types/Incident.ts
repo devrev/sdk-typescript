@@ -7,6 +7,7 @@ import * as DevRev from "../../api/index";
 import * as core from "../../core";
 import { PartSummary } from "./PartSummary";
 import { ArtifactSummary } from "./ArtifactSummary";
+import { ImpactedCustomerDetails } from "./ImpactedCustomerDetails";
 import { AccountSummary } from "./AccountSummary";
 import { UserSummary } from "./UserSummary";
 import { EnumValue } from "./EnumValue";
@@ -16,6 +17,7 @@ import { AtomBase } from "./AtomBase";
 
 export const Incident: core.serialization.ObjectSchema<serializers.Incident.Raw, DevRev.Incident> = core.serialization
     .object({
+        acknowledgedDate: core.serialization.property("acknowledged_date", core.serialization.date().optional()),
         appliesToParts: core.serialization.property(
             "applies_to_parts",
             core.serialization.list(PartSummary).optional()
@@ -30,14 +32,17 @@ export const Incident: core.serialization.ObjectSchema<serializers.Incident.Raw,
             "custom_schema_fragments",
             core.serialization.list(core.serialization.string()).optional()
         ),
-        identifiedAt: core.serialization.property("identified_at", core.serialization.date().optional()),
+        identifiedDate: core.serialization.property("identified_date", core.serialization.date().optional()),
+        impact: ImpactedCustomerDetails.optional(),
         impactedCustomers: core.serialization.property(
             "impacted_customers",
             core.serialization.list(AccountSummary).optional()
         ),
+        mitigatedDate: core.serialization.property("mitigated_date", core.serialization.date().optional()),
         ownedBy: core.serialization.property("owned_by", core.serialization.list(UserSummary).optional()),
-        resolvedAt: core.serialization.property("resolved_at", core.serialization.date().optional()),
+        reportedBy: core.serialization.property("reported_by", EnumValue.optional()),
         severity: EnumValue.optional(),
+        source: EnumValue.optional(),
         stage: Stage.optional(),
         stakeholders: core.serialization.list(UserSummary).optional(),
         stockSchemaFragment: core.serialization.property(
@@ -53,16 +58,20 @@ export const Incident: core.serialization.ObjectSchema<serializers.Incident.Raw,
 
 export declare namespace Incident {
     interface Raw extends AtomBase.Raw {
+        acknowledged_date?: string | null;
         applies_to_parts?: PartSummary.Raw[] | null;
         artifacts?: ArtifactSummary.Raw[] | null;
         body?: string | null;
         custom_fields?: Record<string, unknown> | null;
         custom_schema_fragments?: string[] | null;
-        identified_at?: string | null;
+        identified_date?: string | null;
+        impact?: ImpactedCustomerDetails.Raw | null;
         impacted_customers?: AccountSummary.Raw[] | null;
+        mitigated_date?: string | null;
         owned_by?: UserSummary.Raw[] | null;
-        resolved_at?: string | null;
+        reported_by?: EnumValue.Raw | null;
         severity?: EnumValue.Raw | null;
+        source?: EnumValue.Raw | null;
         stage?: Stage.Raw | null;
         stakeholders?: UserSummary.Raw[] | null;
         stock_schema_fragment?: string | null;

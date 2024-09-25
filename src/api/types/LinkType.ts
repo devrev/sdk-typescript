@@ -10,6 +10,7 @@ export type LinkType =
     | "developed_with"
     | "imports"
     | "is_analyzed_by"
+    | "is_converted_to"
     | "is_dependent_on"
     | "is_duplicate_of"
     | "is_merged_into"
@@ -23,6 +24,7 @@ export const LinkType = {
     DevelopedWith: "developed_with",
     Imports: "imports",
     IsAnalyzedBy: "is_analyzed_by",
+    IsConvertedTo: "is_converted_to",
     IsDependentOn: "is_dependent_on",
     IsDuplicateOf: "is_duplicate_of",
     IsMergedInto: "is_merged_into",

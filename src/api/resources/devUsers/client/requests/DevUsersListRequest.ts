@@ -16,6 +16,8 @@ export interface DevUsersListRequest {
      *
      */
     cursor?: string;
+    /** Filters for custom fields. */
+    customFields?: Record<string, unknown>;
     /** Filters Dev users based on email addresses. */
     email?: string[];
     /** Filters Dev users based on external identity. */

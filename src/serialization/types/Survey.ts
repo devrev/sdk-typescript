@@ -12,6 +12,7 @@ import { AtomBase } from "./AtomBase";
 export const Survey: core.serialization.ObjectSchema<serializers.Survey.Raw, DevRev.Survey> = core.serialization
     .object({
         description: core.serialization.string().optional(),
+        header: core.serialization.string().optional(),
         introductoryText: core.serialization.property("introductory_text", core.serialization.string().optional()),
         name: core.serialization.string().optional(),
         responseText: core.serialization.property("response_text", core.serialization.string().optional()),
@@ -20,16 +21,19 @@ export const Survey: core.serialization.ObjectSchema<serializers.Survey.Raw, Dev
             "schema_with_metadata",
             core.serialization.list(SurveyFieldWithMetadata).optional()
         ),
+        title: core.serialization.string().optional(),
     })
     .extend(AtomBase);
 
 export declare namespace Survey {
     interface Raw extends AtomBase.Raw {
         description?: string | null;
+        header?: string | null;
         introductory_text?: string | null;
         name?: string | null;
         response_text?: string | null;
         schema?: SchemaFieldDescriptor.Raw[] | null;
         schema_with_metadata?: SurveyFieldWithMetadata.Raw[] | null;
+        title?: string | null;
     }
 }

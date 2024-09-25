@@ -1,3 +1,7 @@
+export { type CustomLinkTypeCreateRequest } from "./CustomLinkTypeCreateRequest";
+export { type CustomLinkTypeGetRequest } from "./CustomLinkTypeGetRequest";
+export { type CustomLinkTypeListRequest } from "./CustomLinkTypeListRequest";
+export { type CustomLinkTypeUpdateRequest } from "./CustomLinkTypeUpdateRequest";
 export { type AggregatedSchemaGetRequest } from "./AggregatedSchemaGetRequest";
 export { type CustomSchemaFragmentsGetRequest } from "./CustomSchemaFragmentsGetRequest";
 export { type CustomSchemaFragmentsListRequest } from "./CustomSchemaFragmentsListRequest";

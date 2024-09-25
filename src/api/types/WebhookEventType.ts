@@ -35,6 +35,12 @@ export type WebhookEventType =
     | "sla_tracker_created"
     | "sla_tracker_deleted"
     | "sla_tracker_updated"
+    | "survey_created"
+    | "survey_deleted"
+    | "survey_response_created"
+    | "survey_response_deleted"
+    | "survey_response_updated"
+    | "survey_updated"
     | "tag_created"
     | "tag_deleted"
     | "tag_updated"
@@ -47,6 +53,7 @@ export type WebhookEventType =
     | "webhook_updated"
     | "work_created"
     | "work_deleted"
+    | "work_fetched"
     | "work_updated";
 
 export const WebhookEventType = {
@@ -79,6 +86,12 @@ export const WebhookEventType = {
     SlaTrackerCreated: "sla_tracker_created",
     SlaTrackerDeleted: "sla_tracker_deleted",
     SlaTrackerUpdated: "sla_tracker_updated",
+    SurveyCreated: "survey_created",
+    SurveyDeleted: "survey_deleted",
+    SurveyResponseCreated: "survey_response_created",
+    SurveyResponseDeleted: "survey_response_deleted",
+    SurveyResponseUpdated: "survey_response_updated",
+    SurveyUpdated: "survey_updated",
     TagCreated: "tag_created",
     TagDeleted: "tag_deleted",
     TagUpdated: "tag_updated",
@@ -91,5 +104,6 @@ export const WebhookEventType = {
     WebhookUpdated: "webhook_updated",
     WorkCreated: "work_created",
     WorkDeleted: "work_deleted",
+    WorkFetched: "work_fetched",
     WorkUpdated: "work_updated",
 } as const;

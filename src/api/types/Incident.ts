@@ -5,6 +5,8 @@
 import * as DevRev from "../index";
 
 export interface Incident extends DevRev.AtomBase {
+    /** Timestamp when the incident was acknowledged. */
+    acknowledgedDate?: Date;
     /** Parts to which the incident is applicable to. */
     appliesToParts?: DevRev.PartSummary[];
     /** Artifacts attached to the incident. */
@@ -16,14 +18,17 @@ export interface Incident extends DevRev.AtomBase {
     /** Custom schema fragments. */
     customSchemaFragments?: string[];
     /** Time when the incident was identified/reported. */
-    identifiedAt?: Date;
+    identifiedDate?: Date;
+    impact?: DevRev.ImpactedCustomerDetails;
     /** List of customers impacted due to the incident. */
     impactedCustomers?: DevRev.AccountSummary[];
+    /** Timestamp when the incident was mitigated. */
+    mitigatedDate?: Date;
     /** The users that own the incident. */
     ownedBy?: DevRev.UserSummary[];
-    /** Timestamp when the incident was resolved. */
-    resolvedAt?: Date;
+    reportedBy?: DevRev.EnumValue;
     severity?: DevRev.EnumValue;
+    source?: DevRev.EnumValue;
     stage?: DevRev.Stage;
     /**
      * Users, along with the incident commander, involved in resolving

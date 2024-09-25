@@ -5,9 +5,11 @@
 /**
  * Display panels for the Timeline entry.
  */
-export type TimelineEntryPanel = "customer_chat" | "discussions" | "events";
+export type TimelineEntryPanel = "alerts" | "broadcasts" | "customer_chat" | "discussions" | "events";
 
 export const TimelineEntryPanel = {
+    Alerts: "alerts",
+    Broadcasts: "broadcasts",
     CustomerChat: "customer_chat",
     Discussions: "discussions",
     Events: "events",

@@ -9,9 +9,16 @@ import * as DevRev from "../../../../index";
  *     {}
  */
 export interface DevUsersSelfUpdateRequest {
+    /** Application-defined custom fields. */
+    customFields?: Record<string, unknown>;
+    customSchemaSpec?: DevRev.CustomSchemaSpec;
     /** The updated display name of the Dev user. */
     displayName?: string;
+    /** Start date of Dev user's experience. */
+    experienceStartDate?: Date;
     /** The updated full name of the Dev user. */
     fullName?: string;
+    /** Job history of the Dev user. */
+    jobHistory?: DevRev.DevUsersUpdateJobHistoryItem[];
     jobTitle?: DevRev.DevUserJobTitle;
 }

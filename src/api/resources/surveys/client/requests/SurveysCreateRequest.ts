@@ -13,6 +13,8 @@ import * as DevRev from "../../../../index";
 export interface SurveysCreateRequest {
     /** Description about the survey. */
     description?: string;
+    /** Header of the survey. */
+    header?: string;
     /**
      * Text posted when introducing the survey to the responder.
      *
@@ -26,4 +28,6 @@ export interface SurveysCreateRequest {
     schema?: DevRev.FieldDescriptor[];
     /** The schema with metadata for the survey. */
     schemaWithMetadata?: DevRev.SurveyFieldWithMetadata[];
+    /** Title of the survey. */
+    title?: string;
 }

@@ -5,9 +5,10 @@
 /**
  * The type of the body to use for the comment.
  */
-export type TimelineCommentBodyType = "snap_kit" | "snap_widget" | "text";
+export type TimelineCommentBodyType = "data" | "snap_kit" | "snap_widget" | "text";
 
 export const TimelineCommentBodyType = {
+    Data: "data",
     SnapKit: "snap_kit",
     SnapWidget: "snap_widget",
     Text: "text",

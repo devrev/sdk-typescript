@@ -37,6 +37,12 @@ export const WebhookEventType: core.serialization.Schema<serializers.WebhookEven
         "sla_tracker_created",
         "sla_tracker_deleted",
         "sla_tracker_updated",
+        "survey_created",
+        "survey_deleted",
+        "survey_response_created",
+        "survey_response_deleted",
+        "survey_response_updated",
+        "survey_updated",
         "tag_created",
         "tag_deleted",
         "tag_updated",
@@ -49,6 +55,7 @@ export const WebhookEventType: core.serialization.Schema<serializers.WebhookEven
         "webhook_updated",
         "work_created",
         "work_deleted",
+        "work_fetched",
         "work_updated",
     ]);
 
@@ -83,6 +90,12 @@ export declare namespace WebhookEventType {
         | "sla_tracker_created"
         | "sla_tracker_deleted"
         | "sla_tracker_updated"
+        | "survey_created"
+        | "survey_deleted"
+        | "survey_response_created"
+        | "survey_response_deleted"
+        | "survey_response_updated"
+        | "survey_updated"
         | "tag_created"
         | "tag_deleted"
         | "tag_updated"
@@ -95,5 +108,6 @@ export declare namespace WebhookEventType {
         | "webhook_updated"
         | "work_created"
         | "work_deleted"
+        | "work_fetched"
         | "work_updated";
 }

@@ -5,6 +5,10 @@
 import * as DevRev from "../index";
 
 export interface WorksUpdateRequestTags {
+    /** Adds the provided tags on the work item. */
+    add?: DevRev.AddTagWithValue[];
+    /** Removes the provided tags on the work item. */
+    remove?: DevRev.RemoveTagWithValue[];
     /** Sets the provided tags on the work item. */
     set?: DevRev.SetTagWithValue[];
 }

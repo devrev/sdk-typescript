@@ -9,8 +9,8 @@ import * as core from "../../core";
 export const TimelineCommentBodyType: core.serialization.Schema<
     serializers.TimelineCommentBodyType.Raw,
     DevRev.TimelineCommentBodyType
-> = core.serialization.enum_(["snap_kit", "snap_widget", "text"]);
+> = core.serialization.enum_(["data", "snap_kit", "snap_widget", "text"]);
 
 export declare namespace TimelineCommentBodyType {
-    type Raw = "snap_kit" | "snap_widget" | "text";
+    type Raw = "data" | "snap_kit" | "snap_widget" | "text";
 }

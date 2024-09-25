@@ -12,20 +12,33 @@ export const ArchetypeMetricTarget: core.serialization.ObjectSchema<
     serializers.ArchetypeMetricTarget.Raw,
     DevRev.ArchetypeMetricTarget
 > = core.serialization.object({
+    breachedAt: core.serialization.property("breached_at", core.serialization.date().optional()),
+    completedIn: core.serialization.property("completed_in", core.serialization.number().optional()),
     isOutOfSchedule: core.serialization.property("is_out_of_schedule", core.serialization.boolean().optional()),
     metricDefinition: core.serialization.property("metric_definition", MetricDefinitionSummary),
+    nextScheduleTransition: core.serialization.property(
+        "next_schedule_transition",
+        core.serialization.date().optional()
+    ),
     orgSchedule: core.serialization.property("org_schedule", OrgScheduleSummary.optional()),
     remainingTime: core.serialization.property("remaining_time", core.serialization.number().optional()),
+    stage: core.serialization.string(),
+    status: core.serialization.string().optional(),
     targetTime: core.serialization.property("target_time", core.serialization.date().optional()),
     warningTargetTime: core.serialization.property("warning_target_time", core.serialization.date().optional()),
 });
 
 export declare namespace ArchetypeMetricTarget {
     interface Raw {
+        breached_at?: string | null;
+        completed_in?: number | null;
         is_out_of_schedule?: boolean | null;
         metric_definition: MetricDefinitionSummary.Raw;
+        next_schedule_transition?: string | null;
         org_schedule?: OrgScheduleSummary.Raw | null;
         remaining_time?: number | null;
+        stage: string;
+        status?: string | null;
         target_time?: string | null;
         warning_target_time?: string | null;
     }

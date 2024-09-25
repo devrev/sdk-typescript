@@ -5,10 +5,21 @@
 /**
  * Type of engagement.
  */
-export type EngagementType = "call" | "default" | "email" | "linked_in" | "meeting" | "offline" | "survey";
+export type EngagementType =
+    | "call"
+    | "conversation"
+    | "custom"
+    | "default"
+    | "email"
+    | "linked_in"
+    | "meeting"
+    | "offline"
+    | "survey";
 
 export const EngagementType = {
     Call: "call",
+    Conversation: "conversation",
+    Custom: "custom",
     Default: "default",
     Email: "email",
     LinkedIn: "linked_in",

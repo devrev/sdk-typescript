@@ -12,6 +12,10 @@ export interface Ticket extends DevRev.WorkBase {
     needsResponse?: boolean;
     revOrg?: DevRev.OrgSummary;
     sentiment?: DevRev.EnumValue;
+    /** Timestamp when the sentiment was last modified. */
+    sentimentModifiedDate?: Date;
+    /** Summary justifying the sentiment. */
+    sentimentSummary?: string;
     severity?: DevRev.TicketSeverity;
     slaTracker?: DevRev.SlaTrackerSummary;
     /** Source channel of the ticket. */

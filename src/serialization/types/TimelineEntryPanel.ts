@@ -9,8 +9,8 @@ import * as core from "../../core";
 export const TimelineEntryPanel: core.serialization.Schema<
     serializers.TimelineEntryPanel.Raw,
     DevRev.TimelineEntryPanel
-> = core.serialization.enum_(["customer_chat", "discussions", "events"]);
+> = core.serialization.enum_(["alerts", "broadcasts", "customer_chat", "discussions", "events"]);
 
 export declare namespace TimelineEntryPanel {
-    type Raw = "customer_chat" | "discussions" | "events";
+    type Raw = "alerts" | "broadcasts" | "customer_chat" | "discussions" | "events";
 }

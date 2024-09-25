@@ -12,7 +12,7 @@ export const RevOrgsCreateRequest: core.serialization.Schema<
     serializers.RevOrgsCreateRequest.Raw,
     DevRev.RevOrgsCreateRequest
 > = core.serialization.object({
-    account: core.serialization.string().optional(),
+    account: core.serialization.string(),
     artifacts: core.serialization.list(core.serialization.string()).optional(),
     customFields: core.serialization.property(
         "custom_fields",
@@ -33,7 +33,7 @@ export const RevOrgsCreateRequest: core.serialization.Schema<
 
 export declare namespace RevOrgsCreateRequest {
     interface Raw {
-        account?: string | null;
+        account: string;
         artifacts?: string[] | null;
         custom_fields?: Record<string, unknown> | null;
         custom_schema_fragments?: string[] | null;

@@ -5,12 +5,17 @@
 import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
+import { CustomStageSummary } from "./CustomStageSummary";
+import { CustomStateSummary } from "./CustomStateSummary";
 
-export const Stage: core.serialization.Schema<serializers.Stage.Raw, DevRev.Stage> = core.serialization.record(
-    core.serialization.string(),
-    core.serialization.unknown()
-);
+export const Stage: core.serialization.ObjectSchema<serializers.Stage.Raw, DevRev.Stage> = core.serialization.object({
+    stage: CustomStageSummary.optional(),
+    state: CustomStateSummary.optional(),
+});
 
 export declare namespace Stage {
-    type Raw = Record<string, unknown>;
+    interface Raw {
+        stage?: CustomStageSummary.Raw | null;
+        state?: CustomStateSummary.Raw | null;
+    }
 }

@@ -11,6 +11,8 @@ import * as DevRev from "../../../../index";
  *     }
  */
 export interface IncidentsGroupRequest {
+    acknowledgedDate?: DevRev.DateFilter;
+    actualCloseDate?: DevRev.DateFilter;
     /**
      * Filters for incidents that apply to any of the provided parts.
      *
@@ -30,6 +32,7 @@ export interface IncidentsGroupRequest {
     cursor?: string;
     /** The field to group the incidents by. */
     groupBy: string;
+    identifiedDate?: DevRev.DateFilter;
     /**
      * The maximum number of groups to return. If not set, then the
      * default is '10'.
@@ -42,6 +45,7 @@ export interface IncidentsGroupRequest {
      *
      */
     limitPerGroup?: number;
+    mitigatedDate?: DevRev.DateFilter;
     mode?: DevRev.ListMode;
     modifiedDate?: DevRev.DateFilter;
     /**
@@ -49,6 +53,23 @@ export interface IncidentsGroupRequest {
      *
      */
     ownedBy?: string[];
+    /** Filters for incidents with any of the provided PIAs. */
+    pia?: string[];
+    /**
+     * Filters for incidents with any of the provided playbooks.
+     *
+     */
+    playbook?: string[];
+    /**
+     * Filters for incidents with any of the provided related docs.
+     *
+     */
+    relatedDocs?: string[];
+    /**
+     * Filters for incidents with any of the provided reporters.
+     *
+     */
+    reportedBy?: number[];
     /**
      * Filters for incidents containing any of the provided severities.
      *
@@ -56,8 +77,11 @@ export interface IncidentsGroupRequest {
     severity?: number[];
     /** Comma-separated fields to sort the incidents by. */
     sortBy?: string[];
+    /** Filters for incidents with any of the provided sources. */
+    source?: number[];
     /** Filters for incidents in any of the provided stages. */
     stage?: string[];
+    targetCloseDate?: DevRev.DateFilter;
     /** Filters for incidents by the provided titles. */
     title?: string[];
 }

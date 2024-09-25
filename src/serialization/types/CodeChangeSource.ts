@@ -7,8 +7,8 @@ import * as DevRev from "../../api/index";
 import * as core from "../../core";
 
 export const CodeChangeSource: core.serialization.Schema<serializers.CodeChangeSource.Raw, DevRev.CodeChangeSource> =
-    core.serialization.enum_(["bitbucket", "github"]);
+    core.serialization.enum_(["azure_devops", "bitbucket", "github"]);
 
 export declare namespace CodeChangeSource {
-    type Raw = "bitbucket" | "github";
+    type Raw = "azure_devops" | "bitbucket" | "github";
 }

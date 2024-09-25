@@ -7,12 +7,13 @@ import * as DevRev from "../../../../index";
 /**
  * @example
  *     {
+ *         account: "ACC-12345",
  *         displayName: "display_name"
  *     }
  */
 export interface RevOrgsCreateRequest {
     /** Account Id to associate with this Rev organization. */
-    account?: string;
+    account: string;
     /**
      * The IDs of the artifacts to associate with the Rev organization.
      *

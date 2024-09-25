@@ -9,8 +9,14 @@ import * as core from "../../core";
 export const SnapWidgetNamespace: core.serialization.Schema<
     serializers.SnapWidgetNamespace.Raw,
     DevRev.SnapWidgetNamespace
-> = core.serialization.enum_(["comment_suggestion_replies", "email_preview", "link_preview", "plug_nudge"]);
+> = core.serialization.enum_([
+    "ai_assistant_message",
+    "comment_suggestion_replies",
+    "email_preview",
+    "link_preview",
+    "plug_nudge",
+]);
 
 export declare namespace SnapWidgetNamespace {
-    type Raw = "comment_suggestion_replies" | "email_preview" | "link_preview" | "plug_nudge";
+    type Raw = "ai_assistant_message" | "comment_suggestion_replies" | "email_preview" | "link_preview" | "plug_nudge";
 }

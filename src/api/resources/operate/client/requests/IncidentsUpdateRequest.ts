@@ -11,6 +11,8 @@ import * as DevRev from "../../../../index";
  *     }
  */
 export interface IncidentsUpdateRequest {
+    /** Timestamp when the incident was acknowledged. */
+    acknowledgedDate?: Date;
     appliesToParts?: DevRev.UpdateIncidentAppliesToParts;
     artifacts?: DevRev.UpdateIncidentArtifacts;
     /** Body of the incident. */
@@ -21,13 +23,25 @@ export interface IncidentsUpdateRequest {
     /** The ID of the incident to be updated. */
     id: string;
     /** Time when the incident was identified/reported. */
-    identifiedAt?: Date;
+    identifiedDate?: Date;
+    impact?: DevRev.UpdateImpactedCustomerDetails;
     impactedCustomers?: DevRev.UpdateIncidentImpactedCustomers;
+    /** Timestamp when the incident was mitigated. */
+    mitigatedDate?: Date;
     ownedBy?: DevRev.UpdateIncidentOwnedBy;
-    /** Timestamp when the incident was resolved. */
-    resolvedAt?: Date;
+    pia?: DevRev.UpdateIncidentPia;
+    playbooks?: DevRev.UpdateIncidentPlaybooks;
+    relatedDocs?: DevRev.UpdateIncidentRelatedDocs;
+    /** The entity that first reported the incident. */
+    reportedBy?: number;
     /** Severity of the incident. */
     severity?: number;
+    /**
+     * Source of where the incident was created. Only sys users and
+     * service accounts are supposed to set this field.
+     *
+     */
+    source?: number;
     stage?: DevRev.UpdateStage;
     stakeholders?: DevRev.UpdateIncidentStakeholders;
     tags?: DevRev.UpdateIncidentTags;

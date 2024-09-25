@@ -9,6 +9,7 @@ import { Articles } from "./api/resources/articles/client/Client";
 import { Artifacts } from "./api/resources/artifacts/client/Client";
 import { AuthTokens } from "./api/resources/authTokens/client/Client";
 import { CodeChanges } from "./api/resources/codeChanges/client/Client";
+import { Notifications } from "./api/resources/notifications/client/Client";
 import { Conversations } from "./api/resources/conversations/client/Client";
 import { AuthConnection } from "./api/resources/authConnection/client/Client";
 import { DevUsers } from "./api/resources/devUsers/client/Client";
@@ -17,16 +18,16 @@ import { EventSource } from "./api/resources/eventSource/client/Client";
 import { Groups } from "./api/resources/groups/client/Client";
 import { Operate } from "./api/resources/operate/client/Client";
 import { Keyring } from "./api/resources/keyring/client/Client";
+import { Customization } from "./api/resources/customization/client/Client";
 import { Links } from "./api/resources/links/client/Client";
 import { Slas } from "./api/resources/slas/client/Client";
 import { ProductUsage } from "./api/resources/productUsage/client/Client";
-import { Notifications } from "./api/resources/notifications/client/Client";
 import { Schedules } from "./api/resources/schedules/client/Client";
 import { Parts } from "./api/resources/parts/client/Client";
+import { Preferences } from "./api/resources/preferences/client/Client";
 import { QuestionAnswers } from "./api/resources/questionAnswers/client/Client";
 import { RevOrgs } from "./api/resources/revOrgs/client/Client";
 import { RevUsers } from "./api/resources/revUsers/client/Client";
-import { Customization } from "./api/resources/customization/client/Client";
 import { Search } from "./api/resources/search/client/Client";
 import { ServiceAccounts } from "./api/resources/serviceAccounts/client/Client";
 import { SnapIns } from "./api/resources/snapIns/client/Client";
@@ -92,6 +93,12 @@ export class DevRevClient {
         return (this._codeChanges ??= new CodeChanges(this._options));
     }
 
+    protected _notifications: Notifications | undefined;
+
+    public get notifications(): Notifications {
+        return (this._notifications ??= new Notifications(this._options));
+    }
+
     protected _conversations: Conversations | undefined;
 
     public get conversations(): Conversations {
@@ -140,6 +147,12 @@ export class DevRevClient {
         return (this._keyring ??= new Keyring(this._options));
     }
 
+    protected _customization: Customization | undefined;
+
+    public get customization(): Customization {
+        return (this._customization ??= new Customization(this._options));
+    }
+
     protected _links: Links | undefined;
 
     public get links(): Links {
@@ -158,12 +171,6 @@ export class DevRevClient {
         return (this._productUsage ??= new ProductUsage(this._options));
     }
 
-    protected _notifications: Notifications | undefined;
-
-    public get notifications(): Notifications {
-        return (this._notifications ??= new Notifications(this._options));
-    }
-
     protected _schedules: Schedules | undefined;
 
     public get schedules(): Schedules {
@@ -174,6 +181,12 @@ export class DevRevClient {
 
     public get parts(): Parts {
         return (this._parts ??= new Parts(this._options));
+    }
+
+    protected _preferences: Preferences | undefined;
+
+    public get preferences(): Preferences {
+        return (this._preferences ??= new Preferences(this._options));
     }
 
     protected _questionAnswers: QuestionAnswers | undefined;
@@ -192,12 +205,6 @@ export class DevRevClient {
 
     public get revUsers(): RevUsers {
         return (this._revUsers ??= new RevUsers(this._options));
-    }
-
-    protected _customization: Customization | undefined;
-
-    public get customization(): Customization {
-        return (this._customization ??= new Customization(this._options));
     }
 
     protected _search: Search | undefined;

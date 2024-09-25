@@ -53,7 +53,7 @@ export class SnapWidgets {
      *     await client.snapWidgets.create({
      *         type: "email_preview",
      *         name: "string",
-     *         namespace: DevRev.SnapWidgetNamespace.CommentSuggestionReplies,
+     *         namespace: DevRev.SnapWidgetNamespace.AiAssistantMessage,
      *         status: DevRev.SnapWidgetStatus.Draft,
      *         bcc: [{
      *                 address: "string",
@@ -109,7 +109,7 @@ export class SnapWidgets {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.4",
+                "X-Fern-SDK-Version": "0.0.5",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,

@@ -12,6 +12,14 @@ import { UserBase } from "./UserBase";
 
 export const DevUser: core.serialization.ObjectSchema<serializers.DevUser.Raw, DevRev.DevUser> = core.serialization
     .object({
+        customFields: core.serialization.property(
+            "custom_fields",
+            core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+        ),
+        customSchemaFragments: core.serialization.property(
+            "custom_schema_fragments",
+            core.serialization.list(core.serialization.string()).optional()
+        ),
         experienceStartDate: core.serialization.property("experience_start_date", core.serialization.date().optional()),
         externalIdentities: core.serialization.property(
             "external_identities",
@@ -19,14 +27,23 @@ export const DevUser: core.serialization.ObjectSchema<serializers.DevUser.Raw, D
         ),
         jobHistory: core.serialization.property("job_history", core.serialization.list(JobHistoryItem).optional()),
         skills: core.serialization.list(UserSkill).optional(),
+        stockSchemaFragment: core.serialization.property(
+            "stock_schema_fragment",
+            core.serialization.string().optional()
+        ),
+        subtype: core.serialization.string().optional(),
     })
     .extend(UserBase);
 
 export declare namespace DevUser {
     interface Raw extends UserBase.Raw {
+        custom_fields?: Record<string, unknown> | null;
+        custom_schema_fragments?: string[] | null;
         experience_start_date?: string | null;
         external_identities?: ExternalIdentity.Raw[] | null;
         job_history?: JobHistoryItem.Raw[] | null;
         skills?: UserSkill.Raw[] | null;
+        stock_schema_fragment?: string | null;
+        subtype?: string | null;
     }
 }

@@ -7,8 +7,7 @@ import * as DevRev from "../index";
 export interface IncidentsGroup {
     /** The group of incidents. */
     incidents: DevRev.Incident[];
-    /** Unique key according to which the items are grouped. */
-    key: string;
+    key: DevRev.FieldValue;
     /**
      * The cursor used to iterate subsequent results in accordance to the
      * sort order. If not set, then no later elements exist.

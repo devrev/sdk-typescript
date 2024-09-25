@@ -5,4 +5,9 @@
 /**
  * Filter on target item based on intended audience.
  */
-export type SharedWithMembershipFilter = Record<string, unknown>;
+export interface SharedWithMembershipFilter {
+    /** ID of the group/member with whom the item is shared. */
+    member?: string;
+    /** Role ID of the group/member with whom the item is shared. */
+    role?: string;
+}

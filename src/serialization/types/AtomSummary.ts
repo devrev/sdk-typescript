@@ -42,6 +42,7 @@ export const AtomSummary: core.serialization.Schema<serializers.AtomSummary.Raw,
             ticket: TicketSummary,
             timeline_change_event: AtomBaseSummary,
             timeline_comment: AtomBaseSummary,
+            user_preferences: AtomBaseSummary,
             webhook: AtomBaseSummary,
         })
         .transform<DevRev.AtomSummary>({
@@ -74,6 +75,7 @@ export declare namespace AtomSummary {
         | AtomSummary.Ticket
         | AtomSummary.TimelineChangeEvent
         | AtomSummary.TimelineComment
+        | AtomSummary.UserPreferences
         | AtomSummary.Webhook;
 
     interface Account extends OrgBaseSummary.Raw {
@@ -166,6 +168,10 @@ export declare namespace AtomSummary {
 
     interface TimelineComment extends AtomBaseSummary.Raw {
         type: "timeline_comment";
+    }
+
+    interface UserPreferences extends AtomBaseSummary.Raw {
+        type: "user_preferences";
     }
 
     interface Webhook extends AtomBaseSummary.Raw {

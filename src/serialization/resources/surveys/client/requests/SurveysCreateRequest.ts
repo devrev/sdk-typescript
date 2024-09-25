@@ -13,6 +13,7 @@ export const SurveysCreateRequest: core.serialization.Schema<
     DevRev.SurveysCreateRequest
 > = core.serialization.object({
     description: core.serialization.string().optional(),
+    header: core.serialization.string().optional(),
     introductoryText: core.serialization.property("introductory_text", core.serialization.string().optional()),
     name: core.serialization.string(),
     responseText: core.serialization.property("response_text", core.serialization.string().optional()),
@@ -21,15 +22,18 @@ export const SurveysCreateRequest: core.serialization.Schema<
         "schema_with_metadata",
         core.serialization.list(SurveyFieldWithMetadata).optional()
     ),
+    title: core.serialization.string().optional(),
 });
 
 export declare namespace SurveysCreateRequest {
     interface Raw {
         description?: string | null;
+        header?: string | null;
         introductory_text?: string | null;
         name: string;
         response_text?: string | null;
         schema?: FieldDescriptor.Raw[] | null;
         schema_with_metadata?: SurveyFieldWithMetadata.Raw[] | null;
+        title?: string | null;
     }
 }

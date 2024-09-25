@@ -5,6 +5,10 @@
 import * as DevRev from "../index";
 
 export interface DevUser extends DevRev.UserBase {
+    /** Custom fields. */
+    customFields?: Record<string, unknown>;
+    /** Custom schema fragments. */
+    customSchemaFragments?: string[];
     /** Start date of the user's employment. */
     experienceStartDate?: Date;
     /** IDs of the Dev User outside the DevRev SOR. */
@@ -13,4 +17,8 @@ export interface DevUser extends DevRev.UserBase {
     jobHistory?: DevRev.JobHistoryItem[];
     /** Array of skills of the user. */
     skills?: DevRev.UserSkill[];
+    /** Stock schema fragment. */
+    stockSchemaFragment?: string;
+    /** Subtype corresponding to the custom type fragment. */
+    subtype?: string;
 }

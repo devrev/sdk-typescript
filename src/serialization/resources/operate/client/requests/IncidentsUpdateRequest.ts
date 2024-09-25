@@ -8,8 +8,12 @@ import * as core from "../../../../../core";
 import { UpdateIncidentAppliesToParts } from "../../../../types/UpdateIncidentAppliesToParts";
 import { UpdateIncidentArtifacts } from "../../../../types/UpdateIncidentArtifacts";
 import { CustomSchemaSpec } from "../../../../types/CustomSchemaSpec";
+import { UpdateImpactedCustomerDetails } from "../../../../types/UpdateImpactedCustomerDetails";
 import { UpdateIncidentImpactedCustomers } from "../../../../types/UpdateIncidentImpactedCustomers";
 import { UpdateIncidentOwnedBy } from "../../../../types/UpdateIncidentOwnedBy";
+import { UpdateIncidentPia } from "../../../../types/UpdateIncidentPia";
+import { UpdateIncidentPlaybooks } from "../../../../types/UpdateIncidentPlaybooks";
+import { UpdateIncidentRelatedDocs } from "../../../../types/UpdateIncidentRelatedDocs";
 import { UpdateStage } from "../../../../types/UpdateStage";
 import { UpdateIncidentStakeholders } from "../../../../types/UpdateIncidentStakeholders";
 import { UpdateIncidentTags } from "../../../../types/UpdateIncidentTags";
@@ -18,6 +22,7 @@ export const IncidentsUpdateRequest: core.serialization.Schema<
     serializers.IncidentsUpdateRequest.Raw,
     DevRev.IncidentsUpdateRequest
 > = core.serialization.object({
+    acknowledgedDate: core.serialization.property("acknowledged_date", core.serialization.date().optional()),
     appliesToParts: core.serialization.property("applies_to_parts", UpdateIncidentAppliesToParts.optional()),
     artifacts: UpdateIncidentArtifacts.optional(),
     body: core.serialization.string().optional(),
@@ -27,11 +32,17 @@ export const IncidentsUpdateRequest: core.serialization.Schema<
     ),
     customSchemaSpec: core.serialization.property("custom_schema_spec", CustomSchemaSpec.optional()),
     id: core.serialization.string(),
-    identifiedAt: core.serialization.property("identified_at", core.serialization.date().optional()),
+    identifiedDate: core.serialization.property("identified_date", core.serialization.date().optional()),
+    impact: UpdateImpactedCustomerDetails.optional(),
     impactedCustomers: core.serialization.property("impacted_customers", UpdateIncidentImpactedCustomers.optional()),
+    mitigatedDate: core.serialization.property("mitigated_date", core.serialization.date().optional()),
     ownedBy: core.serialization.property("owned_by", UpdateIncidentOwnedBy.optional()),
-    resolvedAt: core.serialization.property("resolved_at", core.serialization.date().optional()),
+    pia: UpdateIncidentPia.optional(),
+    playbooks: UpdateIncidentPlaybooks.optional(),
+    relatedDocs: core.serialization.property("related_docs", UpdateIncidentRelatedDocs.optional()),
+    reportedBy: core.serialization.property("reported_by", core.serialization.number().optional()),
     severity: core.serialization.number().optional(),
+    source: core.serialization.number().optional(),
     stage: UpdateStage.optional(),
     stakeholders: UpdateIncidentStakeholders.optional(),
     tags: UpdateIncidentTags.optional(),
@@ -41,17 +52,24 @@ export const IncidentsUpdateRequest: core.serialization.Schema<
 
 export declare namespace IncidentsUpdateRequest {
     interface Raw {
+        acknowledged_date?: string | null;
         applies_to_parts?: UpdateIncidentAppliesToParts.Raw | null;
         artifacts?: UpdateIncidentArtifacts.Raw | null;
         body?: string | null;
         custom_fields?: Record<string, unknown> | null;
         custom_schema_spec?: CustomSchemaSpec.Raw | null;
         id: string;
-        identified_at?: string | null;
+        identified_date?: string | null;
+        impact?: UpdateImpactedCustomerDetails.Raw | null;
         impacted_customers?: UpdateIncidentImpactedCustomers.Raw | null;
+        mitigated_date?: string | null;
         owned_by?: UpdateIncidentOwnedBy.Raw | null;
-        resolved_at?: string | null;
+        pia?: UpdateIncidentPia.Raw | null;
+        playbooks?: UpdateIncidentPlaybooks.Raw | null;
+        related_docs?: UpdateIncidentRelatedDocs.Raw | null;
+        reported_by?: number | null;
         severity?: number | null;
+        source?: number | null;
         stage?: UpdateStage.Raw | null;
         stakeholders?: UpdateIncidentStakeholders.Raw | null;
         tags?: UpdateIncidentTags.Raw | null;

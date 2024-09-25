@@ -12,6 +12,10 @@ export const SyncMetadataFilter: core.serialization.ObjectSchema<
     serializers.SyncMetadataFilter.Raw,
     DevRev.SyncMetadataFilter
 > = core.serialization.object({
+    externalReference: core.serialization.property(
+        "external_reference",
+        core.serialization.list(core.serialization.string()).optional()
+    ),
     lastSyncIn: core.serialization.property("last_sync_in", SyncMetadataFilterSyncInFilter.optional()),
     lastSyncOut: core.serialization.property("last_sync_out", SyncMetadataFilterSyncOutFilter.optional()),
     originSystem: core.serialization.property(
@@ -22,6 +26,7 @@ export const SyncMetadataFilter: core.serialization.ObjectSchema<
 
 export declare namespace SyncMetadataFilter {
     interface Raw {
+        external_reference?: string[] | null;
         last_sync_in?: SyncMetadataFilterSyncInFilter.Raw | null;
         last_sync_out?: SyncMetadataFilterSyncOutFilter.Raw | null;
         origin_system?: string[] | null;

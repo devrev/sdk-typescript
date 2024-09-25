@@ -9,6 +9,8 @@ import * as DevRev from "../../../../index";
  *     {}
  */
 export interface IncidentsListRequest {
+    acknowledgedDate?: DevRev.DateFilter;
+    actualCloseDate?: DevRev.DateFilter;
     /**
      * Filters for incidents that apply to any of the provided parts.
      *
@@ -26,8 +28,10 @@ export interface IncidentsListRequest {
      *
      */
     cursor?: string;
+    identifiedDate?: DevRev.DateFilter;
     /** The maximum number of items. */
     limit?: number;
+    mitigatedDate?: DevRev.DateFilter;
     mode?: DevRev.ListMode;
     modifiedDate?: DevRev.DateFilter;
     /**
@@ -35,6 +39,23 @@ export interface IncidentsListRequest {
      *
      */
     ownedBy?: string[];
+    /** Filters for incidents with any of the provided PIAs. */
+    pia?: string[];
+    /**
+     * Filters for incidents with any of the provided playbooks.
+     *
+     */
+    playbook?: string[];
+    /**
+     * Filters for incidents with any of the provided related docs.
+     *
+     */
+    relatedDocs?: string[];
+    /**
+     * Filters for incidents with any of the provided reporters.
+     *
+     */
+    reportedBy?: number[];
     /**
      * Filters for incidents containing any of the provided severities.
      *
@@ -45,8 +66,11 @@ export interface IncidentsListRequest {
      *
      */
     sortBy?: string[];
+    /** Filters for incidents with any of the provided sources. */
+    source?: number[];
     /** Filters for incidents in any of the provided stages. */
     stage?: string[];
+    targetCloseDate?: DevRev.DateFilter;
     /** Filters for incidents by the provided titles. */
     title?: string[];
 }

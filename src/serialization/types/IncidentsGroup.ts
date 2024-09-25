@@ -10,7 +10,7 @@ import { Incident } from "./Incident";
 export const IncidentsGroup: core.serialization.ObjectSchema<serializers.IncidentsGroup.Raw, DevRev.IncidentsGroup> =
     core.serialization.object({
         incidents: core.serialization.list(Incident),
-        key: core.serialization.string(),
+        key: core.serialization.lazy(() => serializers.FieldValue),
         nextCursor: core.serialization.property("next_cursor", core.serialization.string().optional()),
         prevCursor: core.serialization.property("prev_cursor", core.serialization.string().optional()),
     });
@@ -18,7 +18,7 @@ export const IncidentsGroup: core.serialization.ObjectSchema<serializers.Inciden
 export declare namespace IncidentsGroup {
     interface Raw {
         incidents: Incident.Raw[];
-        key: string;
+        key: serializers.FieldValue.Raw;
         next_cursor?: string | null;
         prev_cursor?: string | null;
     }

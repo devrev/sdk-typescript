@@ -6,6 +6,7 @@ import * as serializers from "../../../../index";
 import * as DevRev from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { GroupType } from "../../../../types/GroupType";
+import { GroupIngestionSource } from "../../../../types/GroupIngestionSource";
 import { GroupMemberType } from "../../../../types/GroupMemberType";
 import { ListMode } from "../../../../types/ListMode";
 
@@ -13,6 +14,10 @@ export const GroupsListRequest: core.serialization.Schema<serializers.GroupsList
     core.serialization.object({
         cursor: core.serialization.string().optional(),
         groupType: core.serialization.property("group_type", core.serialization.list(GroupType).optional()),
+        ingestionSource: core.serialization.property(
+            "ingestion_source",
+            core.serialization.list(GroupIngestionSource).optional()
+        ),
         isDefault: core.serialization.property("is_default", core.serialization.boolean().optional()),
         limit: core.serialization.number().optional(),
         memberType: core.serialization.property("member_type", core.serialization.list(GroupMemberType).optional()),
@@ -24,6 +29,7 @@ export declare namespace GroupsListRequest {
     interface Raw {
         cursor?: string | null;
         group_type?: GroupType.Raw[] | null;
+        ingestion_source?: GroupIngestionSource.Raw[] | null;
         is_default?: boolean | null;
         limit?: number | null;
         member_type?: GroupMemberType.Raw[] | null;

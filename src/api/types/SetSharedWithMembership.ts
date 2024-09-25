@@ -5,4 +5,12 @@
 /**
  * Information about the role the member receives due to the share.
  */
-export type SetSharedWithMembership = Record<string, unknown>;
+export interface SetSharedWithMembership {
+    /** ID of the member the object is shared with. */
+    member?: string;
+    /**
+     * ID of the role that describes what privileges the membership
+     * entails.
+     */
+    role?: string;
+}

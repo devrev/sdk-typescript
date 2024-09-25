@@ -17,6 +17,8 @@ export interface GroupsListRequest {
     cursor?: string;
     /** Filters the groups based on the group type. */
     groupType?: DevRev.GroupType[];
+    /** Filter groups by ingestion source(s). */
+    ingestionSource?: DevRev.GroupIngestionSource[];
     /** Whether to fetch default or custom groups. */
     isDefault?: boolean;
     /**

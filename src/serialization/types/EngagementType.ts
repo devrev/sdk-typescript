@@ -7,8 +7,27 @@ import * as DevRev from "../../api/index";
 import * as core from "../../core";
 
 export const EngagementType: core.serialization.Schema<serializers.EngagementType.Raw, DevRev.EngagementType> =
-    core.serialization.enum_(["call", "default", "email", "linked_in", "meeting", "offline", "survey"]);
+    core.serialization.enum_([
+        "call",
+        "conversation",
+        "custom",
+        "default",
+        "email",
+        "linked_in",
+        "meeting",
+        "offline",
+        "survey",
+    ]);
 
 export declare namespace EngagementType {
-    type Raw = "call" | "default" | "email" | "linked_in" | "meeting" | "offline" | "survey";
+    type Raw =
+        | "call"
+        | "conversation"
+        | "custom"
+        | "default"
+        | "email"
+        | "linked_in"
+        | "meeting"
+        | "offline"
+        | "survey";
 }

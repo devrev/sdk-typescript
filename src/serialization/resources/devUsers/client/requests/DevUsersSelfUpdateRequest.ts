@@ -5,21 +5,37 @@
 import * as serializers from "../../../../index";
 import * as DevRev from "../../../../../api/index";
 import * as core from "../../../../../core";
+import { CustomSchemaSpec } from "../../../../types/CustomSchemaSpec";
+import { DevUsersUpdateJobHistoryItem } from "../../../../types/DevUsersUpdateJobHistoryItem";
 import { DevUserJobTitle } from "../../../../types/DevUserJobTitle";
 
 export const DevUsersSelfUpdateRequest: core.serialization.Schema<
     serializers.DevUsersSelfUpdateRequest.Raw,
     DevRev.DevUsersSelfUpdateRequest
 > = core.serialization.object({
+    customFields: core.serialization.property(
+        "custom_fields",
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+    ),
+    customSchemaSpec: core.serialization.property("custom_schema_spec", CustomSchemaSpec.optional()),
     displayName: core.serialization.property("display_name", core.serialization.string().optional()),
+    experienceStartDate: core.serialization.property("experience_start_date", core.serialization.date().optional()),
     fullName: core.serialization.property("full_name", core.serialization.string().optional()),
+    jobHistory: core.serialization.property(
+        "job_history",
+        core.serialization.list(DevUsersUpdateJobHistoryItem).optional()
+    ),
     jobTitle: core.serialization.property("job_title", DevUserJobTitle.optional()),
 });
 
 export declare namespace DevUsersSelfUpdateRequest {
     interface Raw {
+        custom_fields?: Record<string, unknown> | null;
+        custom_schema_spec?: CustomSchemaSpec.Raw | null;
         display_name?: string | null;
+        experience_start_date?: string | null;
         full_name?: string | null;
+        job_history?: DevUsersUpdateJobHistoryItem.Raw[] | null;
         job_title?: DevUserJobTitle.Raw | null;
     }
 }

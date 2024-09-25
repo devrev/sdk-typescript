@@ -9,15 +9,36 @@ import * as DevRev from "../index";
  */
 export interface ArchetypeMetricTarget {
     /**
+     * For breached metrics the time they entered into breach. This is the
+     * same as what the target date was, unless the breach happened due to
+     * a different policy starting to apply.
+     */
+    breachedAt?: Date;
+    /**
+     * For completed metrics the time (in minutes) it took to complete
+     * them. (Taking into account the schedule if any).
+     */
+    completedIn?: number;
+    /**
      * If true, the schedule attached to this metric is out of schedule at
      * the time of the query. It is not set for metrics in _completed_
      * stage.
      */
     isOutOfSchedule?: boolean;
     metricDefinition: DevRev.MetricDefinitionSummary;
+    /** The next time the schedule will change its state, if such is known. */
+    nextScheduleTransition?: Date;
     orgSchedule?: DevRev.OrgScheduleSummary;
     /** Time in minutes that remains on a paused metric. */
     remainingTime?: number;
+    /** Metric stage corresponding to the applicable SLA. */
+    stage: string;
+    /**
+     * It is an indicator of whether the metric has ever been breached
+     * (missed). If not, it shows whether the metric is completed, in
+     * progress, or not part of the applied policy.
+     */
+    status?: string;
     /** Time at which the metric would breach SLA if no action taken. */
     targetTime?: Date;
     /**

@@ -28,6 +28,7 @@ export type AtomSummary =
     | DevRev.AtomSummary.Ticket
     | DevRev.AtomSummary.TimelineChangeEvent
     | DevRev.AtomSummary.TimelineComment
+    | DevRev.AtomSummary.UserPreferences
     | DevRev.AtomSummary.Webhook;
 
 export declare namespace AtomSummary {
@@ -121,6 +122,10 @@ export declare namespace AtomSummary {
 
     interface TimelineComment extends DevRev.AtomBaseSummary {
         type: "timeline_comment";
+    }
+
+    interface UserPreferences extends DevRev.AtomBaseSummary {
+        type: "user_preferences";
     }
 
     interface Webhook extends DevRev.AtomBaseSummary {

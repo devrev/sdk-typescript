@@ -9,6 +9,12 @@ export interface TimelineEntriesUpdateRequestTimelineComment {
     /** The updated comment's body. */
     body?: string;
     bodyType?: DevRev.TimelineCommentBodyType;
+    /**
+     * The updated external reference for the comment. If set, this must
+     * be unique within the object's timeline, otherwise if null, then
+     * clears the value.
+     */
+    externalRef?: string;
     linkPreviews?: DevRev.TimelineEntriesUpdateRequestTimelineCommentLinkPreviews;
     snapKitBody?: DevRev.TimelineSnapKitBody;
 }

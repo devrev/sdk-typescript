@@ -5,9 +5,15 @@
 /**
  * Logical grouping of snap widgets. Useful for filtering.
  */
-export type SnapWidgetNamespace = "comment_suggestion_replies" | "email_preview" | "link_preview" | "plug_nudge";
+export type SnapWidgetNamespace =
+    | "ai_assistant_message"
+    | "comment_suggestion_replies"
+    | "email_preview"
+    | "link_preview"
+    | "plug_nudge";
 
 export const SnapWidgetNamespace = {
+    AiAssistantMessage: "ai_assistant_message",
     CommentSuggestionReplies: "comment_suggestion_replies",
     EmailPreview: "email_preview",
     LinkPreview: "link_preview",

@@ -14,5 +14,11 @@ export interface WorksUpdateRequestTicket {
     needsResponse?: boolean;
     /** Updates the Rev organization that the ticket is associated with. */
     revOrg?: string;
+    /** The enum ID for the sentiment of the ticket. */
+    sentiment?: number;
+    /** Timestamp at which sentiment was last modified. */
+    sentimentModifiedDate?: Date;
+    /** Summary justifying the current sentiment. */
+    sentimentSummary?: string;
     severity?: DevRev.TicketSeverity;
 }

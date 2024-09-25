@@ -16,6 +16,10 @@ export const DevUsersListRequest: core.serialization.Schema<
 > = core.serialization.object({
     createdDate: core.serialization.property("created_date", DateFilter.optional()),
     cursor: core.serialization.string().optional(),
+    customFields: core.serialization.property(
+        "custom_fields",
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+    ),
     email: core.serialization.list(core.serialization.string()).optional(),
     externalIdentity: core.serialization.property(
         "external_identity",
@@ -32,6 +36,7 @@ export declare namespace DevUsersListRequest {
     interface Raw {
         created_date?: DateFilter.Raw | null;
         cursor?: string | null;
+        custom_fields?: Record<string, unknown> | null;
         email?: string[] | null;
         external_identity?: DevUserExternalIdentityFilter.Raw[] | null;
         limit?: number | null;
