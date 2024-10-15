@@ -3,6 +3,7 @@ export { RevUsersDeleteRequest } from "./RevUsersDeleteRequest";
 export { RevUsersGetRequest } from "./RevUsersGetRequest";
 export { LinkRevUserToRevOrgRequest } from "./LinkRevUserToRevOrgRequest";
 export { RevUsersListRequest } from "./RevUsersListRequest";
+export { RevUsersMergeRequest } from "./RevUsersMergeRequest";
 export { RevUsersScanRequest } from "./RevUsersScanRequest";
 export { UnlinkRevUserFromRevOrgRequest } from "./UnlinkRevUserFromRevOrgRequest";
 export { RevUsersUpdateRequest } from "./RevUsersUpdateRequest";

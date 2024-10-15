@@ -7,6 +7,7 @@ import * as DevRev from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { EngagementsUpdateRequestArtifactIds } from "../../../../types/EngagementsUpdateRequestArtifactIds";
 import { EngagementsUpdateRequestMembers } from "../../../../types/EngagementsUpdateRequestMembers";
+import { EngagementsUpdateRequestParents } from "../../../../types/EngagementsUpdateRequestParents";
 import { EngagementsUpdateRequestTags } from "../../../../types/EngagementsUpdateRequestTags";
 
 export const EngagementsUpdateRequest: core.serialization.Schema<
@@ -19,6 +20,7 @@ export const EngagementsUpdateRequest: core.serialization.Schema<
     externalUrl: core.serialization.property("external_url", core.serialization.string().optional()),
     id: core.serialization.string(),
     members: EngagementsUpdateRequestMembers.optional(),
+    parents: EngagementsUpdateRequestParents.optional(),
     scheduledDate: core.serialization.property("scheduled_date", core.serialization.date().optional()),
     tags: EngagementsUpdateRequestTags.optional(),
     title: core.serialization.string().optional(),
@@ -32,6 +34,7 @@ export declare namespace EngagementsUpdateRequest {
         external_url?: string | null;
         id: string;
         members?: EngagementsUpdateRequestMembers.Raw | null;
+        parents?: EngagementsUpdateRequestParents.Raw | null;
         scheduled_date?: string | null;
         tags?: EngagementsUpdateRequestTags.Raw | null;
         title?: string | null;

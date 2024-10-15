@@ -21,6 +21,7 @@ export interface EngagementsUpdateRequest {
     /** The engagement ID. */
     id: string;
     members?: DevRev.EngagementsUpdateRequestMembers;
+    parents?: DevRev.EngagementsUpdateRequestParents;
     /**
      * Updates the date and time when the engagement was scheduled.
      *

@@ -1,3 +1,9 @@
+export { type CustomObjectsCountRequest } from "./CustomObjectsCountRequest";
+export { type CustomObjectsCreateRequest } from "./CustomObjectsCreateRequest";
+export { type CustomObjectsDeleteRequest } from "./CustomObjectsDeleteRequest";
+export { type CustomObjectsGetRequest } from "./CustomObjectsGetRequest";
+export { type CustomObjectsListRequest } from "./CustomObjectsListRequest";
+export { type CustomObjectsUpdateRequest } from "./CustomObjectsUpdateRequest";
 export { type CustomLinkTypeCreateRequest } from "./CustomLinkTypeCreateRequest";
 export { type CustomLinkTypeGetRequest } from "./CustomLinkTypeGetRequest";
 export { type CustomLinkTypeListRequest } from "./CustomLinkTypeListRequest";

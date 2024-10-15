@@ -13,6 +13,7 @@ export type LinkType =
     | "is_converted_to"
     | "is_dependent_on"
     | "is_duplicate_of"
+    | "is_follow_up_of"
     | "is_merged_into"
     | "is_parent_of"
     | "is_part_of"
@@ -27,6 +28,7 @@ export const LinkType = {
     IsConvertedTo: "is_converted_to",
     IsDependentOn: "is_dependent_on",
     IsDuplicateOf: "is_duplicate_of",
+    IsFollowUpOf: "is_follow_up_of",
     IsMergedInto: "is_merged_into",
     IsParentOf: "is_parent_of",
     IsPartOf: "is_part_of",

@@ -6,6 +6,7 @@ import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
 import { TimelineEntryObjectType } from "./TimelineEntryObjectType";
+import { TimelineEntryPanel } from "./TimelineEntryPanel";
 import { TimelineReaction } from "./TimelineReaction";
 import { TimelineThread } from "./TimelineThread";
 import { TimelineEntryVisibility } from "./TimelineEntryVisibility";
@@ -21,6 +22,7 @@ export const TimelineEntryBase: core.serialization.ObjectSchema<
         object: core.serialization.string(),
         objectDisplayId: core.serialization.property("object_display_id", core.serialization.string()),
         objectType: core.serialization.property("object_type", TimelineEntryObjectType.optional()),
+        panels: core.serialization.list(TimelineEntryPanel).optional(),
         reactions: core.serialization.list(TimelineReaction).optional(),
         thread: TimelineThread.optional(),
         visibility: TimelineEntryVisibility.optional(),
@@ -34,6 +36,7 @@ export declare namespace TimelineEntryBase {
         object: string;
         object_display_id: string;
         object_type?: TimelineEntryObjectType.Raw | null;
+        panels?: TimelineEntryPanel.Raw[] | null;
         reactions?: TimelineReaction.Raw[] | null;
         thread?: TimelineThread.Raw | null;
         visibility?: TimelineEntryVisibility.Raw | null;

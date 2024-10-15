@@ -9,8 +9,8 @@ import * as core from "../../core";
 export const GeneralPreferencesGroupPreferredLocale: core.serialization.Schema<
     serializers.GeneralPreferencesGroupPreferredLocale.Raw,
     DevRev.GeneralPreferencesGroupPreferredLocale
-> = core.serialization.enum_(["en_us", "ja_jp"]);
+> = core.serialization.enum_(["en_us", "es_ar", "ja_jp", "nl_aw", "nl_sx"]);
 
 export declare namespace GeneralPreferencesGroupPreferredLocale {
-    type Raw = "en_us" | "ja_jp";
+    type Raw = "en_us" | "es_ar" | "ja_jp" | "nl_aw" | "nl_sx";
 }

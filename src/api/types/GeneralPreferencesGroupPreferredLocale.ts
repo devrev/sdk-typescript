@@ -5,9 +5,12 @@
 /**
  * Preferred locale of the user.
  */
-export type GeneralPreferencesGroupPreferredLocale = "en_us" | "ja_jp";
+export type GeneralPreferencesGroupPreferredLocale = "en_us" | "es_ar" | "ja_jp" | "nl_aw" | "nl_sx";
 
 export const GeneralPreferencesGroupPreferredLocale = {
     EnUs: "en_us",
+    EsAr: "es_ar",
     JaJp: "ja_jp",
+    NlAw: "nl_aw",
+    NlSx: "nl_sx",
 } as const;

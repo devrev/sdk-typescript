@@ -17,6 +17,8 @@ export interface TimelineEntryBase extends DevRev.AtomBase {
     /** The display ID of the object that the Timeline entry belongs to. */
     objectDisplayId: string;
     objectType?: DevRev.TimelineEntryObjectType;
+    /** Display panels for the Timeline entry. */
+    panels?: DevRev.TimelineEntryPanel[];
     /** The reactions to the entry. */
     reactions?: DevRev.TimelineReaction[];
     thread?: DevRev.TimelineThread;

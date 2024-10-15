@@ -22,6 +22,8 @@ export interface ConversationsCreateRequest {
     /** Initial messages on the conversation. */
     messages?: DevRev.ConversationsCreateRequestMessage[];
     metadata?: DevRev.ConversationsCreateRequestMetadata;
+    /** The users that own the conversation. */
+    ownedBy?: string[];
     /** Whether the conversation is from a source channel. */
     sourceChannel?: string;
     stage?: DevRev.StageInit;

@@ -11,14 +11,15 @@ import { AuthTokens } from "./api/resources/authTokens/client/Client";
 import { CodeChanges } from "./api/resources/codeChanges/client/Client";
 import { Notifications } from "./api/resources/notifications/client/Client";
 import { Conversations } from "./api/resources/conversations/client/Client";
+import { Customization } from "./api/resources/customization/client/Client";
 import { AuthConnection } from "./api/resources/authConnection/client/Client";
 import { DevUsers } from "./api/resources/devUsers/client/Client";
+import { Directory } from "./api/resources/directory/client/Client";
 import { Engagements } from "./api/resources/engagements/client/Client";
 import { EventSource } from "./api/resources/eventSource/client/Client";
 import { Groups } from "./api/resources/groups/client/Client";
 import { Operate } from "./api/resources/operate/client/Client";
 import { Keyring } from "./api/resources/keyring/client/Client";
-import { Customization } from "./api/resources/customization/client/Client";
 import { Links } from "./api/resources/links/client/Client";
 import { Slas } from "./api/resources/slas/client/Client";
 import { ProductUsage } from "./api/resources/productUsage/client/Client";
@@ -105,6 +106,12 @@ export class DevRevClient {
         return (this._conversations ??= new Conversations(this._options));
     }
 
+    protected _customization: Customization | undefined;
+
+    public get customization(): Customization {
+        return (this._customization ??= new Customization(this._options));
+    }
+
     protected _authConnection: AuthConnection | undefined;
 
     public get authConnection(): AuthConnection {
@@ -115,6 +122,12 @@ export class DevRevClient {
 
     public get devUsers(): DevUsers {
         return (this._devUsers ??= new DevUsers(this._options));
+    }
+
+    protected _directory: Directory | undefined;
+
+    public get directory(): Directory {
+        return (this._directory ??= new Directory(this._options));
     }
 
     protected _engagements: Engagements | undefined;
@@ -145,12 +158,6 @@ export class DevRevClient {
 
     public get keyring(): Keyring {
         return (this._keyring ??= new Keyring(this._options));
-    }
-
-    protected _customization: Customization | undefined;
-
-    public get customization(): Customization {
-        return (this._customization ??= new Customization(this._options));
     }
 
     protected _links: Links | undefined;

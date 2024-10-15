@@ -19,6 +19,8 @@ export interface CustomSchemaFragmentsListRequest {
     cursor?: string;
     /** Whether only deprecated fragments should be filtered. */
     deprecated?: boolean;
+    /** Whether the leaf type corresponds to a custom object */
+    isCustomLeafType?: boolean;
     /** The list of leaf types. */
     leafType?: string[];
     /** The maximum number of items. */

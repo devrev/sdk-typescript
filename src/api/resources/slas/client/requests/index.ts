@@ -1,5 +1,6 @@
 export { type MetricDefinitionsListRequest } from "./MetricDefinitionsListRequest";
 export { type SlaTrackersGetRequest } from "./SlaTrackersGetRequest";
+export { type SlaTrackersListRequest } from "./SlaTrackersListRequest";
 export { type SlasAssignRequest } from "./SlasAssignRequest";
 export { type SlasCreateRequest } from "./SlasCreateRequest";
 export { type SlasGetRequest } from "./SlasGetRequest";

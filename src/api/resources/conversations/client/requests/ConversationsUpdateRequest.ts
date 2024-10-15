@@ -21,6 +21,7 @@ export interface ConversationsUpdateRequest {
     /** Whether the conversation is spam. */
     isSpam?: boolean;
     metadata?: DevRev.ConversationsUpdateRequestMetadata;
+    ownedBy?: DevRev.ConversationsUpdateRequestOwnedBy;
     stage?: DevRev.StageUpdate;
     /** The updated status of the conversation. */
     status?: string;

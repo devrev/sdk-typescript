@@ -7,6 +7,7 @@ import * as DevRev from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { ConversationsUpdateRequestAppliesToParts } from "../../../../types/ConversationsUpdateRequestAppliesToParts";
 import { ConversationsUpdateRequestMetadata } from "../../../../types/ConversationsUpdateRequestMetadata";
+import { ConversationsUpdateRequestOwnedBy } from "../../../../types/ConversationsUpdateRequestOwnedBy";
 import { StageUpdate } from "../../../../types/StageUpdate";
 import { ConversationsUpdateRequestTags } from "../../../../types/ConversationsUpdateRequestTags";
 import { ConversationsUpdateRequestUserSessions } from "../../../../types/ConversationsUpdateRequestUserSessions";
@@ -24,6 +25,7 @@ export const ConversationsUpdateRequest: core.serialization.Schema<
     id: core.serialization.string(),
     isSpam: core.serialization.property("is_spam", core.serialization.boolean().optional()),
     metadata: ConversationsUpdateRequestMetadata.optional(),
+    ownedBy: core.serialization.property("owned_by", ConversationsUpdateRequestOwnedBy.optional()),
     stage: StageUpdate.optional(),
     status: core.serialization.string().optional(),
     tags: ConversationsUpdateRequestTags.optional(),
@@ -39,6 +41,7 @@ export declare namespace ConversationsUpdateRequest {
         id: string;
         is_spam?: boolean | null;
         metadata?: ConversationsUpdateRequestMetadata.Raw | null;
+        owned_by?: ConversationsUpdateRequestOwnedBy.Raw | null;
         stage?: StageUpdate.Raw | null;
         status?: string | null;
         tags?: ConversationsUpdateRequestTags.Raw | null;

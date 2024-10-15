@@ -8,7 +8,6 @@ import * as DevRev from "../../../../index";
  * @example
  *     {
  *         members: ["DEVU-12345"],
- *         parent: "ACC-12345",
  *         scheduledDate: new Date("2023-01-01T12:00:00.000Z"),
  *         title: "title"
  *     }
@@ -33,7 +32,13 @@ export interface EngagementsCreateRequest {
      * Currently, only accounts and opportunities are supported.
      *
      */
-    parent: string;
+    parent?: string;
+    /**
+     * The parent object IDs to which the engagement is associated.
+     * Currently, only accounts and opportunities are supported.
+     *
+     */
+    parents?: string[];
     /** The date and time when the engagement was scheduled. */
     scheduledDate: Date;
     /** Tags associated with the engagement. */

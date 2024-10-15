@@ -18,7 +18,8 @@ export const EngagementsCreateRequest: core.serialization.Schema<
     externalRef: core.serialization.property("external_ref", core.serialization.string().optional()),
     externalUrl: core.serialization.property("external_url", core.serialization.string().optional()),
     members: core.serialization.list(core.serialization.string()),
-    parent: core.serialization.string(),
+    parent: core.serialization.string().optional(),
+    parents: core.serialization.list(core.serialization.string()).optional(),
     scheduledDate: core.serialization.property("scheduled_date", core.serialization.date()),
     tags: core.serialization.list(SetTagWithValue).optional(),
     title: core.serialization.string(),
@@ -32,7 +33,8 @@ export declare namespace EngagementsCreateRequest {
         external_ref?: string | null;
         external_url?: string | null;
         members: string[];
-        parent: string;
+        parent?: string | null;
+        parents?: string[] | null;
         scheduled_date: string;
         tags?: SetTagWithValue.Raw[] | null;
         title: string;

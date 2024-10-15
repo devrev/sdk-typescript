@@ -16,6 +16,7 @@ export const CustomSchemaFragmentsListRequest: core.serialization.Schema<
     app: core.serialization.list(core.serialization.string()).optional(),
     cursor: core.serialization.string().optional(),
     deprecated: core.serialization.boolean().optional(),
+    isCustomLeafType: core.serialization.property("is_custom_leaf_type", core.serialization.boolean().optional()),
     leafType: core.serialization.property("leaf_type", core.serialization.list(core.serialization.string()).optional()),
     limit: core.serialization.number().optional(),
     mode: ListMode.optional(),
@@ -30,6 +31,7 @@ export declare namespace CustomSchemaFragmentsListRequest {
         app?: string[] | null;
         cursor?: string | null;
         deprecated?: boolean | null;
+        is_custom_leaf_type?: boolean | null;
         leaf_type?: string[] | null;
         limit?: number | null;
         mode?: ListMode.Raw | null;

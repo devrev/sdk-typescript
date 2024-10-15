@@ -20,6 +20,7 @@ export const ConversationsCreateRequest: core.serialization.Schema<
     members: core.serialization.list(core.serialization.string()).optional(),
     messages: core.serialization.list(ConversationsCreateRequestMessage).optional(),
     metadata: ConversationsCreateRequestMetadata.optional(),
+    ownedBy: core.serialization.property("owned_by", core.serialization.list(core.serialization.string()).optional()),
     sourceChannel: core.serialization.property("source_channel", core.serialization.string().optional()),
     stage: StageInit.optional(),
     tags: core.serialization.list(SetTagWithValue).optional(),
@@ -38,6 +39,7 @@ export declare namespace ConversationsCreateRequest {
         members?: string[] | null;
         messages?: ConversationsCreateRequestMessage.Raw[] | null;
         metadata?: ConversationsCreateRequestMetadata.Raw | null;
+        owned_by?: string[] | null;
         source_channel?: string | null;
         stage?: StageInit.Raw | null;
         tags?: SetTagWithValue.Raw[] | null;
