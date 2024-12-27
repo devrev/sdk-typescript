@@ -14,6 +14,7 @@ export const WorksUpdateRequestTicket: core.serialization.ObjectSchema<
 > = core.serialization.object({
     channels: WorksUpdateRequestTicketChannels.optional(),
     group: core.serialization.string().optional(),
+    isArchived: core.serialization.property("is_archived", core.serialization.boolean().optional()),
     isSpam: core.serialization.property("is_spam", core.serialization.boolean().optional()),
     needsResponse: core.serialization.property("needs_response", core.serialization.boolean().optional()),
     revOrg: core.serialization.property("rev_org", core.serialization.string().optional()),
@@ -27,6 +28,7 @@ export declare namespace WorksUpdateRequestTicket {
     interface Raw {
         channels?: WorksUpdateRequestTicketChannels.Raw | null;
         group?: string | null;
+        is_archived?: boolean | null;
         is_spam?: boolean | null;
         needs_response?: boolean | null;
         rev_org?: string | null;

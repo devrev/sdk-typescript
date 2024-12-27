@@ -35,6 +35,7 @@ export declare namespace PartsCreateRequest {
         customFields?: Record<string, unknown>;
         /** The custom schema fragments to use. */
         customSchemaFragments?: string[];
+        customSchemaSpec?: DevRev.CustomSchemaSpec;
         /** Description of the part. */
         description?: string;
         /** Name of the part. */

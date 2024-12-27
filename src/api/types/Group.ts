@@ -13,4 +13,5 @@ export interface Group extends DevRev.AtomBase {
     /** Name of the group. */
     name?: string;
     owner?: DevRev.UserSummary;
+    syncMetadata?: DevRev.SyncMetadata;
 }

@@ -14,6 +14,8 @@ export interface ConversationsExportRequest {
      *
      */
     appliesToParts?: string[];
+    /** Filters for custom fields. */
+    customFields?: Record<string, unknown>;
     /**
      * The number of conversation items to return. The default is '50',
      * the maximum is '5000'.
@@ -45,13 +47,29 @@ export interface ConversationsExportRequest {
      *
      */
     revOrg?: string[];
+    /**
+     * Filters for conversations that are associated with any of the
+     * provided Rev organizations.
+     *
+     */
+    revOrgs?: string[];
     slaSummary?: DevRev.SlaSummaryFilter;
+    /**
+     * Filters for conversations with any of the provided source channels.
+     *
+     */
+    sourceChannel?: string[];
     /**
      * Filters for conversations with any of the provided source channels.
      *
      */
     sourceChannels?: string[];
     stage?: DevRev.StageFilter;
+    /**
+     * Filters for conversation with any of the provided subtypes.
+     *
+     */
+    subtype?: string[];
     /** Filters for conversations with any of the provided tags. */
     tags?: string[];
     /**

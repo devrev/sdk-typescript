@@ -23,6 +23,11 @@ export interface SlaTrackersListRequest {
     limit?: number;
     mode?: DevRev.ListMode;
     modifiedDate?: DevRev.DateTimeFilter;
+    /**
+     * Fields to sort the SLA Trackers by and the direction to sort them.
+     *
+     */
+    sortBy?: string[];
     /** The SLA tracker stages the filter matches. */
     stage?: string[];
     /** The SLA tracker statuses the filter matches. */

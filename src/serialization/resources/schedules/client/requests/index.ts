@@ -2,6 +2,7 @@ export { OrgScheduleFragmentsCreateRequest } from "./OrgScheduleFragmentsCreateR
 export { OrgScheduleFragmentsGetRequest } from "./OrgScheduleFragmentsGetRequest";
 export { OrgScheduleFragmentsTransitionRequest } from "./OrgScheduleFragmentsTransitionRequest";
 export { OrgSchedulesCreateRequest } from "./OrgSchedulesCreateRequest";
+export { OrgSchedulesEvaluateRequest } from "./OrgSchedulesEvaluateRequest";
 export { OrgSchedulesGetRequest } from "./OrgSchedulesGetRequest";
 export { OrgSchedulesListRequest } from "./OrgSchedulesListRequest";
 export { OrgSchedulesSetFutureRequest } from "./OrgSchedulesSetFutureRequest";

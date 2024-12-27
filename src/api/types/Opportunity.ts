@@ -4,4 +4,9 @@
 
 import * as DevRev from "../index";
 
-export type Opportunity = DevRev.WorkBase;
+export interface Opportunity extends DevRev.WorkBase {
+    account?: DevRev.AccountSummary;
+    annualContractValue?: DevRev.Money;
+    forecastCategoryV2?: DevRev.EnumValue;
+    value?: DevRev.Money;
+}

@@ -3,6 +3,7 @@
  */
 
 import { PartsUpdateRequestArtifacts } from "./PartsUpdateRequestArtifacts";
+import { CustomSchemaSpec } from "./CustomSchemaSpec";
 import { PartsUpdateRequestOwnedBy } from "./PartsUpdateRequestOwnedBy";
 import * as core from "../../core";
 import * as serializers from "../index";
@@ -23,6 +24,7 @@ const _Base = core.serialization.object({
         "custom_schema_fragments",
         core.serialization.list(core.serialization.string()).optional()
     ),
+    customSchemaSpec: core.serialization.property("custom_schema_spec", CustomSchemaSpec.optional()),
     description: core.serialization.string().optional(),
     id: core.serialization.string(),
     name: core.serialization.string().optional(),
@@ -96,6 +98,7 @@ export declare namespace PartsUpdateRequest {
         artifacts?: PartsUpdateRequestArtifacts.Raw | null;
         custom_fields?: Record<string, unknown> | null;
         custom_schema_fragments?: string[] | null;
+        custom_schema_spec?: CustomSchemaSpec.Raw | null;
         description?: string | null;
         id: string;
         name?: string | null;

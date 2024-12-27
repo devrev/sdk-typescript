@@ -20,6 +20,7 @@ export interface RevUsersCreateRequest {
     customFields?: Record<string, unknown>;
     /** The schema fragment IDs associated with the Rev user. */
     customSchemaFragments?: string[];
+    customSchemaSpec?: DevRev.CustomSchemaSpec;
     /** Description of the Rev user. */
     description?: string;
     /**

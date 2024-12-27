@@ -35,6 +35,7 @@ export const Account: core.serialization.ObjectSchema<serializers.Account.Raw, D
         subtype: core.serialization.string().optional(),
         tags: core.serialization.list(TagWithValue).optional(),
         tier: core.serialization.string().optional(),
+        websites: core.serialization.list(core.serialization.string()).optional(),
     })
     .extend(OrgBase);
 
@@ -51,5 +52,6 @@ export declare namespace Account {
         subtype?: string | null;
         tags?: TagWithValue.Raw[] | null;
         tier?: string | null;
+        websites?: string[] | null;
     }
 }

@@ -10,15 +10,13 @@ export const AuthConnectionOptionsOidc: core.serialization.ObjectSchema<
     serializers.AuthConnectionOptionsOidc.Raw,
     DevRev.AuthConnectionOptionsOidc
 > = core.serialization.object({
-    clientId: core.serialization.property("client_id", core.serialization.string().optional()),
-    clientSecret: core.serialization.property("client_secret", core.serialization.string().optional()),
-    issuer: core.serialization.string().optional(),
+    clientId: core.serialization.property("client_id", core.serialization.string()),
+    issuer: core.serialization.string(),
 });
 
 export declare namespace AuthConnectionOptionsOidc {
     interface Raw {
-        client_id?: string | null;
-        client_secret?: string | null;
-        issuer?: string | null;
+        client_id: string;
+        issuer: string;
     }
 }

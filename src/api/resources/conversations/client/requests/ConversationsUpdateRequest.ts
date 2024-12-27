@@ -12,6 +12,9 @@ import * as DevRev from "../../../../index";
  */
 export interface ConversationsUpdateRequest {
     appliesToParts?: DevRev.ConversationsUpdateRequestAppliesToParts;
+    /** Application-defined custom fields. */
+    customFields?: Record<string, unknown>;
+    customSchemaSpec?: DevRev.CustomSchemaSpec;
     /** The updated description for the conversation. */
     description?: string;
     /** The group that the conversation is associated with. */

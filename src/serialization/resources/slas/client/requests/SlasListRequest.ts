@@ -19,6 +19,7 @@ export const SlasListRequest: core.serialization.Schema<serializers.SlasListRequ
         limit: core.serialization.number().optional(),
         mode: ListMode.optional(),
         slaType: core.serialization.property("sla_type", core.serialization.list(SlaType).optional()),
+        sortBy: core.serialization.property("sort_by", core.serialization.list(core.serialization.string()).optional()),
         status: core.serialization.list(SlaStatus).optional(),
     });
 
@@ -30,6 +31,7 @@ export declare namespace SlasListRequest {
         limit?: number | null;
         mode?: ListMode.Raw | null;
         sla_type?: SlaType.Raw[] | null;
+        sort_by?: string[] | null;
         status?: SlaStatus.Raw[] | null;
     }
 }

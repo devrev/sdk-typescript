@@ -10,6 +10,11 @@ export interface WorksFilterOpportunity {
     account?: string[];
     /** Filters for opportunities with any of the provided contacts. */
     contacts?: string[];
+    /**
+     * Filters for opportunities with any of the provided forecast
+     * category enum IDs.
+     */
+    forecastCategoryV2?: number[];
     /** Filters for opportunity with any of the provided subtypes. */
     subtype?: string[];
 }

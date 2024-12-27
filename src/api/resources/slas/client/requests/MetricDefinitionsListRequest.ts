@@ -31,6 +31,11 @@ export interface MetricDefinitionsListRequest {
      */
     limit?: number;
     mode?: DevRev.ListMode;
+    /**
+     * Fields to sort the records by and the direction to sort them.
+     *
+     */
+    sortBy?: string[];
     /** The status of the metric definition. */
     status?: DevRev.MetricDefinitionStatus[];
 }

@@ -5,13 +5,20 @@
 import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
+import { AccountSummary } from "./AccountSummary";
 import { WorkBaseSummary } from "./WorkBaseSummary";
 
 export const OpportunitySummary: core.serialization.ObjectSchema<
     serializers.OpportunitySummary.Raw,
     DevRev.OpportunitySummary
-> = WorkBaseSummary;
+> = core.serialization
+    .object({
+        account: AccountSummary.optional(),
+    })
+    .extend(WorkBaseSummary);
 
 export declare namespace OpportunitySummary {
-    type Raw = WorkBaseSummary.Raw;
+    interface Raw extends WorkBaseSummary.Raw {
+        account?: AccountSummary.Raw | null;
+    }
 }

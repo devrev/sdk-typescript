@@ -52,47 +52,8 @@ export class SnapWidgets {
      * @example
      *     await client.snapWidgets.create({
      *         type: "email_preview",
-     *         name: "string",
-     *         namespace: DevRev.SnapWidgetNamespace.AiAssistantMessage,
-     *         status: DevRev.SnapWidgetStatus.Draft,
-     *         bcc: [{
-     *                 address: "string",
-     *                 name: "string",
-     *                 user: "string"
-     *             }],
-     *         cc: [{
-     *                 address: "string",
-     *                 name: "string",
-     *                 user: "string"
-     *             }],
-     *         from: [{
-     *                 address: "string",
-     *                 name: "string",
-     *                 user: "string"
-     *             }],
-     *         htmlBody: "string",
-     *         inReplyTo: "string",
-     *         inlines: [{
-     *                 artifact: "string",
-     *                 contentId: "string"
-     *             }],
-     *         isSpam: true,
-     *         messageId: "string",
-     *         rawEmailArtifact: "string",
-     *         references: ["string"],
-     *         replyTo: [{
-     *                 address: "string",
-     *                 name: "string",
-     *                 user: "string"
-     *             }],
-     *         sentTimestamp: new Date("2024-01-15T09:30:00.000Z"),
-     *         subject: "string",
-     *         textBody: "string",
-     *         to: [{
-     *                 address: "string",
-     *                 name: "string",
-     *                 user: "string"
-     *             }]
+     *         rawEmailArtifact: "ARTIFACT-12345",
+     *         sentTimestamp: new Date("2023-01-01T12:00:00.000Z")
      *     })
      */
     public async create(
@@ -109,7 +70,7 @@ export class SnapWidgets {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,

@@ -5,10 +5,26 @@
 import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
+import { AccountSummary } from "./AccountSummary";
+import { Money } from "./Money";
+import { EnumValue } from "./EnumValue";
 import { WorkBase } from "./WorkBase";
 
-export const Opportunity: core.serialization.ObjectSchema<serializers.Opportunity.Raw, DevRev.Opportunity> = WorkBase;
+export const Opportunity: core.serialization.ObjectSchema<serializers.Opportunity.Raw, DevRev.Opportunity> =
+    core.serialization
+        .object({
+            account: AccountSummary.optional(),
+            annualContractValue: core.serialization.property("annual_contract_value", Money.optional()),
+            forecastCategoryV2: core.serialization.property("forecast_category_v2", EnumValue.optional()),
+            value: Money.optional(),
+        })
+        .extend(WorkBase);
 
 export declare namespace Opportunity {
-    type Raw = WorkBase.Raw;
+    interface Raw extends WorkBase.Raw {
+        account?: AccountSummary.Raw | null;
+        annual_contract_value?: Money.Raw | null;
+        forecast_category_v2?: EnumValue.Raw | null;
+        value?: Money.Raw | null;
+    }
 }

@@ -1,3 +1,5 @@
+export { type DevUsersActivateRequest } from "./DevUsersActivateRequest";
+export { type DevUsersDeactivateRequest } from "./DevUsersDeactivateRequest";
 export { type DevUsersGetRequest } from "./DevUsersGetRequest";
 export { type DevUsersIdentitiesLinkRequest } from "./DevUsersIdentitiesLinkRequest";
 export { type DevUsersIdentitiesUnlinkRequest } from "./DevUsersIdentitiesUnlinkRequest";

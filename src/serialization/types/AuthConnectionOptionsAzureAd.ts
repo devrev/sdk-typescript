@@ -10,15 +10,13 @@ export const AuthConnectionOptionsAzureAd: core.serialization.ObjectSchema<
     serializers.AuthConnectionOptionsAzureAd.Raw,
     DevRev.AuthConnectionOptionsAzureAd
 > = core.serialization.object({
-    clientId: core.serialization.property("client_id", core.serialization.string().optional()),
-    clientSecret: core.serialization.property("client_secret", core.serialization.string().optional()),
-    domain: core.serialization.string().optional(),
+    clientId: core.serialization.property("client_id", core.serialization.string()),
+    domain: core.serialization.string(),
 });
 
 export declare namespace AuthConnectionOptionsAzureAd {
     interface Raw {
-        client_id?: string | null;
-        client_secret?: string | null;
-        domain?: string | null;
+        client_id: string;
+        domain: string;
     }
 }

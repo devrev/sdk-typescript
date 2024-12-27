@@ -54,7 +54,7 @@ export declare namespace WorksUpdateRequest {
          * object.
          */
         stageValidationOptions?: DevRev.StageValidationOptionForUpdate[];
-        stagedInfo?: DevRev.WorksUpdateRequestStagedInfoStagedInfoUpdate;
+        stagedInfo?: DevRev.WorksUpdateRequestStagedInfoUpdate;
         tags?: DevRev.WorksUpdateRequestTags;
         /** Updates the timestamp for when the work is expected to be complete. */
         targetCloseDate?: Date;

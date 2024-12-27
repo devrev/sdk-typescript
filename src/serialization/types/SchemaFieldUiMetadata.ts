@@ -25,6 +25,7 @@ export const SchemaFieldUiMetadata: core.serialization.ObjectSchema<
         core.serialization.boolean().optional()
     ),
     isBulkActionEnabled: core.serialization.property("is_bulk_action_enabled", core.serialization.boolean().optional()),
+    isCurrencyField: core.serialization.property("is_currency_field", core.serialization.boolean().optional()),
     isGroupable: core.serialization.property("is_groupable", core.serialization.boolean().optional()),
     isHidden: core.serialization.property("is_hidden", core.serialization.boolean().optional()),
     isHiddenDuringCreate: core.serialization.property(
@@ -36,9 +37,11 @@ export const SchemaFieldUiMetadata: core.serialization.ObjectSchema<
     isShownInSummary: core.serialization.property("is_shown_in_summary", core.serialization.boolean().optional()),
     isSortable: core.serialization.property("is_sortable", core.serialization.boolean().optional()),
     listView: core.serialization.property("list_view", SchemaFieldListViewUiMetadata.optional()),
+    order: core.serialization.number().optional(),
     placeholder: core.serialization.string().optional(),
     summaryView: core.serialization.property("summary_view", SchemaFieldSummaryViewUiMetadata.optional()),
     tooltip: core.serialization.string().optional(),
+    unit: core.serialization.string().optional(),
 });
 
 export declare namespace SchemaFieldUiMetadata {
@@ -50,6 +53,7 @@ export declare namespace SchemaFieldUiMetadata {
         group_name?: string | null;
         is_active_in_detail_view?: boolean | null;
         is_bulk_action_enabled?: boolean | null;
+        is_currency_field?: boolean | null;
         is_groupable?: boolean | null;
         is_hidden?: boolean | null;
         is_hidden_during_create?: boolean | null;
@@ -58,8 +62,10 @@ export declare namespace SchemaFieldUiMetadata {
         is_shown_in_summary?: boolean | null;
         is_sortable?: boolean | null;
         list_view?: SchemaFieldListViewUiMetadata.Raw | null;
+        order?: number | null;
         placeholder?: string | null;
         summary_view?: SchemaFieldSummaryViewUiMetadata.Raw | null;
         tooltip?: string | null;
+        unit?: string | null;
     }
 }

@@ -12,6 +12,8 @@ export interface WorksUpdateRequestOpportunity {
     contacts?: DevRev.WorksUpdateRequestOpportunityContacts;
     /** Updates the customer budget. */
     customerBudget?: number;
+    /** Forecast category enum ID of an opportunity. */
+    forecastCategoryV2?: number;
     /**
      * Updates the probability of winning the deal, lies between 0.0 and
      * 1.0.

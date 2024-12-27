@@ -5,6 +5,8 @@
 export interface ArticlesCreateRequestResource {
     /** IDs of the artifacts. */
     artifacts?: string[];
+    /** List of content blocks used in the article. */
+    contentBlocks?: string[];
     /** The latest published version. */
     publishedVersion?: string;
     /** URL of the external article. */

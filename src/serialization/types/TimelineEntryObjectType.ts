@@ -16,6 +16,7 @@ export const TimelineEntryObjectType: core.serialization.Schema<
     "engagement",
     "enhancement",
     "feature",
+    "incident",
     "issue",
     "meeting",
     "opportunity",
@@ -36,6 +37,7 @@ export declare namespace TimelineEntryObjectType {
         | "engagement"
         | "enhancement"
         | "feature"
+        | "incident"
         | "issue"
         | "meeting"
         | "opportunity"

@@ -52,20 +52,7 @@ export class TimelineEntries {
      *
      * @example
      *     await client.timelineEntries.create({
-     *         type: "timeline_comment",
-     *         collections: [DevRev.TimelineEntriesCollection.Discussions],
-     *         expiresAt: new Date("2024-01-15T09:30:00.000Z"),
-     *         labels: ["string"],
-     *         object: "string",
-     *         privateTo: ["string"],
-     *         visibility: DevRev.TimelineEntryVisibility.External,
-     *         artifacts: ["string"],
-     *         body: "string",
-     *         bodyType: DevRev.TimelineCommentBodyType.Data,
-     *         externalRef: "string",
-     *         linkPreviews: ["string"],
-     *         snapKitBody: {},
-     *         snapWidgetBody: ["string"]
+     *         type: "timeline_comment"
      *     })
      */
     public async create(
@@ -82,7 +69,7 @@ export class TimelineEntries {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -231,7 +218,7 @@ export class TimelineEntries {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -354,8 +341,7 @@ export class TimelineEntries {
      *
      * @example
      *     await client.timelineEntries.getPost({
-     *         externalRef: "string",
-     *         id: "string"
+     *         id: "don:core:<partition>:devo/<dev-org-id>:ticket/123:timeline_event/<timeline-event-id>"
      *     })
      */
     public async getPost(
@@ -372,7 +358,7 @@ export class TimelineEntries {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -522,7 +508,7 @@ export class TimelineEntries {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -655,14 +641,7 @@ export class TimelineEntries {
      *
      * @example
      *     await client.timelineEntries.update({
-     *         type: "timeline_comment",
-     *         id: "string",
-     *         artifacts: {},
-     *         body: "string",
-     *         bodyType: DevRev.TimelineCommentBodyType.Data,
-     *         externalRef: "string",
-     *         linkPreviews: {},
-     *         snapKitBody: {}
+     *         type: "timeline_comment"
      *     })
      */
     public async update(
@@ -679,7 +658,7 @@ export class TimelineEntries {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,

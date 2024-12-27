@@ -51,18 +51,8 @@ export class Parts {
      *
      * @example
      *     await client.parts.create({
-     *         type: "capability",
-     *         artifacts: ["string"],
-     *         customFields: {
-     *             "string": {
-     *                 "key": "value"
-     *             }
-     *         },
-     *         customSchemaFragments: ["string"],
-     *         description: "string",
-     *         name: "string",
-     *         ownedBy: ["string"],
-     *         parentPart: ["string"]
+     *         type: "feature",
+     *         parentPart: ["PROD-12345"]
      *     })
      */
     public async create(
@@ -79,7 +69,7 @@ export class Parts {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -219,7 +209,7 @@ export class Parts {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -352,7 +342,7 @@ export class Parts {
      *
      * @example
      *     await client.parts.getPost({
-     *         id: "string"
+     *         id: "PROD-12345"
      *     })
      */
     public async getPost(
@@ -369,7 +359,7 @@ export class Parts {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -516,7 +506,7 @@ export class Parts {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -639,12 +629,7 @@ export class Parts {
      *
      * @example
      *     await client.parts.update({
-     *         type: "capability",
-     *         value: {
-     *             "string": {
-     *                 "key": "value"
-     *             }
-     *         }
+     *         type: "enhancement"
      *     })
      */
     public async update(
@@ -661,7 +646,7 @@ export class Parts {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,

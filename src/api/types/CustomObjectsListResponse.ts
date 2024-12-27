@@ -4,6 +4,10 @@
 
 import * as DevRev from "../index";
 
+/**
+ * The response to listing all custom objects matching the filter
+ * criteria.
+ */
 export interface CustomObjectsListResponse {
     /**
      * The cursor used to iterate subsequent results in accordance to the

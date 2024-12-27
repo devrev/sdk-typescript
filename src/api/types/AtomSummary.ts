@@ -14,6 +14,7 @@ export type AtomSummary =
     | DevRev.AtomSummary.Engagement
     | DevRev.AtomSummary.Enhancement
     | DevRev.AtomSummary.Feature
+    | DevRev.AtomSummary.Incident
     | DevRev.AtomSummary.Issue
     | DevRev.AtomSummary.Meeting
     | DevRev.AtomSummary.Opportunity
@@ -68,6 +69,10 @@ export declare namespace AtomSummary {
         type: "feature";
     }
 
+    interface Incident extends DevRev.IncidentSummary {
+        type: "incident";
+    }
+
     interface Issue extends DevRev.IssueSummary {
         type: "issue";
     }
@@ -76,7 +81,7 @@ export declare namespace AtomSummary {
         type: "meeting";
     }
 
-    interface Opportunity extends DevRev.WorkBaseSummary {
+    interface Opportunity extends DevRev.OpportunitySummary {
         type: "opportunity";
     }
 

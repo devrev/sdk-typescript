@@ -17,6 +17,10 @@ export const ConversationsExportRequest: core.serialization.Schema<
         "applies_to_parts",
         core.serialization.list(core.serialization.string()).optional()
     ),
+    customFields: core.serialization.property(
+        "custom_fields",
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+    ),
     first: core.serialization.number().optional(),
     group: core.serialization.list(core.serialization.string()).optional(),
     isCreatorVerified: core.serialization.property("is_creator_verified", core.serialization.boolean().optional()),
@@ -24,12 +28,18 @@ export const ConversationsExportRequest: core.serialization.Schema<
     members: core.serialization.list(core.serialization.string()).optional(),
     ownedBy: core.serialization.property("owned_by", core.serialization.list(core.serialization.string()).optional()),
     revOrg: core.serialization.property("rev_org", core.serialization.list(core.serialization.string()).optional()),
+    revOrgs: core.serialization.property("rev_orgs", core.serialization.list(core.serialization.string()).optional()),
     slaSummary: core.serialization.property("sla_summary", SlaSummaryFilter.optional()),
+    sourceChannel: core.serialization.property(
+        "source_channel",
+        core.serialization.list(core.serialization.string()).optional()
+    ),
     sourceChannels: core.serialization.property(
         "source_channels",
         core.serialization.list(core.serialization.string()).optional()
     ),
     stage: StageFilter.optional(),
+    subtype: core.serialization.list(core.serialization.string()).optional(),
     tags: core.serialization.list(core.serialization.string()).optional(),
     tagsV2: core.serialization.property("tags_v2", core.serialization.list(TagWithValueFilter).optional()),
 });
@@ -37,6 +47,7 @@ export const ConversationsExportRequest: core.serialization.Schema<
 export declare namespace ConversationsExportRequest {
     interface Raw {
         applies_to_parts?: string[] | null;
+        custom_fields?: Record<string, unknown> | null;
         first?: number | null;
         group?: string[] | null;
         is_creator_verified?: boolean | null;
@@ -44,9 +55,12 @@ export declare namespace ConversationsExportRequest {
         members?: string[] | null;
         owned_by?: string[] | null;
         rev_org?: string[] | null;
+        rev_orgs?: string[] | null;
         sla_summary?: SlaSummaryFilter.Raw | null;
+        source_channel?: string[] | null;
         source_channels?: string[] | null;
         stage?: StageFilter.Raw | null;
+        subtype?: string[] | null;
         tags?: string[] | null;
         tags_v2?: TagWithValueFilter.Raw[] | null;
     }

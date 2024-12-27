@@ -5,4 +5,15 @@
 /**
  * A unified enum value.
  */
-export type SchemaFieldUenumValue = Record<string, unknown>;
+export interface SchemaFieldUenumValue {
+    /** The immutable id of the enum value. */
+    id: number;
+    /** True if this value is deprecated. */
+    isDeprecated?: boolean;
+    /** The human readable name of the enum value. */
+    label: string;
+    /** The order value of the enum. */
+    ordinal: number;
+    /** Tooltip shown in the UI for this value. */
+    tooltip?: string;
+}

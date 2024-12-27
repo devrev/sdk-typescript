@@ -324,6 +324,72 @@ await client.accounts.listPost();
 </dl>
 </details>
 
+<details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">merge</a>({ ...params }) -> DevRev.AccountsMergeResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Merges two accounts.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.accounts.merge({
+    primaryAccount: "ACC-12345",
+    secondaryAccount: "ACC-12345",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.AccountsMergeRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Accounts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.accounts.<a href="/src/api/resources/accounts/client/Client.ts">update</a>({ ...params }) -> DevRev.AccountsUpdateResponse</code></summary>
 <dl>
 <dd>
@@ -379,6 +445,138 @@ await client.accounts.update({
 <dd>
 
 **requestOptions:** `Accounts.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## airdrop
+
+<details><summary><code>client.airdrop.<a href="/src/api/resources/airdrop/client/Client.ts">syncUnitsGetPost</a>({ ...params }) -> DevRev.AirdropSyncUnitsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a single sync unit's information.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.airdrop.syncUnitsGetPost({
+    id: "id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.AirdropSyncUnitsGetRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Airdrop.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.airdrop.<a href="/src/api/resources/airdrop/client/Client.ts">syncUnitsHistoryPost</a>({ ...params }) -> DevRev.AirdropSyncUnitsHistoryResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a list of sync unit historical records.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.airdrop.syncUnitsHistoryPost({
+    id: "id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.AirdropSyncUnitsHistoryRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Airdrop.RequestOptions`
 
 </dd>
 </dl>
@@ -1108,6 +1306,204 @@ await client.artifacts.versionsPrepare({
 </dl>
 </details>
 
+## compliance
+
+<details><summary><code>client.compliance.<a href="/src/api/resources/compliance/client/Client.ts">exportAuditLogs</a>({ ...params }) -> DevRev.ExportAuditLogsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves audit logs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.compliance.exportAuditLogs({
+    from: new Date("2023-01-01T12:00:00.000Z"),
+    to: new Date("2023-01-01T12:00:00.000Z"),
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.ExportAuditLogsRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Compliance.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.compliance.<a href="/src/api/resources/compliance/client/Client.ts">deleteRevUsersPersonalData</a>({ ...params }) -> DevRev.DeleteRevUsersPersonalDataResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes data of a contact.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.compliance.deleteRevUsersPersonalData({
+    email: "email",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.DeleteRevUsersPersonalDataRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Compliance.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.compliance.<a href="/src/api/resources/compliance/client/Client.ts">getRevUsersPersonalData</a>({ ...params }) -> DevRev.GetRevUsersPersonalDataResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves data of a contact.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.compliance.getRevUsersPersonalData({
+    email: "email",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.GetRevUsersPersonalDataRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Compliance.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## auth-tokens
 
 <details><summary><code>client.authTokens.<a href="/src/api/resources/authTokens/client/Client.ts">create</a>({ ...params }) -> DevRev.AuthTokensCreateResponse</code></summary>
@@ -1286,6 +1682,72 @@ await client.authTokens.getPost({
 <dd>
 
 **request:** `DevRev.AuthTokensGetRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AuthTokens.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.authTokens.<a href="/src/api/resources/authTokens/client/Client.ts">infoPost</a>({ ...params }) -> DevRev.AuthTokensInfoResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the Dev organization, user and token attributes extracted from
+the auth token.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.authTokens.infoPost({
+    key: "value",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.AuthTokensInfoRequest`
 
 </dd>
 </dl>
@@ -1854,16 +2316,12 @@ Create the content template.
 ```typescript
 await client.notifications.contentTemplateCreate({
     type: "notification_content_template",
-    inputFieldsSchema: [
+    defaults: [
         {
-            fieldType: "array",
-            value: {
-                key: "value",
-            },
+            body: "body",
+            title: "title",
         },
     ],
-    name: "string",
-    defaults: [{}],
 });
 ```
 
@@ -2056,7 +2514,17 @@ Generate a notification.
 
 ```typescript
 await client.notifications.send({
-    notifications: [],
+    notifications: [
+        {
+            type: "generic_notification",
+            eventType: DevRev.GenericNotificationEventType.Alert,
+            metadata: [
+                {
+                    contentTemplate: "content_template",
+                },
+            ],
+        },
+    ],
 });
 ```
 
@@ -3235,7 +3703,7 @@ Gets a custom schema fragment.
 
 ```typescript
 await client.customization.customSchemaFragmentsGetPost({
-    id: "string",
+    id: "id",
 });
 ```
 
@@ -3363,28 +3831,7 @@ Creates or updates a custom schema fragment.
 
 ```typescript
 await client.customization.customSchemaFragmentsSet({
-    type: "app_fragment",
-    conditions: [
-        {
-            string: {
-                key: "value",
-            },
-        },
-    ],
-    deletedFields: ["string"],
-    deprecated: true,
-    description: "string",
-    fields: [
-        {
-            fieldType: "array",
-            value: {
-                key: "value",
-            },
-        },
-    ],
-    isCustomLeafType: true,
-    leafType: "string",
-    app: "string",
+    type: "tenant_fragment",
 });
 ```
 
@@ -4164,11 +4611,10 @@ enterprise connections can be created by an organization.
 
 ```typescript
 await client.authConnection.devOrgAuthConnectionsCreate({
-    type: "google_apps",
-    displayName: "string",
+    type: "waad",
     clientId: "string",
     clientSecret: "string",
-    tenantDomain: "string",
+    domain: "string",
 });
 ```
 
@@ -4300,7 +4746,7 @@ Retrieves the details for an authentication connection.
 
 ```typescript
 await client.authConnection.devOrgAuthConnectionsGetPost({
-    id: "string",
+    id: "id",
 });
 ```
 
@@ -4502,12 +4948,7 @@ Updates an authentication connection.
 
 ```typescript
 await client.authConnection.devOrgAuthConnectionsUpdate({
-    type: "google_apps",
-    displayName: "string",
-    id: "string",
-    clientId: "string",
-    clientSecret: "string",
-    tenantDomain: "string",
+    type: "waad",
 });
 ```
 
@@ -4544,6 +4985,136 @@ await client.authConnection.devOrgAuthConnectionsUpdate({
 </details>
 
 ## dev-users
+
+<details><summary><code>client.devUsers.<a href="/src/api/resources/devUsers/client/Client.ts">activate</a>({ ...params }) -> DevRev.DevUsersActivateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Activates the requested user.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.devUsers.activate({
+    id: "id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.DevUsersActivateRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `DevUsers.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.devUsers.<a href="/src/api/resources/devUsers/client/Client.ts">deactivate</a>({ ...params }) -> DevRev.DevUsersDeactivateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deactivates the requested user.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.devUsers.deactivate({
+    id: "id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.DevUsersDeactivateRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `DevUsers.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
 
 <details><summary><code>client.devUsers.<a href="/src/api/resources/devUsers/client/Client.ts">getPost</a>({ ...params }) -> DevRev.DevUsersGetResponse</code></summary>
 <dl>
@@ -6997,8 +7568,8 @@ Creates a link between two objects to indicate a relationship.
 ```typescript
 await client.links.create({
     linkType: DevRev.LinkType.CustomLink,
-    source: "string",
-    target: "string",
+    source: "source",
+    target: "target",
 });
 ```
 
@@ -7128,7 +7699,7 @@ Gets the requested link's information.
 
 ```typescript
 await client.links.getPost({
-    id: "string",
+    id: "id",
 });
 ```
 
@@ -7229,7 +7800,662 @@ await client.links.listPost({
 </dl>
 </details>
 
+## meetings
+
+<details><summary><code>client.meetings.<a href="/src/api/resources/meetings/client/Client.ts">countPost</a>({ ...params }) -> DevRev.MeetingsCountResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Counts the meeting records.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.meetings.countPost();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.MeetingsCountRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Meetings.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.meetings.<a href="/src/api/resources/meetings/client/Client.ts">create</a>({ ...params }) -> DevRev.MeetingsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new meeting record.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.meetings.create({
+    channel: DevRev.MeetingChannel.GoogleMeet,
+    endedDate: new Date("2023-01-01T12:00:00.000Z"),
+    members: ["DEVU-12345"],
+    scheduledDate: new Date("2023-01-01T12:00:00.000Z"),
+    state: DevRev.MeetingState.Canceled,
+    title: "title",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.MeetingsCreateRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Meetings.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.meetings.<a href="/src/api/resources/meetings/client/Client.ts">delete</a>({ ...params }) -> DevRev.MeetingsDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes the meeting record.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.meetings.delete({
+    id: "id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.MeetingsDeleteRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Meetings.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.meetings.<a href="/src/api/resources/meetings/client/Client.ts">getPost</a>({ ...params }) -> DevRev.MeetingsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets the meeting record.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.meetings.getPost({
+    id: "id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.MeetingsGetRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Meetings.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.meetings.<a href="/src/api/resources/meetings/client/Client.ts">listPost</a>({ ...params }) -> DevRev.MeetingsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the meeting records.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.meetings.listPost();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.MeetingsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Meetings.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.meetings.<a href="/src/api/resources/meetings/client/Client.ts">update</a>({ ...params }) -> DevRev.MeetingsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the meeting record.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.meetings.update({
+    id: "id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.MeetingsUpdateRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Meetings.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## slas
+
+<details><summary><code>client.slas.<a href="/src/api/resources/slas/client/Client.ts">metricActionExecute</a>({ ...params }) -> DevRev.MetricActionExecuteResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Executes the metric action on the given object.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.slas.metricActionExecute({
+    action: DevRev.MetricActionExecuteRequestAction.Complete,
+    eventDate: new Date("2023-01-01T12:00:00.000Z"),
+    metric: "metric",
+    object: "object",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.MetricActionExecuteRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Slas.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.slas.<a href="/src/api/resources/slas/client/Client.ts">metricDefinitionsCreate</a>({ ...params }) -> DevRev.MetricDefinitionsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a custom metric definition
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.slas.metricDefinitionsCreate({
+    appliesTo: [DevRev.MetricDefinitionAppliesTo.Conversation],
+    name: "name",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.MetricDefinitionsCreateRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Slas.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.slas.<a href="/src/api/resources/slas/client/Client.ts">metricDefinitionsDelete</a>({ ...params }) -> DevRev.MetricDefinitionsDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a custom metric definition
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.slas.metricDefinitionsDelete({
+    id: "id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.MetricDefinitionsDeleteRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Slas.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.slas.<a href="/src/api/resources/slas/client/Client.ts">metricDefinitionsGetPost</a>({ ...params }) -> DevRev.MetricDefinitionsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a custom metric definition
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.slas.metricDefinitionsGetPost();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.MetricDefinitionsGetRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Slas.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
 
 <details><summary><code>client.slas.<a href="/src/api/resources/slas/client/Client.ts">metricDefinitionsListPost</a>({ ...params }) -> DevRev.MetricDefinitionsListResponse</code></summary>
 <dl>
@@ -7276,6 +8502,71 @@ await client.slas.metricDefinitionsListPost();
 <dd>
 
 **request:** `DevRev.MetricDefinitionsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Slas.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.slas.<a href="/src/api/resources/slas/client/Client.ts">metricDefinitionsUpdate</a>({ ...params }) -> DevRev.MetricDefinitionsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a custom metric definition
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.slas.metricDefinitionsUpdate({
+    id: "id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.MetricDefinitionsUpdateRequest`
 
 </dd>
 </dl>
@@ -7983,17 +9274,13 @@ Creates a Unit of Measurement on a part.
 await client.productUsage.uomsCreate({
     aggregationDetail: {
         aggregationType: DevRev.AggregationDetailAggregationType.Duration,
-        uniqueDimension: "string",
     },
-    description: "string",
-    dimensions: ["string"],
-    metricName: "string",
-    name: "string",
-    partId: "string",
-    productId: "string",
+    metricName: "metric_name",
+    name: "name",
+    productId: "PROD-12345",
     unit: {
         type: DevRev.UnitType.Boolean,
-        name: "string",
+        name: "name",
     },
 });
 ```
@@ -8124,7 +9411,7 @@ Gets a Unit of Measurement.
 
 ```typescript
 await client.productUsage.uomsGetPost({
-    id: "string",
+    id: "id",
 });
 ```
 
@@ -8252,18 +9539,7 @@ Updates a Unit of Measurement.
 
 ```typescript
 await client.productUsage.uomsUpdate({
-    aggregationType: DevRev.AggregationDetailAggregationType.Duration,
-    description: "string",
-    dimensions: {
-        add: ["string"],
-        remove: ["string"],
-    },
-    id: "string",
-    isEnabled: true,
-    name: "string",
-    partId: "string",
-    productId: "string",
-    unit: "string",
+    id: "id",
 });
 ```
 
@@ -8554,6 +9830,72 @@ await client.schedules.orgSchedulesCreate({
 <dd>
 
 **request:** `DevRev.OrgSchedulesCreateRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Schedules.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.schedules.<a href="/src/api/resources/schedules/client/Client.ts">orgSchedulesEvaluatePost</a>({ ...params }) -> DevRev.OrgSchedulesEvaluateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Evaluates an organization's schedule at specified instants.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.schedules.orgSchedulesEvaluatePost({
+    id: "id",
+    instants: [new Date("2023-01-01T12:00:00.000Z")],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.OrgSchedulesEvaluateRequest`
 
 </dd>
 </dl>
@@ -8929,18 +10271,8 @@ Creates new [part](https://devrev.ai/docs/product/parts).
 
 ```typescript
 await client.parts.create({
-    type: "capability",
-    artifacts: ["string"],
-    customFields: {
-        string: {
-            key: "value",
-        },
-    },
-    customSchemaFragments: ["string"],
-    description: "string",
-    name: "string",
-    ownedBy: ["string"],
-    parentPart: ["string"],
+    type: "feature",
+    parentPart: ["PROD-12345"],
 });
 ```
 
@@ -9070,7 +10402,7 @@ Gets a [part's](https://devrev.ai/docs/product/parts) information.
 
 ```typescript
 await client.parts.getPost({
-    id: "string",
+    id: "PROD-12345",
 });
 ```
 
@@ -9198,12 +10530,7 @@ Updates a [part's](https://devrev.ai/docs/product/parts) information.
 
 ```typescript
 await client.parts.update({
-    type: "capability",
-    value: {
-        string: {
-            key: "value",
-        },
-    },
+    type: "enhancement",
 });
 ```
 
@@ -9271,7 +10598,7 @@ Get the preferences object.
 ```typescript
 await client.preferences.getPost({
     type: "user_preferences",
-    object: "string",
+    object: "DEV-AbCdEfGh",
 });
 ```
 
@@ -9626,6 +10953,73 @@ await client.questionAnswers.updateQuestionAnswer({
 <dd>
 
 **requestOptions:** `QuestionAnswers.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## recommendations
+
+<details><summary><code>client.recommendations.<a href="/src/api/resources/recommendations/client/Client.ts">getReply</a>({ ...params }) -> DevRev.GetReplyResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a reply for a user query.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.recommendations.getReply({
+    query: "query",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.GetReplyRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Recommendations.RequestOptions`
 
 </dd>
 </dl>
@@ -10908,59 +12302,8 @@ Create a snap widget object.
 ```typescript
 await client.snapWidgets.create({
     type: "email_preview",
-    name: "string",
-    namespace: DevRev.SnapWidgetNamespace.AiAssistantMessage,
-    status: DevRev.SnapWidgetStatus.Draft,
-    bcc: [
-        {
-            address: "string",
-            name: "string",
-            user: "string",
-        },
-    ],
-    cc: [
-        {
-            address: "string",
-            name: "string",
-            user: "string",
-        },
-    ],
-    from: [
-        {
-            address: "string",
-            name: "string",
-            user: "string",
-        },
-    ],
-    htmlBody: "string",
-    inReplyTo: "string",
-    inlines: [
-        {
-            artifact: "string",
-            contentId: "string",
-        },
-    ],
-    isSpam: true,
-    messageId: "string",
-    rawEmailArtifact: "string",
-    references: ["string"],
-    replyTo: [
-        {
-            address: "string",
-            name: "string",
-            user: "string",
-        },
-    ],
-    sentTimestamp: new Date("2024-01-15T09:30:00.000Z"),
-    subject: "string",
-    textBody: "string",
-    to: [
-        {
-            address: "string",
-            name: "string",
-            user: "string",
-        },
-    ],
+    rawEmailArtifact: "ARTIFACT-12345",
+    sentTimestamp: new Date("2023-01-01T12:00:00.000Z"),
 });
 ```
 
@@ -11373,6 +12716,71 @@ await client.surveys.submit({
 <dd>
 
 **request:** `DevRev.SurveysSubmitRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Surveys.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.surveys.<a href="/src/api/resources/surveys/client/Client.ts">update</a>({ ...params }) -> DevRev.SurveysUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a survey's metadata.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.surveys.update({
+    id: "id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DevRev.SurveysUpdateRequest`
 
 </dd>
 </dl>
@@ -11879,19 +13287,6 @@ Creates a new entry on an object's timeline.
 ```typescript
 await client.timelineEntries.create({
     type: "timeline_comment",
-    collections: [DevRev.TimelineEntriesCollection.Discussions],
-    expiresAt: new Date("2024-01-15T09:30:00.000Z"),
-    labels: ["string"],
-    object: "string",
-    privateTo: ["string"],
-    visibility: DevRev.TimelineEntryVisibility.External,
-    artifacts: ["string"],
-    body: "string",
-    bodyType: DevRev.TimelineCommentBodyType.Data,
-    externalRef: "string",
-    linkPreviews: ["string"],
-    snapKitBody: {},
-    snapWidgetBody: ["string"],
 });
 ```
 
@@ -12021,8 +13416,7 @@ Gets an entry on an object's timeline.
 
 ```typescript
 await client.timelineEntries.getPost({
-    externalRef: "string",
-    id: "string",
+    id: "don:core:<partition>:devo/<dev-org-id>:ticket/123:timeline_event/<timeline-event-id>",
 });
 ```
 
@@ -12153,13 +13547,6 @@ Updates an entry on an object's timeline.
 ```typescript
 await client.timelineEntries.update({
     type: "timeline_comment",
-    id: "string",
-    artifacts: {},
-    body: "string",
-    bodyType: DevRev.TimelineCommentBodyType.Data,
-    externalRef: "string",
-    linkPreviews: {},
-    snapKitBody: {},
 });
 ```
 
@@ -12622,42 +14009,8 @@ are supported in the beta version.
 
 ```typescript
 await client.works.create({
-    type: "issue",
-    appliesToPart: "string",
-    artifacts: ["string"],
-    body: "string",
-    customFields: {
-        string: {
-            key: "value",
-        },
-    },
-    customSchemaFragments: ["string"],
-    customSchemaSpec: {
-        apps: ["string"],
-        subtype: "string",
-        tenantFragment: true,
-        validateRequiredFields: true,
-    },
-    ownedBy: ["string"],
-    reportedBy: ["string"],
-    stage: {
-        id: "string",
-        name: "string",
-    },
-    stageValidationOptions: ["allow_non_start"],
-    tags: [
-        {
-            id: "string",
-            value: "string",
-        },
-    ],
-    targetCloseDate: new Date("2024-01-15T09:30:00.000Z"),
-    title: "string",
-    developedWith: ["string"],
-    priority: DevRev.IssuePriority.P0,
-    priorityV2: 1000000,
-    sprint: "string",
-    targetStartDate: new Date("2024-01-15T09:30:00.000Z"),
+    type: "ticket",
+    revOrg: "REV-AbCdEfGh",
 });
 ```
 
@@ -12850,7 +14203,7 @@ Gets a work item's information.
 
 ```typescript
 await client.works.getPost({
-    id: "string",
+    id: "ISS-12345",
 });
 ```
 
@@ -12978,39 +14331,8 @@ Updates a work item's information.
 
 ```typescript
 await client.works.update({
-    type: "issue",
-    appliesToPart: "string",
-    artifacts: {},
-    body: "string",
-    customFields: {
-        string: {
-            key: "value",
-        },
-    },
-    customSchemaFragments: ["string"],
-    customSchemaSpec: {
-        apps: ["string"],
-        subtype: "string",
-        tenantFragment: true,
-        validateRequiredFields: true,
-    },
-    id: "string",
-    ownedBy: {},
-    reportedBy: {},
-    stage: {
-        name: "string",
-        stage: "string",
-    },
-    stageValidationOptions: ["allow_invalid_transition"],
-    stagedInfo: {},
-    tags: {},
-    targetCloseDate: new Date("2024-01-15T09:30:00.000Z"),
-    title: "string",
-    developedWith: {},
-    priority: DevRev.IssuePriority.P0,
-    priorityV2: 1000000,
-    sprint: "string",
-    targetStartDate: new Date("2024-01-15T09:30:00.000Z"),
+    type: "ticket",
+    sentimentModifiedDate: new Date("2023-01-01T12:00:00.000Z"),
 });
 ```
 

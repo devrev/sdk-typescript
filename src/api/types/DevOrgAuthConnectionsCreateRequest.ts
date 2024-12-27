@@ -10,23 +10,28 @@ import * as DevRev from "../index";
 export type DevOrgAuthConnectionsCreateRequest =
     | DevRev.DevOrgAuthConnectionsCreateRequest.GoogleApps
     | DevRev.DevOrgAuthConnectionsCreateRequest.Oidc
+    | DevRev.DevOrgAuthConnectionsCreateRequest.Okta
     | DevRev.DevOrgAuthConnectionsCreateRequest.Samlp
     | DevRev.DevOrgAuthConnectionsCreateRequest.Waad;
 
 export declare namespace DevOrgAuthConnectionsCreateRequest {
-    interface GoogleApps extends DevRev.AuthConnectionOptionsGoogleApps, _Base {
+    interface GoogleApps extends DevRev.DevOrgAuthConnectionsCreateRequestGoogleAppsOptions, _Base {
         type: "google_apps";
     }
 
-    interface Oidc extends DevRev.AuthConnectionOptionsOidc, _Base {
+    interface Oidc extends DevRev.DevOrgAuthConnectionsCreateRequestOidcOptions, _Base {
         type: "oidc";
     }
 
-    interface Samlp extends DevRev.AuthConnectionOptionsSaml, _Base {
+    interface Okta extends DevRev.DevOrgAuthConnectionsCreateRequestOktaOptions, _Base {
+        type: "okta";
+    }
+
+    interface Samlp extends DevRev.DevOrgAuthConnectionsCreateRequestSamlOptions, _Base {
         type: "samlp";
     }
 
-    interface Waad extends DevRev.AuthConnectionOptionsAzureAd, _Base {
+    interface Waad extends DevRev.DevOrgAuthConnectionsCreateRequestAzureAdOptions, _Base {
         type: "waad";
     }
 

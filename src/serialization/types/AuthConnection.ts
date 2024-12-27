@@ -7,13 +7,14 @@ import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import { AuthConnectionOptionsGoogleApps } from "./AuthConnectionOptionsGoogleApps";
 import { AuthConnectionOptionsOidc } from "./AuthConnectionOptionsOidc";
+import { AuthConnectionOptionsOkta } from "./AuthConnectionOptionsOkta";
 import { AuthConnectionOptionsSaml } from "./AuthConnectionOptionsSaml";
 import { AuthConnectionOptionsSocial } from "./AuthConnectionOptionsSocial";
 import { AuthConnectionOptionsAzureAd } from "./AuthConnectionOptionsAzureAd";
 
 const _Base = core.serialization.object({
-    displayName: core.serialization.property("display_name", core.serialization.string().optional()),
-    enabled: core.serialization.boolean().optional(),
+    displayName: core.serialization.property("display_name", core.serialization.string()),
+    enabled: core.serialization.boolean(),
     id: core.serialization.string(),
 });
 export const AuthConnection: core.serialization.Schema<serializers.AuthConnection.Raw, DevRev.AuthConnection> =
@@ -21,6 +22,7 @@ export const AuthConnection: core.serialization.Schema<serializers.AuthConnectio
         .union("type", {
             google_apps: AuthConnectionOptionsGoogleApps.extend(_Base),
             oidc: AuthConnectionOptionsOidc.extend(_Base),
+            okta: AuthConnectionOptionsOkta.extend(_Base),
             samlp: AuthConnectionOptionsSaml.extend(_Base),
             social: core.serialization
                 .object({
@@ -38,6 +40,7 @@ export declare namespace AuthConnection {
     type Raw =
         | AuthConnection.GoogleApps
         | AuthConnection.Oidc
+        | AuthConnection.Okta
         | AuthConnection.Samlp
         | AuthConnection.Social
         | AuthConnection.Waad;
@@ -48,6 +51,10 @@ export declare namespace AuthConnection {
 
     interface Oidc extends _Base, AuthConnectionOptionsOidc.Raw {
         type: "oidc";
+    }
+
+    interface Okta extends _Base, AuthConnectionOptionsOkta.Raw {
+        type: "okta";
     }
 
     interface Samlp extends _Base, AuthConnectionOptionsSaml.Raw {
@@ -64,8 +71,8 @@ export declare namespace AuthConnection {
     }
 
     interface _Base {
-        display_name?: string | null;
-        enabled?: boolean | null;
+        display_name: string;
+        enabled: boolean;
         id: string;
     }
 }

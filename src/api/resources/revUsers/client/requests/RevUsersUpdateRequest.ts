@@ -15,6 +15,7 @@ export interface RevUsersUpdateRequest {
     /** Application-defined custom fields. */
     customFields?: Record<string, unknown>;
     customSchemaFragments?: DevRev.RevUsersUpdateRequestCustomSchemaFragments;
+    customSchemaSpec?: DevRev.CustomSchemaSpec;
     /** Updated description of the Rev user. */
     description?: string;
     /** Updated display name of the Rev user. */

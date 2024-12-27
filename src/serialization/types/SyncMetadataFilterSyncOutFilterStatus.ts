@@ -9,8 +9,8 @@ import * as core from "../../core";
 export const SyncMetadataFilterSyncOutFilterStatus: core.serialization.Schema<
     serializers.SyncMetadataFilterSyncOutFilterStatus.Raw,
     DevRev.SyncMetadataFilterSyncOutFilterStatus
-> = core.serialization.enum_(["failed", "succeeded"]);
+> = core.serialization.enum_(["failed", "modified", "succeeded"]);
 
 export declare namespace SyncMetadataFilterSyncOutFilterStatus {
-    type Raw = "failed" | "succeeded";
+    type Raw = "failed" | "modified" | "succeeded";
 }

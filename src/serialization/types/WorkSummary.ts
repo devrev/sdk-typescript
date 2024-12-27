@@ -6,6 +6,7 @@ import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
 import { IssueSummary } from "./IssueSummary";
+import { OpportunitySummary } from "./OpportunitySummary";
 import { WorkBaseSummary } from "./WorkBaseSummary";
 import { TicketSummary } from "./TicketSummary";
 
@@ -13,7 +14,7 @@ export const WorkSummary: core.serialization.Schema<serializers.WorkSummary.Raw,
     core.serialization
         .union("type", {
             issue: IssueSummary,
-            opportunity: WorkBaseSummary,
+            opportunity: OpportunitySummary,
             task: WorkBaseSummary,
             ticket: TicketSummary,
         })
@@ -29,7 +30,7 @@ export declare namespace WorkSummary {
         type: "issue";
     }
 
-    interface Opportunity extends WorkBaseSummary.Raw {
+    interface Opportunity extends OpportunitySummary.Raw {
         type: "opportunity";
     }
 

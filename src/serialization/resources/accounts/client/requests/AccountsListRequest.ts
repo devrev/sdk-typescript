@@ -38,6 +38,7 @@ export const AccountsListRequest: core.serialization.Schema<
     sortBy: core.serialization.property("sort_by", core.serialization.list(core.serialization.string()).optional()),
     stage: core.serialization.list(core.serialization.string()).optional(),
     tags: core.serialization.list(core.serialization.string()).optional(),
+    websites: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace AccountsListRequest {
@@ -56,5 +57,6 @@ export declare namespace AccountsListRequest {
         sort_by?: string[] | null;
         stage?: string[] | null;
         tags?: string[] | null;
+        websites?: string[] | null;
     }
 }

@@ -11,6 +11,10 @@ export const ArticlesCreateRequestResource: core.serialization.ObjectSchema<
     DevRev.ArticlesCreateRequestResource
 > = core.serialization.object({
     artifacts: core.serialization.list(core.serialization.string()).optional(),
+    contentBlocks: core.serialization.property(
+        "content_blocks",
+        core.serialization.list(core.serialization.string()).optional()
+    ),
     publishedVersion: core.serialization.property("published_version", core.serialization.string().optional()),
     url: core.serialization.string().optional(),
 });
@@ -18,6 +22,7 @@ export const ArticlesCreateRequestResource: core.serialization.ObjectSchema<
 export declare namespace ArticlesCreateRequestResource {
     interface Raw {
         artifacts?: string[] | null;
+        content_blocks?: string[] | null;
         published_version?: string | null;
         url?: string | null;
     }

@@ -21,7 +21,7 @@ export interface ArchetypeMetricTarget {
     completedIn?: number;
     /**
      * If true, the schedule attached to this metric is out of schedule at
-     * the time of the query. It is not set for metrics in _completed_
+     * the time of the query. It is not set for metrics in *completed*
      * stage.
      */
     isOutOfSchedule?: boolean;

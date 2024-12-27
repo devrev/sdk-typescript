@@ -8,9 +8,7 @@
  */
 export interface AuthConnectionOptionsGoogleApps {
     /** Client ID for the Google Apps authentication connection. */
-    clientId?: string;
-    /** Client secret for the Google Apps authentication connection. */
-    clientSecret?: string;
+    clientId: string;
     /** Tenant domain URL of the Google Apps authentication connection. */
-    tenantDomain?: string;
+    tenantDomain: string;
 }

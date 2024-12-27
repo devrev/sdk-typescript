@@ -5,10 +5,11 @@
 import * as core from "../../core";
 import * as serializers from "../index";
 import * as DevRev from "../../api/index";
-import { AuthConnectionOptionsGoogleApps } from "./AuthConnectionOptionsGoogleApps";
-import { AuthConnectionOptionsOidc } from "./AuthConnectionOptionsOidc";
-import { AuthConnectionOptionsSaml } from "./AuthConnectionOptionsSaml";
-import { AuthConnectionOptionsAzureAd } from "./AuthConnectionOptionsAzureAd";
+import { DevOrgAuthConnectionsCreateRequestGoogleAppsOptions } from "./DevOrgAuthConnectionsCreateRequestGoogleAppsOptions";
+import { DevOrgAuthConnectionsCreateRequestOidcOptions } from "./DevOrgAuthConnectionsCreateRequestOidcOptions";
+import { DevOrgAuthConnectionsCreateRequestOktaOptions } from "./DevOrgAuthConnectionsCreateRequestOktaOptions";
+import { DevOrgAuthConnectionsCreateRequestSamlOptions } from "./DevOrgAuthConnectionsCreateRequestSamlOptions";
+import { DevOrgAuthConnectionsCreateRequestAzureAdOptions } from "./DevOrgAuthConnectionsCreateRequestAzureAdOptions";
 
 const _Base = core.serialization.object({
     displayName: core.serialization.property("display_name", core.serialization.string().optional()),
@@ -18,10 +19,11 @@ export const DevOrgAuthConnectionsCreateRequest: core.serialization.Schema<
     DevRev.DevOrgAuthConnectionsCreateRequest
 > = core.serialization
     .union("type", {
-        google_apps: AuthConnectionOptionsGoogleApps.extend(_Base),
-        oidc: AuthConnectionOptionsOidc.extend(_Base),
-        samlp: AuthConnectionOptionsSaml.extend(_Base),
-        waad: AuthConnectionOptionsAzureAd.extend(_Base),
+        google_apps: DevOrgAuthConnectionsCreateRequestGoogleAppsOptions.extend(_Base),
+        oidc: DevOrgAuthConnectionsCreateRequestOidcOptions.extend(_Base),
+        okta: DevOrgAuthConnectionsCreateRequestOktaOptions.extend(_Base),
+        samlp: DevOrgAuthConnectionsCreateRequestSamlOptions.extend(_Base),
+        waad: DevOrgAuthConnectionsCreateRequestAzureAdOptions.extend(_Base),
     })
     .transform<DevRev.DevOrgAuthConnectionsCreateRequest>({
         transform: (value) => value,
@@ -32,22 +34,27 @@ export declare namespace DevOrgAuthConnectionsCreateRequest {
     type Raw =
         | DevOrgAuthConnectionsCreateRequest.GoogleApps
         | DevOrgAuthConnectionsCreateRequest.Oidc
+        | DevOrgAuthConnectionsCreateRequest.Okta
         | DevOrgAuthConnectionsCreateRequest.Samlp
         | DevOrgAuthConnectionsCreateRequest.Waad;
 
-    interface GoogleApps extends _Base, AuthConnectionOptionsGoogleApps.Raw {
+    interface GoogleApps extends _Base, DevOrgAuthConnectionsCreateRequestGoogleAppsOptions.Raw {
         type: "google_apps";
     }
 
-    interface Oidc extends _Base, AuthConnectionOptionsOidc.Raw {
+    interface Oidc extends _Base, DevOrgAuthConnectionsCreateRequestOidcOptions.Raw {
         type: "oidc";
     }
 
-    interface Samlp extends _Base, AuthConnectionOptionsSaml.Raw {
+    interface Okta extends _Base, DevOrgAuthConnectionsCreateRequestOktaOptions.Raw {
+        type: "okta";
+    }
+
+    interface Samlp extends _Base, DevOrgAuthConnectionsCreateRequestSamlOptions.Raw {
         type: "samlp";
     }
 
-    interface Waad extends _Base, AuthConnectionOptionsAzureAd.Raw {
+    interface Waad extends _Base, DevOrgAuthConnectionsCreateRequestAzureAdOptions.Raw {
         type: "waad";
     }
 

@@ -7,7 +7,7 @@ import * as DevRev from "../../api/index";
 import * as core from "../../core";
 import { AppFragment } from "./AppFragment";
 import { CustomTypeFragment } from "./CustomTypeFragment";
-import { CustomSchemaFragmentBase } from "./CustomSchemaFragmentBase";
+import { TenantFragment } from "./TenantFragment";
 
 export const CustomSchemaFragment: core.serialization.Schema<
     serializers.CustomSchemaFragment.Raw,
@@ -16,7 +16,7 @@ export const CustomSchemaFragment: core.serialization.Schema<
     .union("type", {
         app_fragment: AppFragment,
         custom_type_fragment: CustomTypeFragment,
-        tenant_fragment: CustomSchemaFragmentBase,
+        tenant_fragment: TenantFragment,
     })
     .transform<DevRev.CustomSchemaFragment>({
         transform: (value) => value,
@@ -37,7 +37,7 @@ export declare namespace CustomSchemaFragment {
         type: "custom_type_fragment";
     }
 
-    interface TenantFragment extends CustomSchemaFragmentBase.Raw {
+    interface TenantFragment extends TenantFragment.Raw {
         type: "tenant_fragment";
     }
 }

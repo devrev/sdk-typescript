@@ -3,24 +3,34 @@
  */
 
 export type LinkEndpointType =
+    | "account"
     | "capability"
     | "conversation"
+    | "dev_user"
     | "enhancement"
     | "feature"
+    | "incident"
     | "issue"
     | "opportunity"
     | "product"
+    | "rev_org"
+    | "rev_user"
     | "task"
     | "ticket";
 
 export const LinkEndpointType = {
+    Account: "account",
     Capability: "capability",
     Conversation: "conversation",
+    DevUser: "dev_user",
     Enhancement: "enhancement",
     Feature: "feature",
+    Incident: "incident",
     Issue: "issue",
     Opportunity: "opportunity",
     Product: "product",
+    RevOrg: "rev_org",
+    RevUser: "rev_user",
     Task: "task",
     Ticket: "ticket",
 } as const;

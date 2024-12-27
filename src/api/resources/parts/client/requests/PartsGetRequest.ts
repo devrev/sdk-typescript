@@ -5,7 +5,7 @@
 /**
  * @example
  *     {
- *         id: "string"
+ *         id: "PROD-12345"
  *     }
  */
 export interface PartsGetRequest {

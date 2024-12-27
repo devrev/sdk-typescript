@@ -35,6 +35,7 @@ export const AccountsExportRequest: core.serialization.Schema<
     sortBy: core.serialization.property("sort_by", core.serialization.list(core.serialization.string()).optional()),
     stage: core.serialization.list(core.serialization.string()).optional(),
     tags: core.serialization.list(core.serialization.string()).optional(),
+    websites: core.serialization.list(core.serialization.string()).optional(),
 });
 
 export declare namespace AccountsExportRequest {
@@ -51,5 +52,6 @@ export declare namespace AccountsExportRequest {
         sort_by?: string[] | null;
         stage?: string[] | null;
         tags?: string[] | null;
+        websites?: string[] | null;
     }
 }

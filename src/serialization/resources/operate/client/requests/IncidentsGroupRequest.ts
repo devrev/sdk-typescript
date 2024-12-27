@@ -46,6 +46,7 @@ export const IncidentsGroupRequest: core.serialization.Schema<
     sortBy: core.serialization.property("sort_by", core.serialization.list(core.serialization.string()).optional()),
     source: core.serialization.list(core.serialization.number()).optional(),
     stage: core.serialization.list(core.serialization.string()).optional(),
+    subtype: core.serialization.list(core.serialization.string()).optional(),
     targetCloseDate: core.serialization.property("target_close_date", DateFilter.optional()),
     title: core.serialization.list(core.serialization.string()).optional(),
 });
@@ -74,6 +75,7 @@ export declare namespace IncidentsGroupRequest {
         sort_by?: string[] | null;
         source?: number[] | null;
         stage?: string[] | null;
+        subtype?: string[] | null;
         target_close_date?: DateFilter.Raw | null;
         title?: string[] | null;
     }

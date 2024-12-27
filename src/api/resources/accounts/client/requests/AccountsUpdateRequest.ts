@@ -14,6 +14,7 @@ export interface AccountsUpdateRequest {
     artifacts?: DevRev.AccountsUpdateRequestArtifacts;
     /** Application-defined custom fields. */
     customFields?: Record<string, unknown>;
+    customSchemaSpec?: DevRev.CustomSchemaSpec;
     /** Updated description of the account. */
     description?: string;
     /** Updated display name for the account. */
@@ -35,4 +36,5 @@ export interface AccountsUpdateRequest {
     tags?: DevRev.SetTagWithValue[];
     /** Updated tier of the account. */
     tier?: string;
+    websites?: DevRev.AccountsUpdateRequestWebsites;
 }

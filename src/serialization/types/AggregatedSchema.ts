@@ -5,10 +5,20 @@
 import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
+import { StockFieldOverride } from "./StockFieldOverride";
 
-export const AggregatedSchema: core.serialization.Schema<serializers.AggregatedSchema.Raw, DevRev.AggregatedSchema> =
-    core.serialization.record(core.serialization.string(), core.serialization.unknown());
+export const AggregatedSchema: core.serialization.ObjectSchema<
+    serializers.AggregatedSchema.Raw,
+    DevRev.AggregatedSchema
+> = core.serialization.object({
+    stockFieldOverrides: core.serialization.property(
+        "stock_field_overrides",
+        core.serialization.list(StockFieldOverride).optional()
+    ),
+});
 
 export declare namespace AggregatedSchema {
-    type Raw = Record<string, unknown>;
+    interface Raw {
+        stock_field_overrides?: StockFieldOverride.Raw[] | null;
+    }
 }

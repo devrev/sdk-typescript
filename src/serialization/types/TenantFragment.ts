@@ -5,11 +5,21 @@
 import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
+import { StockFieldOverride } from "./StockFieldOverride";
 import { CustomSchemaFragmentBase } from "./CustomSchemaFragmentBase";
 
 export const TenantFragment: core.serialization.ObjectSchema<serializers.TenantFragment.Raw, DevRev.TenantFragment> =
-    CustomSchemaFragmentBase;
+    core.serialization
+        .object({
+            stockFieldOverrides: core.serialization.property(
+                "stock_field_overrides",
+                core.serialization.list(StockFieldOverride).optional()
+            ),
+        })
+        .extend(CustomSchemaFragmentBase);
 
 export declare namespace TenantFragment {
-    type Raw = CustomSchemaFragmentBase.Raw;
+    interface Raw extends CustomSchemaFragmentBase.Raw {
+        stock_field_overrides?: StockFieldOverride.Raw[] | null;
+    }
 }

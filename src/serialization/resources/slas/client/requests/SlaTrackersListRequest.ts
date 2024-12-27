@@ -17,6 +17,7 @@ export const SlaTrackersListRequest: core.serialization.Schema<
     limit: core.serialization.number().optional(),
     mode: ListMode.optional(),
     modifiedDate: core.serialization.property("modified_date", DateTimeFilter.optional()),
+    sortBy: core.serialization.property("sort_by", core.serialization.list(core.serialization.string()).optional()),
     stage: core.serialization.list(core.serialization.string()).optional(),
     status: core.serialization.list(core.serialization.string()).optional(),
 });
@@ -28,6 +29,7 @@ export declare namespace SlaTrackersListRequest {
         limit?: number | null;
         mode?: ListMode.Raw | null;
         modified_date?: DateTimeFilter.Raw | null;
+        sort_by?: string[] | null;
         stage?: string[] | null;
         status?: string[] | null;
     }

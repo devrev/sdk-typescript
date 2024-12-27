@@ -81,6 +81,8 @@ export interface IncidentsGroupRequest {
     source?: number[];
     /** Filters for incidents in any of the provided stages. */
     stage?: string[];
+    /** Filters for incidents with any of the provided subtypes. */
+    subtype?: string[];
     targetCloseDate?: DevRev.DateFilter;
     /** Filters for incidents by the provided titles. */
     title?: string[];

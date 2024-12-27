@@ -18,6 +18,7 @@ export const ArticlesCreateRequest: core.serialization.Schema<
     DevRev.ArticlesCreateRequest
 > = core.serialization.object({
     accessLevel: core.serialization.property("access_level", AccessLevel.optional()),
+    aliases: core.serialization.list(core.serialization.string()).optional(),
     appliesToParts: core.serialization.property(
         "applies_to_parts",
         core.serialization.list(core.serialization.string())
@@ -52,6 +53,7 @@ export const ArticlesCreateRequest: core.serialization.Schema<
 export declare namespace ArticlesCreateRequest {
     interface Raw {
         access_level?: AccessLevel.Raw | null;
+        aliases?: string[] | null;
         applies_to_parts: string[];
         article_type?: ArticleType.Raw | null;
         authored_by?: string[] | null;

@@ -6,6 +6,7 @@ import * as serializers from "../../../../index";
 import * as DevRev from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { ConversationsUpdateRequestAppliesToParts } from "../../../../types/ConversationsUpdateRequestAppliesToParts";
+import { CustomSchemaSpec } from "../../../../types/CustomSchemaSpec";
 import { ConversationsUpdateRequestMetadata } from "../../../../types/ConversationsUpdateRequestMetadata";
 import { ConversationsUpdateRequestOwnedBy } from "../../../../types/ConversationsUpdateRequestOwnedBy";
 import { StageUpdate } from "../../../../types/StageUpdate";
@@ -20,6 +21,11 @@ export const ConversationsUpdateRequest: core.serialization.Schema<
         "applies_to_parts",
         ConversationsUpdateRequestAppliesToParts.optional()
     ),
+    customFields: core.serialization.property(
+        "custom_fields",
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+    ),
+    customSchemaSpec: core.serialization.property("custom_schema_spec", CustomSchemaSpec.optional()),
     description: core.serialization.string().optional(),
     group: core.serialization.string().optional(),
     id: core.serialization.string(),
@@ -36,6 +42,8 @@ export const ConversationsUpdateRequest: core.serialization.Schema<
 export declare namespace ConversationsUpdateRequest {
     interface Raw {
         applies_to_parts?: ConversationsUpdateRequestAppliesToParts.Raw | null;
+        custom_fields?: Record<string, unknown> | null;
+        custom_schema_spec?: CustomSchemaSpec.Raw | null;
         description?: string | null;
         group?: string | null;
         id: string;

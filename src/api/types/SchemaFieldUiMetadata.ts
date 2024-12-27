@@ -19,6 +19,8 @@ export interface SchemaFieldUiMetadata {
     isActiveInDetailView?: boolean;
     /** Whether the field supports bulk action. */
     isBulkActionEnabled?: boolean;
+    /** Indicates if the field holds a currency value in USD. */
+    isCurrencyField?: boolean;
     /** Whether the field is groupable in the UI. */
     isGroupable?: boolean;
     /** Whether the field is hidden in the UI. */
@@ -34,9 +36,13 @@ export interface SchemaFieldUiMetadata {
     /** Whether the field is sortable in the UI. */
     isSortable?: boolean;
     listView?: DevRev.SchemaFieldListViewUiMetadata;
+    /** Order in which field is shown. */
+    order?: number;
     /** A placeholder for the field. */
     placeholder?: string;
     summaryView?: DevRev.SchemaFieldSummaryViewUiMetadata;
     /** Tooltip for the field. */
     tooltip?: string;
+    /** Unit of measurment. */
+    unit?: string;
 }

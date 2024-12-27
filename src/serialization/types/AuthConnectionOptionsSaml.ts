@@ -5,18 +5,21 @@
 import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
+import { SamlConnectionFieldsMap } from "./SamlConnectionFieldsMap";
 
 export const AuthConnectionOptionsSaml: core.serialization.ObjectSchema<
     serializers.AuthConnectionOptionsSaml.Raw,
     DevRev.AuthConnectionOptionsSaml
 > = core.serialization.object({
-    signInEndpoint: core.serialization.property("sign_in_endpoint", core.serialization.string().optional()),
-    signingCert: core.serialization.property("signing_cert", core.serialization.string().optional()),
+    connectionName: core.serialization.property("connection_name", core.serialization.string().optional()),
+    fieldsMap: core.serialization.property("fields_map", SamlConnectionFieldsMap),
+    signInEndpoint: core.serialization.property("sign_in_endpoint", core.serialization.string()),
 });
 
 export declare namespace AuthConnectionOptionsSaml {
     interface Raw {
-        sign_in_endpoint?: string | null;
-        signing_cert?: string | null;
+        connection_name?: string | null;
+        fields_map: SamlConnectionFieldsMap.Raw;
+        sign_in_endpoint: string;
     }
 }

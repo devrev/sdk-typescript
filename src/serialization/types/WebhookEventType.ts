@@ -22,6 +22,9 @@ export const WebhookEventType: core.serialization.Schema<serializers.WebhookEven
         "group_member_added",
         "group_member_removed",
         "group_updated",
+        "incident_created",
+        "incident_deleted",
+        "incident_updated",
         "link_created",
         "link_deleted",
         "link_updated",
@@ -43,6 +46,10 @@ export const WebhookEventType: core.serialization.Schema<serializers.WebhookEven
         "survey_response_deleted",
         "survey_response_updated",
         "survey_updated",
+        "sync_history_created",
+        "sync_history_deleted",
+        "sync_history_updated",
+        "sync_unit_updated",
         "tag_created",
         "tag_deleted",
         "tag_updated",
@@ -75,6 +82,9 @@ export declare namespace WebhookEventType {
         | "group_member_added"
         | "group_member_removed"
         | "group_updated"
+        | "incident_created"
+        | "incident_deleted"
+        | "incident_updated"
         | "link_created"
         | "link_deleted"
         | "link_updated"
@@ -96,6 +106,10 @@ export declare namespace WebhookEventType {
         | "survey_response_deleted"
         | "survey_response_updated"
         | "survey_updated"
+        | "sync_history_created"
+        | "sync_history_deleted"
+        | "sync_history_updated"
+        | "sync_unit_updated"
         | "tag_created"
         | "tag_deleted"
         | "tag_updated"

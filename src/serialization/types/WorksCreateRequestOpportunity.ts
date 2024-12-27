@@ -17,6 +17,7 @@ export const WorksCreateRequestOpportunity: core.serialization.ObjectSchema<
     contacts: core.serialization.list(core.serialization.string()).optional(),
     customerBudget: core.serialization.property("customer_budget", core.serialization.number().optional()),
     forecastCategory: core.serialization.property("forecast_category", OpportunityForecastCategory.optional()),
+    forecastCategoryV2: core.serialization.property("forecast_category_v2", core.serialization.number().optional()),
     priority: OpportunityPriority.optional(),
     probability: core.serialization.number().optional(),
 });
@@ -28,6 +29,7 @@ export declare namespace WorksCreateRequestOpportunity {
         contacts?: string[] | null;
         customer_budget?: number | null;
         forecast_category?: OpportunityForecastCategory.Raw | null;
+        forecast_category_v2?: number | null;
         priority?: OpportunityPriority.Raw | null;
         probability?: number | null;
     }

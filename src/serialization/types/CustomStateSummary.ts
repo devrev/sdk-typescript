@@ -12,12 +12,14 @@ export const CustomStateSummary: core.serialization.ObjectSchema<
     DevRev.CustomStateSummary
 > = core.serialization
     .object({
+        isFinal: core.serialization.property("is_final", core.serialization.boolean().optional()),
         name: core.serialization.string().optional(),
     })
     .extend(AtomBaseSummary);
 
 export declare namespace CustomStateSummary {
     interface Raw extends AtomBaseSummary.Raw {
+        is_final?: boolean | null;
         name?: string | null;
     }
 }

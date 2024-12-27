@@ -39,11 +39,7 @@ export interface ArticlesCountRequest {
     modifiedBy?: string[];
     /** Filters for articles owned by any of the provided users. */
     ownedBy?: string[];
-    /**
-     * Filter for the scope of the articles. If this is not provided, then
-     * only external articles are returned.
-     *
-     */
+    /** Filter for the scope of the articles. */
     scope?: number[];
     /** Filter for articles based on intended audience. */
     sharedWith?: DevRev.SharedWithMembershipFilter[];

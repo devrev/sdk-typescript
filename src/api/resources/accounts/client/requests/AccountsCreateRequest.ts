@@ -15,6 +15,7 @@ export interface AccountsCreateRequest {
     artifacts?: string[];
     /** Application-defined custom fields. */
     customFields?: Record<string, unknown>;
+    customSchemaSpec?: DevRev.CustomSchemaSpec;
     /** Description of the account. */
     description?: string;
     /** Name of the account. */

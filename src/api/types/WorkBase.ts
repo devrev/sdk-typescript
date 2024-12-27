@@ -25,6 +25,7 @@ export interface WorkBase extends DevRev.AtomBase {
     stockSchemaFragment?: string;
     /** Subtype corresponding to the custom type fragment. */
     subtype?: string;
+    syncMetadata?: DevRev.SyncMetadata;
     /** Tags associated with the object. */
     tags?: DevRev.TagWithValue[];
     /** Timestamp when the work is expected to be complete. */

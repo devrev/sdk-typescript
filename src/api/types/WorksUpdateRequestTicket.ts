@@ -8,6 +8,8 @@ export interface WorksUpdateRequestTicket {
     channels?: DevRev.WorksUpdateRequestTicketChannels;
     /** Updates the group that the ticket is associated with. */
     group?: string;
+    /** Whether the ticket is archived. */
+    isArchived?: boolean;
     /** Updates whether the ticket is spam. */
     isSpam?: boolean;
     /** Updates whether the ticket needs a response. */

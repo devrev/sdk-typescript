@@ -54,40 +54,8 @@ export class Works {
      *
      * @example
      *     await client.works.create({
-     *         type: "issue",
-     *         appliesToPart: "string",
-     *         artifacts: ["string"],
-     *         body: "string",
-     *         customFields: {
-     *             "string": {
-     *                 "key": "value"
-     *             }
-     *         },
-     *         customSchemaFragments: ["string"],
-     *         customSchemaSpec: {
-     *             apps: ["string"],
-     *             subtype: "string",
-     *             tenantFragment: true,
-     *             validateRequiredFields: true
-     *         },
-     *         ownedBy: ["string"],
-     *         reportedBy: ["string"],
-     *         stage: {
-     *             id: "string",
-     *             name: "string"
-     *         },
-     *         stageValidationOptions: ["allow_non_start"],
-     *         tags: [{
-     *                 id: "string",
-     *                 value: "string"
-     *             }],
-     *         targetCloseDate: new Date("2024-01-15T09:30:00.000Z"),
-     *         title: "string",
-     *         developedWith: ["string"],
-     *         priority: DevRev.IssuePriority.P0,
-     *         priorityV2: 1000000,
-     *         sprint: "string",
-     *         targetStartDate: new Date("2024-01-15T09:30:00.000Z")
+     *         type: "ticket",
+     *         revOrg: "REV-AbCdEfGh"
      *     })
      */
     public async create(
@@ -104,7 +72,7 @@ export class Works {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -244,7 +212,7 @@ export class Works {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -391,7 +359,7 @@ export class Works {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -514,7 +482,7 @@ export class Works {
      *
      * @example
      *     await client.works.getPost({
-     *         id: "string"
+     *         id: "ISS-12345"
      *     })
      */
     public async getPost(
@@ -531,7 +499,7 @@ export class Works {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -678,7 +646,7 @@ export class Works {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -801,39 +769,8 @@ export class Works {
      *
      * @example
      *     await client.works.update({
-     *         type: "issue",
-     *         appliesToPart: "string",
-     *         artifacts: {},
-     *         body: "string",
-     *         customFields: {
-     *             "string": {
-     *                 "key": "value"
-     *             }
-     *         },
-     *         customSchemaFragments: ["string"],
-     *         customSchemaSpec: {
-     *             apps: ["string"],
-     *             subtype: "string",
-     *             tenantFragment: true,
-     *             validateRequiredFields: true
-     *         },
-     *         id: "string",
-     *         ownedBy: {},
-     *         reportedBy: {},
-     *         stage: {
-     *             name: "string",
-     *             stage: "string"
-     *         },
-     *         stageValidationOptions: ["allow_invalid_transition"],
-     *         stagedInfo: {},
-     *         tags: {},
-     *         targetCloseDate: new Date("2024-01-15T09:30:00.000Z"),
-     *         title: "string",
-     *         developedWith: {},
-     *         priority: DevRev.IssuePriority.P0,
-     *         priorityV2: 1000000,
-     *         sprint: "string",
-     *         targetStartDate: new Date("2024-01-15T09:30:00.000Z")
+     *         type: "ticket",
+     *         sentimentModifiedDate: new Date("2023-01-01T12:00:00.000Z")
      *     })
      */
     public async update(
@@ -850,7 +787,7 @@ export class Works {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,

@@ -75,7 +75,7 @@ export class ProductUsage {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -206,7 +206,7 @@ export class ProductUsage {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -329,18 +329,14 @@ export class ProductUsage {
      * @example
      *     await client.productUsage.uomsCreate({
      *         aggregationDetail: {
-     *             aggregationType: DevRev.AggregationDetailAggregationType.Duration,
-     *             uniqueDimension: "string"
+     *             aggregationType: DevRev.AggregationDetailAggregationType.Duration
      *         },
-     *         description: "string",
-     *         dimensions: ["string"],
-     *         metricName: "string",
-     *         name: "string",
-     *         partId: "string",
-     *         productId: "string",
+     *         metricName: "metric_name",
+     *         name: "name",
+     *         productId: "PROD-12345",
      *         unit: {
      *             type: DevRev.UnitType.Boolean,
-     *             name: "string"
+     *             name: "name"
      *         }
      *     })
      */
@@ -358,7 +354,7 @@ export class ProductUsage {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -498,7 +494,7 @@ export class ProductUsage {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -625,7 +621,7 @@ export class ProductUsage {
      *
      * @example
      *     await client.productUsage.uomsGetPost({
-     *         id: "string"
+     *         id: "id"
      *     })
      */
     public async uomsGetPost(
@@ -642,7 +638,7 @@ export class ProductUsage {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -789,7 +785,7 @@ export class ProductUsage {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,
@@ -912,18 +908,7 @@ export class ProductUsage {
      *
      * @example
      *     await client.productUsage.uomsUpdate({
-     *         aggregationType: DevRev.AggregationDetailAggregationType.Duration,
-     *         description: "string",
-     *         dimensions: {
-     *             add: ["string"],
-     *             remove: ["string"]
-     *         },
-     *         id: "string",
-     *         isEnabled: true,
-     *         name: "string",
-     *         partId: "string",
-     *         productId: "string",
-     *         unit: "string"
+     *         id: "id"
      *     })
      */
     public async uomsUpdate(
@@ -940,7 +925,7 @@ export class ProductUsage {
                 Authorization: await this._getAuthorizationHeader(),
                 "X-Fern-Language": "JavaScript",
                 "X-Fern-SDK-Name": "@devrev/api",
-                "X-Fern-SDK-Version": "0.0.6",
+                "X-Fern-SDK-Version": "0.0.7",
                 "x-devrev-version": requestOptions?.xDevrevVersion ?? this._options?.xDevrevVersion ?? "2024-01-24",
                 "X-Fern-Runtime": core.RUNTIME.type,
                 "X-Fern-Runtime-Version": core.RUNTIME.version,

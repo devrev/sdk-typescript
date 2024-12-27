@@ -5,12 +5,24 @@
 import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
+import { SchemaFieldUenumValue } from "./SchemaFieldUenumValue";
+import { SchemaFieldUiMetadata } from "./SchemaFieldUiMetadata";
 
-export const StockFieldOverride: core.serialization.Schema<
+export const StockFieldOverride: core.serialization.ObjectSchema<
     serializers.StockFieldOverride.Raw,
     DevRev.StockFieldOverride
-> = core.serialization.record(core.serialization.string(), core.serialization.unknown());
+> = core.serialization.object({
+    isRequired: core.serialization.property("is_required", core.serialization.boolean().optional()),
+    name: core.serialization.string().optional(),
+    uenumValues: core.serialization.property("uenum_values", core.serialization.list(SchemaFieldUenumValue).optional()),
+    ui: SchemaFieldUiMetadata.optional(),
+});
 
 export declare namespace StockFieldOverride {
-    type Raw = Record<string, unknown>;
+    interface Raw {
+        is_required?: boolean | null;
+        name?: string | null;
+        uenum_values?: SchemaFieldUenumValue.Raw[] | null;
+        ui?: SchemaFieldUiMetadata.Raw | null;
+    }
 }

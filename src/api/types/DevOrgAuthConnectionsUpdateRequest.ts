@@ -12,11 +12,12 @@ export type DevOrgAuthConnectionsUpdateRequest =
     | DevRev.DevOrgAuthConnectionsUpdateRequest.GoogleApps
     | DevRev.DevOrgAuthConnectionsUpdateRequest.None
     | DevRev.DevOrgAuthConnectionsUpdateRequest.Oidc
+    | DevRev.DevOrgAuthConnectionsUpdateRequest.Okta
     | DevRev.DevOrgAuthConnectionsUpdateRequest.Samlp
     | DevRev.DevOrgAuthConnectionsUpdateRequest.Waad;
 
 export declare namespace DevOrgAuthConnectionsUpdateRequest {
-    interface GoogleApps extends DevRev.AuthConnectionOptionsGoogleApps, _Base {
+    interface GoogleApps extends DevRev.DevOrgAuthConnectionsUpdateRequestGoogleAppsOptions, _Base {
         type: "google_apps";
     }
 
@@ -25,15 +26,19 @@ export declare namespace DevOrgAuthConnectionsUpdateRequest {
         value: DevRev.Empty;
     }
 
-    interface Oidc extends DevRev.AuthConnectionOptionsOidc, _Base {
+    interface Oidc extends DevRev.DevOrgAuthConnectionsUpdateRequestOidcOptions, _Base {
         type: "oidc";
     }
 
-    interface Samlp extends DevRev.AuthConnectionOptionsSaml, _Base {
+    interface Okta extends DevRev.DevOrgAuthConnectionsUpdateRequestOktaOptions, _Base {
+        type: "okta";
+    }
+
+    interface Samlp extends DevRev.DevOrgAuthConnectionsUpdateRequestSamlOptions, _Base {
         type: "samlp";
     }
 
-    interface Waad extends DevRev.AuthConnectionOptionsAzureAd, _Base {
+    interface Waad extends DevRev.DevOrgAuthConnectionsUpdateRequestAzureAdOptions, _Base {
         type: "waad";
     }
 

@@ -6,7 +6,7 @@
  * @example
  *     {
  *         type: "user_preferences",
- *         object: "string"
+ *         object: "DEV-AbCdEfGh"
  *     }
  */
 export interface PreferencesGetRequest {

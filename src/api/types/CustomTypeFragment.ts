@@ -6,6 +6,8 @@ import * as DevRev from "../index";
 
 export interface CustomTypeFragment extends DevRev.CustomSchemaFragmentBase {
     stageDiagram?: DevRev.StageDiagramSummary;
+    /** The stock field overrides. */
+    stockFieldOverrides?: DevRev.StockFieldOverride[];
     /** The string used to populate the subtype in the leaf type. */
     subtype?: string;
     /**

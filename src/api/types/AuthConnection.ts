@@ -11,6 +11,7 @@ import * as DevRev from "../index";
 export type AuthConnection =
     | DevRev.AuthConnection.GoogleApps
     | DevRev.AuthConnection.Oidc
+    | DevRev.AuthConnection.Okta
     | DevRev.AuthConnection.Samlp
     | DevRev.AuthConnection.Social
     | DevRev.AuthConnection.Waad;
@@ -22,6 +23,10 @@ export declare namespace AuthConnection {
 
     interface Oidc extends DevRev.AuthConnectionOptionsOidc, _Base {
         type: "oidc";
+    }
+
+    interface Okta extends DevRev.AuthConnectionOptionsOkta, _Base {
+        type: "okta";
     }
 
     interface Samlp extends DevRev.AuthConnectionOptionsSaml, _Base {
@@ -44,13 +49,13 @@ export declare namespace AuthConnection {
          * organization. For example, if the display_name is 'abclogin', then
          * it would appear on the login button as 'Log in to abclogin'.
          */
-        displayName?: string;
+        displayName: string;
         /**
          * Whether the authentication connection is enabled or disabled. If
          * set to false, the authentication connection will not show up on the
          * login screen as a login option.
          */
-        enabled?: boolean;
+        enabled: boolean;
         /** ID of the authentication connection. */
         id: string;
     }

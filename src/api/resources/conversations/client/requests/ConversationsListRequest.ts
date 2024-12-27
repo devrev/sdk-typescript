@@ -20,6 +20,8 @@ export interface ConversationsListRequest {
      *
      */
     cursor?: string;
+    /** Filters for custom fields. */
+    customFields?: Record<string, unknown>;
     /**
      * Filters for conversation that belong to the given groups.
      *
@@ -51,13 +53,29 @@ export interface ConversationsListRequest {
      *
      */
     revOrg?: string[];
+    /**
+     * Filters for conversations that are associated with any of the
+     * provided Rev organizations.
+     *
+     */
+    revOrgs?: string[];
     slaSummary?: DevRev.SlaSummaryFilter;
+    /**
+     * Filters for conversations with any of the provided source channels.
+     *
+     */
+    sourceChannel?: string[];
     /**
      * Filters for conversations with any of the provided source channels.
      *
      */
     sourceChannels?: string[];
     stage?: DevRev.StageFilter;
+    /**
+     * Filters for conversation with any of the provided subtypes.
+     *
+     */
+    subtype?: string[];
     /** Filters for conversations with any of the provided tags. */
     tags?: string[];
     /**

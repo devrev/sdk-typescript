@@ -34,6 +34,7 @@ export const AccountsFilters: core.serialization.ObjectSchema<serializers.Accoun
         ),
         stage: core.serialization.list(core.serialization.string()).optional(),
         tags: core.serialization.list(core.serialization.string()).optional(),
+        websites: core.serialization.list(core.serialization.string()).optional(),
     });
 
 export declare namespace AccountsFilters {
@@ -48,5 +49,6 @@ export declare namespace AccountsFilters {
         owned_by?: string[] | null;
         stage?: string[] | null;
         tags?: string[] | null;
+        websites?: string[] | null;
     }
 }

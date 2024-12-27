@@ -34,4 +34,6 @@ export interface AccountsExportRequest {
     stage?: string[];
     /** List of tags to be filtered. */
     tags?: string[];
+    /** Array of websites of accounts to be filtered. */
+    websites?: string[];
 }

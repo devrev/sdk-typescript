@@ -26,6 +26,7 @@ export const MetricDefinitionsListRequest: core.serialization.Schema<
     ),
     limit: core.serialization.number().optional(),
     mode: ListMode.optional(),
+    sortBy: core.serialization.property("sort_by", core.serialization.list(core.serialization.string()).optional()),
     status: core.serialization.list(MetricDefinitionStatus).optional(),
 });
 
@@ -37,6 +38,7 @@ export declare namespace MetricDefinitionsListRequest {
         include_custom_metrics?: boolean | null;
         limit?: number | null;
         mode?: ListMode.Raw | null;
+        sort_by?: string[] | null;
         status?: MetricDefinitionStatus.Raw[] | null;
     }
 }

@@ -7,6 +7,7 @@ import * as DevRev from "../../api/index";
 import * as core from "../../core";
 import { GroupMemberType } from "./GroupMemberType";
 import { UserSummary } from "./UserSummary";
+import { SyncMetadata } from "./SyncMetadata";
 import { AtomBase } from "./AtomBase";
 
 export const Group: core.serialization.ObjectSchema<serializers.Group.Raw, DevRev.Group> = core.serialization
@@ -16,6 +17,7 @@ export const Group: core.serialization.ObjectSchema<serializers.Group.Raw, DevRe
         memberType: core.serialization.property("member_type", GroupMemberType.optional()),
         name: core.serialization.string().optional(),
         owner: UserSummary.optional(),
+        syncMetadata: core.serialization.property("sync_metadata", SyncMetadata.optional()),
     })
     .extend(AtomBase);
 
@@ -26,5 +28,6 @@ export declare namespace Group {
         member_type?: GroupMemberType.Raw | null;
         name?: string | null;
         owner?: UserSummary.Raw | null;
+        sync_metadata?: SyncMetadata.Raw | null;
     }
 }

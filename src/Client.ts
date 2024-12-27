@@ -5,8 +5,10 @@
 import * as environments from "./environments";
 import * as core from "./core";
 import { Accounts } from "./api/resources/accounts/client/Client";
+import { Airdrop } from "./api/resources/airdrop/client/Client";
 import { Articles } from "./api/resources/articles/client/Client";
 import { Artifacts } from "./api/resources/artifacts/client/Client";
+import { Compliance } from "./api/resources/compliance/client/Client";
 import { AuthTokens } from "./api/resources/authTokens/client/Client";
 import { CodeChanges } from "./api/resources/codeChanges/client/Client";
 import { Notifications } from "./api/resources/notifications/client/Client";
@@ -21,12 +23,14 @@ import { Groups } from "./api/resources/groups/client/Client";
 import { Operate } from "./api/resources/operate/client/Client";
 import { Keyring } from "./api/resources/keyring/client/Client";
 import { Links } from "./api/resources/links/client/Client";
+import { Meetings } from "./api/resources/meetings/client/Client";
 import { Slas } from "./api/resources/slas/client/Client";
 import { ProductUsage } from "./api/resources/productUsage/client/Client";
 import { Schedules } from "./api/resources/schedules/client/Client";
 import { Parts } from "./api/resources/parts/client/Client";
 import { Preferences } from "./api/resources/preferences/client/Client";
 import { QuestionAnswers } from "./api/resources/questionAnswers/client/Client";
+import { Recommendations } from "./api/resources/recommendations/client/Client";
 import { RevOrgs } from "./api/resources/revOrgs/client/Client";
 import { RevUsers } from "./api/resources/revUsers/client/Client";
 import { Search } from "./api/resources/search/client/Client";
@@ -70,6 +74,12 @@ export class DevRevClient {
         return (this._accounts ??= new Accounts(this._options));
     }
 
+    protected _airdrop: Airdrop | undefined;
+
+    public get airdrop(): Airdrop {
+        return (this._airdrop ??= new Airdrop(this._options));
+    }
+
     protected _articles: Articles | undefined;
 
     public get articles(): Articles {
@@ -80,6 +90,12 @@ export class DevRevClient {
 
     public get artifacts(): Artifacts {
         return (this._artifacts ??= new Artifacts(this._options));
+    }
+
+    protected _compliance: Compliance | undefined;
+
+    public get compliance(): Compliance {
+        return (this._compliance ??= new Compliance(this._options));
     }
 
     protected _authTokens: AuthTokens | undefined;
@@ -166,6 +182,12 @@ export class DevRevClient {
         return (this._links ??= new Links(this._options));
     }
 
+    protected _meetings: Meetings | undefined;
+
+    public get meetings(): Meetings {
+        return (this._meetings ??= new Meetings(this._options));
+    }
+
     protected _slas: Slas | undefined;
 
     public get slas(): Slas {
@@ -200,6 +222,12 @@ export class DevRevClient {
 
     public get questionAnswers(): QuestionAnswers {
         return (this._questionAnswers ??= new QuestionAnswers(this._options));
+    }
+
+    protected _recommendations: Recommendations | undefined;
+
+    public get recommendations(): Recommendations {
+        return (this._recommendations ??= new Recommendations(this._options));
     }
 
     protected _revOrgs: RevOrgs | undefined;

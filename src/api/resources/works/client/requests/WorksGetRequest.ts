@@ -5,7 +5,7 @@
 /**
  * @example
  *     {
- *         id: "string"
+ *         id: "ISS-12345"
  *     }
  */
 export interface WorksGetRequest {

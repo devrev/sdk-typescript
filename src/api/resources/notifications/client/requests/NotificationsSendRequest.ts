@@ -7,7 +7,13 @@ import * as DevRev from "../../../../index";
 /**
  * @example
  *     {
- *         notifications: []
+ *         notifications: [{
+ *                 type: "generic_notification",
+ *                 eventType: DevRev.GenericNotificationEventType.Alert,
+ *                 metadata: [{
+ *                         contentTemplate: "content_template"
+ *                     }]
+ *             }]
  *     }
  */
 export interface NotificationsSendRequest {

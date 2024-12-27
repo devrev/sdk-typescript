@@ -10,15 +10,13 @@ export const AuthConnectionOptionsGoogleApps: core.serialization.ObjectSchema<
     serializers.AuthConnectionOptionsGoogleApps.Raw,
     DevRev.AuthConnectionOptionsGoogleApps
 > = core.serialization.object({
-    clientId: core.serialization.property("client_id", core.serialization.string().optional()),
-    clientSecret: core.serialization.property("client_secret", core.serialization.string().optional()),
-    tenantDomain: core.serialization.property("tenant_domain", core.serialization.string().optional()),
+    clientId: core.serialization.property("client_id", core.serialization.string()),
+    tenantDomain: core.serialization.property("tenant_domain", core.serialization.string()),
 });
 
 export declare namespace AuthConnectionOptionsGoogleApps {
     interface Raw {
-        client_id?: string | null;
-        client_secret?: string | null;
-        tenant_domain?: string | null;
+        client_id: string;
+        tenant_domain: string;
     }
 }

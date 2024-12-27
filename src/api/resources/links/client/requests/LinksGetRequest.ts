@@ -5,7 +5,7 @@
 /**
  * @example
  *     {
- *         id: "string"
+ *         id: "id"
  *     }
  */
 export interface LinksGetRequest {

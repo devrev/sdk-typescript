@@ -8,7 +8,7 @@ import { WorksUpdateRequestOwnedBy } from "./WorksUpdateRequestOwnedBy";
 import { WorksUpdateRequestReportedBy } from "./WorksUpdateRequestReportedBy";
 import { StageUpdate } from "./StageUpdate";
 import { StageValidationOptionForUpdate } from "./StageValidationOptionForUpdate";
-import { WorksUpdateRequestStagedInfoStagedInfoUpdate } from "./WorksUpdateRequestStagedInfoStagedInfoUpdate";
+import { WorksUpdateRequestStagedInfoUpdate } from "./WorksUpdateRequestStagedInfoUpdate";
 import { WorksUpdateRequestTags } from "./WorksUpdateRequestTags";
 import * as core from "../../core";
 import * as serializers from "../index";
@@ -40,7 +40,7 @@ const _Base = core.serialization.object({
         "stage_validation_options",
         core.serialization.list(StageValidationOptionForUpdate).optional()
     ),
-    stagedInfo: core.serialization.property("staged_info", WorksUpdateRequestStagedInfoStagedInfoUpdate.optional()),
+    stagedInfo: core.serialization.property("staged_info", WorksUpdateRequestStagedInfoUpdate.optional()),
     tags: WorksUpdateRequestTags.optional(),
     targetCloseDate: core.serialization.property("target_close_date", core.serialization.date().optional()),
     title: core.serialization.string().optional(),
@@ -106,7 +106,7 @@ export declare namespace WorksUpdateRequest {
         reported_by?: WorksUpdateRequestReportedBy.Raw | null;
         stage?: StageUpdate.Raw | null;
         stage_validation_options?: StageValidationOptionForUpdate.Raw[] | null;
-        staged_info?: WorksUpdateRequestStagedInfoStagedInfoUpdate.Raw | null;
+        staged_info?: WorksUpdateRequestStagedInfoUpdate.Raw | null;
         tags?: WorksUpdateRequestTags.Raw | null;
         target_close_date?: string | null;
         title?: string | null;

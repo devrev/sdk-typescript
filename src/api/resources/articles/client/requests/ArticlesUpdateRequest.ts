@@ -12,9 +12,11 @@ import * as DevRev from "../../../../index";
  */
 export interface ArticlesUpdateRequest {
     accessLevel?: DevRev.AccessLevel;
+    aliases?: DevRev.ArticlesUpdateRequestAliases;
     appliesToParts?: DevRev.ArticlesUpdateRequestAppliesToParts;
     artifacts?: DevRev.ArticlesUpdateRequestArtifacts;
     authoredBy?: DevRev.ArticlesUpdateRequestAuthoredBy;
+    contentBlocks?: DevRev.ArticlesUpdateRequestContentBlocks;
     /** Application-defined custom fields. */
     customFields?: Record<string, unknown>;
     customSchemaSpec?: DevRev.CustomSchemaSpec;

@@ -4,4 +4,7 @@
 
 import * as DevRev from "../index";
 
-export type TenantFragment = DevRev.CustomSchemaFragmentBase;
+export interface TenantFragment extends DevRev.CustomSchemaFragmentBase {
+    /** The stock field overrides. */
+    stockFieldOverrides?: DevRev.StockFieldOverride[];
+}

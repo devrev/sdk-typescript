@@ -23,6 +23,8 @@ export declare namespace CustomSchemaFragmentsSetRequest {
     }
 
     interface _Base {
+        /** List of all composite schemas used in this fragment. */
+        compositeSchemas?: DevRev.CustomSchemaFragmentsSetRequestCompositeSchema[];
         /** List of conditions for this fragment. */
         conditions?: DevRev.CustomSchemaFragmentCondition[];
         /** List of field names which are being dropped. */

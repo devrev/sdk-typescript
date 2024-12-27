@@ -42,6 +42,7 @@ export declare namespace PartsUpdateRequest {
         customFields?: Record<string, unknown>;
         /** The custom schema fragments to use. */
         customSchemaFragments?: string[];
+        customSchemaSpec?: DevRev.CustomSchemaSpec;
         /** The updated description of the part. */
         description?: string;
         /** The ID of the part to update. */

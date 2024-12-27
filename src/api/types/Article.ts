@@ -5,26 +5,27 @@
 import * as DevRev from "../index";
 
 export interface Article extends DevRev.AtomBase {
-    /** Details of the parts relevant to the article. */
+    /** Parts relevant to the article. */
     appliesToParts: DevRev.PartSummary[];
     articleType?: DevRev.ArticleType;
     /** Users that authored the article. */
     authoredBy?: DevRev.UserSummary[];
     /** Description of the article. */
     description?: string;
-    /** Artifacts containing the extracted content. */
+    /** Extracted content of the article. */
     extractedContent?: DevRev.ArtifactSummary[];
     /** Number of downvotes on the article. */
     numDownvotes?: number;
     /** Number of upvotes on the article. */
     numUpvotes?: number;
-    /** The users that own the article. */
+    /** Users that own the article. */
     ownedBy: DevRev.UserSummary[];
     parent?: DevRev.DirectorySummary;
     /** Rank of the article. */
     rank?: string;
     resource?: DevRev.Resource;
     scope?: DevRev.EnumValue;
+    syncMetadata?: DevRev.SyncMetadata;
     /** Title of the article. */
     title?: string;
 }

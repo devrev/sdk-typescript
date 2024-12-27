@@ -5,6 +5,10 @@
 import * as DevRev from "../index";
 
 export interface ConversationsUpdateRequestTags {
+    /** Adds the provided tags on the conversation. */
+    add?: DevRev.AddTagWithValue[];
+    /** Removes the provided tags on the conversation. */
+    remove?: DevRev.RemoveTagWithValue[];
     /** Sets the tag IDs to the provided tags. */
     set?: DevRev.SetTagWithValue[];
 }

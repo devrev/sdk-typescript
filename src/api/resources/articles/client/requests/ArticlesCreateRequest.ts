@@ -15,6 +15,8 @@ import * as DevRev from "../../../../index";
  */
 export interface ArticlesCreateRequest {
     accessLevel?: DevRev.AccessLevel;
+    /** The aliases of the article. */
+    aliases?: string[];
     /** The parts that the article applies to. */
     appliesToParts: string[];
     articleType?: DevRev.ArticleType;

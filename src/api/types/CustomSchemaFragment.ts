@@ -18,7 +18,7 @@ export declare namespace CustomSchemaFragment {
         type: "custom_type_fragment";
     }
 
-    interface TenantFragment extends DevRev.CustomSchemaFragmentBase {
+    interface TenantFragment extends DevRev.TenantFragment {
         type: "tenant_fragment";
     }
 }

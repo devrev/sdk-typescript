@@ -5,17 +5,23 @@
 import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
+import { AddTagWithValue } from "./AddTagWithValue";
+import { RemoveTagWithValue } from "./RemoveTagWithValue";
 import { SetTagWithValue } from "./SetTagWithValue";
 
 export const ConversationsUpdateRequestTags: core.serialization.ObjectSchema<
     serializers.ConversationsUpdateRequestTags.Raw,
     DevRev.ConversationsUpdateRequestTags
 > = core.serialization.object({
+    add: core.serialization.list(AddTagWithValue).optional(),
+    remove: core.serialization.list(RemoveTagWithValue).optional(),
     set: core.serialization.list(SetTagWithValue).optional(),
 });
 
 export declare namespace ConversationsUpdateRequestTags {
     interface Raw {
+        add?: AddTagWithValue.Raw[] | null;
+        remove?: RemoveTagWithValue.Raw[] | null;
         set?: SetTagWithValue.Raw[] | null;
     }
 }

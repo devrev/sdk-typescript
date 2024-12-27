@@ -20,6 +20,9 @@ export type WebhookEventType =
     | "group_member_added"
     | "group_member_removed"
     | "group_updated"
+    | "incident_created"
+    | "incident_deleted"
+    | "incident_updated"
     | "link_created"
     | "link_deleted"
     | "link_updated"
@@ -41,6 +44,10 @@ export type WebhookEventType =
     | "survey_response_deleted"
     | "survey_response_updated"
     | "survey_updated"
+    | "sync_history_created"
+    | "sync_history_deleted"
+    | "sync_history_updated"
+    | "sync_unit_updated"
     | "tag_created"
     | "tag_deleted"
     | "tag_updated"
@@ -71,6 +78,9 @@ export const WebhookEventType = {
     GroupMemberAdded: "group_member_added",
     GroupMemberRemoved: "group_member_removed",
     GroupUpdated: "group_updated",
+    IncidentCreated: "incident_created",
+    IncidentDeleted: "incident_deleted",
+    IncidentUpdated: "incident_updated",
     LinkCreated: "link_created",
     LinkDeleted: "link_deleted",
     LinkUpdated: "link_updated",
@@ -92,6 +102,10 @@ export const WebhookEventType = {
     SurveyResponseDeleted: "survey_response_deleted",
     SurveyResponseUpdated: "survey_response_updated",
     SurveyUpdated: "survey_updated",
+    SyncHistoryCreated: "sync_history_created",
+    SyncHistoryDeleted: "sync_history_deleted",
+    SyncHistoryUpdated: "sync_history_updated",
+    SyncUnitUpdated: "sync_unit_updated",
     TagCreated: "tag_created",
     TagDeleted: "tag_deleted",
     TagUpdated: "tag_updated",

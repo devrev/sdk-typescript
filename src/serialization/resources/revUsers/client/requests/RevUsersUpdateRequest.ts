@@ -7,6 +7,7 @@ import * as DevRev from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { RevUsersUpdateRequestArtifacts } from "../../../../types/RevUsersUpdateRequestArtifacts";
 import { RevUsersUpdateRequestCustomSchemaFragments } from "../../../../types/RevUsersUpdateRequestCustomSchemaFragments";
+import { CustomSchemaSpec } from "../../../../types/CustomSchemaSpec";
 import { SetTagWithValue } from "../../../../types/SetTagWithValue";
 
 export const RevUsersUpdateRequest: core.serialization.Schema<
@@ -22,6 +23,7 @@ export const RevUsersUpdateRequest: core.serialization.Schema<
         "custom_schema_fragments",
         RevUsersUpdateRequestCustomSchemaFragments.optional()
     ),
+    customSchemaSpec: core.serialization.property("custom_schema_spec", CustomSchemaSpec.optional()),
     description: core.serialization.string().optional(),
     displayName: core.serialization.property("display_name", core.serialization.string().optional()),
     email: core.serialization.string().optional(),
@@ -39,6 +41,7 @@ export declare namespace RevUsersUpdateRequest {
         artifacts?: RevUsersUpdateRequestArtifacts.Raw | null;
         custom_fields?: Record<string, unknown> | null;
         custom_schema_fragments?: RevUsersUpdateRequestCustomSchemaFragments.Raw | null;
+        custom_schema_spec?: CustomSchemaSpec.Raw | null;
         description?: string | null;
         display_name?: string | null;
         email?: string | null;

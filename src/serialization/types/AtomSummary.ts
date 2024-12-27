@@ -10,10 +10,12 @@ import { AtomBaseSummary } from "./AtomBaseSummary";
 import { PartBaseSummary } from "./PartBaseSummary";
 import { ConversationSummary } from "./ConversationSummary";
 import { UserBaseSummary } from "./UserBaseSummary";
+import { IncidentSummary } from "./IncidentSummary";
 import { IssueSummary } from "./IssueSummary";
-import { WorkBaseSummary } from "./WorkBaseSummary";
+import { OpportunitySummary } from "./OpportunitySummary";
 import { RevUserSummary } from "./RevUserSummary";
 import { TagSummary } from "./TagSummary";
+import { WorkBaseSummary } from "./WorkBaseSummary";
 import { TicketSummary } from "./TicketSummary";
 
 export const AtomSummary: core.serialization.Schema<serializers.AtomSummary.Raw, DevRev.AtomSummary> =
@@ -28,9 +30,10 @@ export const AtomSummary: core.serialization.Schema<serializers.AtomSummary.Raw,
             engagement: AtomBaseSummary,
             enhancement: PartBaseSummary,
             feature: PartBaseSummary,
+            incident: IncidentSummary,
             issue: IssueSummary,
             meeting: AtomBaseSummary,
-            opportunity: WorkBaseSummary,
+            opportunity: OpportunitySummary,
             product: PartBaseSummary,
             rev_org: OrgBaseSummary,
             rev_user: RevUserSummary,
@@ -61,6 +64,7 @@ export declare namespace AtomSummary {
         | AtomSummary.Engagement
         | AtomSummary.Enhancement
         | AtomSummary.Feature
+        | AtomSummary.Incident
         | AtomSummary.Issue
         | AtomSummary.Meeting
         | AtomSummary.Opportunity
@@ -114,6 +118,10 @@ export declare namespace AtomSummary {
         type: "feature";
     }
 
+    interface Incident extends IncidentSummary.Raw {
+        type: "incident";
+    }
+
     interface Issue extends IssueSummary.Raw {
         type: "issue";
     }
@@ -122,7 +130,7 @@ export declare namespace AtomSummary {
         type: "meeting";
     }
 
-    interface Opportunity extends WorkBaseSummary.Raw {
+    interface Opportunity extends OpportunitySummary.Raw {
         type: "opportunity";
     }
 

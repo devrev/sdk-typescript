@@ -12,6 +12,7 @@ import { ArtifactSummary } from "./ArtifactSummary";
 import { DirectorySummary } from "./DirectorySummary";
 import { Resource } from "./Resource";
 import { EnumValue } from "./EnumValue";
+import { SyncMetadata } from "./SyncMetadata";
 import { AtomBase } from "./AtomBase";
 
 export const Article: core.serialization.ObjectSchema<serializers.Article.Raw, DevRev.Article> = core.serialization
@@ -31,6 +32,7 @@ export const Article: core.serialization.ObjectSchema<serializers.Article.Raw, D
         rank: core.serialization.string().optional(),
         resource: Resource.optional(),
         scope: EnumValue.optional(),
+        syncMetadata: core.serialization.property("sync_metadata", SyncMetadata.optional()),
         title: core.serialization.string().optional(),
     })
     .extend(AtomBase);
@@ -49,6 +51,7 @@ export declare namespace Article {
         rank?: string | null;
         resource?: Resource.Raw | null;
         scope?: EnumValue.Raw | null;
+        sync_metadata?: SyncMetadata.Raw | null;
         title?: string | null;
     }
 }

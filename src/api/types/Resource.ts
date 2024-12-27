@@ -8,8 +8,8 @@ import * as DevRev from "../index";
  * Resource details.
  */
 export interface Resource {
-    /** Ids of the artifacts. */
+    /** Artifacts of the resource (relevant only for type artifact). */
     artifacts?: DevRev.ArtifactSummary[];
-    /** URL of the external article. */
+    /** URL of the resource (relevant only for type url). */
     url?: string;
 }

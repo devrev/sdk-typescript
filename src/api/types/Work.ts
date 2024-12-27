@@ -11,7 +11,7 @@ export declare namespace Work {
         type: "issue";
     }
 
-    interface Opportunity extends DevRev.WorkBase {
+    interface Opportunity extends DevRev.Opportunity {
         type: "opportunity";
     }
 

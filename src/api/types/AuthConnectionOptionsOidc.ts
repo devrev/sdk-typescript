@@ -8,9 +8,7 @@
  */
 export interface AuthConnectionOptionsOidc {
     /** Client ID for the OIDC authentication connection. */
-    clientId?: string;
-    /** Client secret for the OIDC authentication connection. */
-    clientSecret?: string;
+    clientId: string;
     /** Issuer URL of the OIDC authentication connection. */
-    issuer?: string;
+    issuer: string;
 }

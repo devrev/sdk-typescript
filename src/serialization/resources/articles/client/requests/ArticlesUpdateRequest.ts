@@ -6,9 +6,11 @@ import * as serializers from "../../../../index";
 import * as DevRev from "../../../../../api/index";
 import * as core from "../../../../../core";
 import { AccessLevel } from "../../../../types/AccessLevel";
+import { ArticlesUpdateRequestAliases } from "../../../../types/ArticlesUpdateRequestAliases";
 import { ArticlesUpdateRequestAppliesToParts } from "../../../../types/ArticlesUpdateRequestAppliesToParts";
 import { ArticlesUpdateRequestArtifacts } from "../../../../types/ArticlesUpdateRequestArtifacts";
 import { ArticlesUpdateRequestAuthoredBy } from "../../../../types/ArticlesUpdateRequestAuthoredBy";
+import { ArticlesUpdateRequestContentBlocks } from "../../../../types/ArticlesUpdateRequestContentBlocks";
 import { CustomSchemaSpec } from "../../../../types/CustomSchemaSpec";
 import { ArticlesUpdateRequestExtractedContent } from "../../../../types/ArticlesUpdateRequestExtractedContent";
 import { ArticlesUpdateRequestOwnedBy } from "../../../../types/ArticlesUpdateRequestOwnedBy";
@@ -22,9 +24,11 @@ export const ArticlesUpdateRequest: core.serialization.Schema<
     DevRev.ArticlesUpdateRequest
 > = core.serialization.object({
     accessLevel: core.serialization.property("access_level", AccessLevel.optional()),
+    aliases: ArticlesUpdateRequestAliases.optional(),
     appliesToParts: core.serialization.property("applies_to_parts", ArticlesUpdateRequestAppliesToParts.optional()),
     artifacts: ArticlesUpdateRequestArtifacts.optional(),
     authoredBy: core.serialization.property("authored_by", ArticlesUpdateRequestAuthoredBy.optional()),
+    contentBlocks: core.serialization.property("content_blocks", ArticlesUpdateRequestContentBlocks.optional()),
     customFields: core.serialization.property(
         "custom_fields",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
@@ -51,9 +55,11 @@ export const ArticlesUpdateRequest: core.serialization.Schema<
 export declare namespace ArticlesUpdateRequest {
     interface Raw {
         access_level?: AccessLevel.Raw | null;
+        aliases?: ArticlesUpdateRequestAliases.Raw | null;
         applies_to_parts?: ArticlesUpdateRequestAppliesToParts.Raw | null;
         artifacts?: ArticlesUpdateRequestArtifacts.Raw | null;
         authored_by?: ArticlesUpdateRequestAuthoredBy.Raw | null;
+        content_blocks?: ArticlesUpdateRequestContentBlocks.Raw | null;
         custom_fields?: Record<string, unknown> | null;
         custom_schema_spec?: CustomSchemaSpec.Raw | null;
         description?: string | null;

@@ -12,6 +12,7 @@ export type TimelineEntryObjectType =
     | "engagement"
     | "enhancement"
     | "feature"
+    | "incident"
     | "issue"
     | "meeting"
     | "opportunity"
@@ -30,6 +31,7 @@ export const TimelineEntryObjectType = {
     Engagement: "engagement",
     Enhancement: "enhancement",
     Feature: "feature",
+    Incident: "incident",
     Issue: "issue",
     Meeting: "meeting",
     Opportunity: "opportunity",

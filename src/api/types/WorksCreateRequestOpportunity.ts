@@ -14,6 +14,8 @@ export interface WorksCreateRequestOpportunity {
     /** Budget of the customer. */
     customerBudget?: number;
     forecastCategory?: DevRev.OpportunityForecastCategory;
+    /** Forecast category enum ID of an opportunity. */
+    forecastCategoryV2?: number;
     priority?: DevRev.OpportunityPriority;
     /** The probability of winning the deal, lies between 0.0 and 1.0. */
     probability?: number;

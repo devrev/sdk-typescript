@@ -5,9 +5,14 @@
 import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
+import { OrgBaseSummary } from "./OrgBaseSummary";
 import { PartBaseSummary } from "./PartBaseSummary";
 import { ConversationSummary } from "./ConversationSummary";
+import { UserBaseSummary } from "./UserBaseSummary";
+import { IncidentSummary } from "./IncidentSummary";
 import { IssueSummary } from "./IssueSummary";
+import { OpportunitySummary } from "./OpportunitySummary";
+import { RevUserSummary } from "./RevUserSummary";
 import { WorkBaseSummary } from "./WorkBaseSummary";
 import { TicketSummary } from "./TicketSummary";
 
@@ -16,13 +21,18 @@ export const LinkEndpointSummary: core.serialization.Schema<
     DevRev.LinkEndpointSummary
 > = core.serialization
     .union("type", {
+        account: OrgBaseSummary,
         capability: PartBaseSummary,
         conversation: ConversationSummary,
+        dev_user: UserBaseSummary,
         enhancement: PartBaseSummary,
         feature: PartBaseSummary,
+        incident: IncidentSummary,
         issue: IssueSummary,
-        opportunity: WorkBaseSummary,
+        opportunity: OpportunitySummary,
         product: PartBaseSummary,
+        rev_org: OrgBaseSummary,
+        rev_user: RevUserSummary,
         task: WorkBaseSummary,
         ticket: TicketSummary,
     })
@@ -33,15 +43,24 @@ export const LinkEndpointSummary: core.serialization.Schema<
 
 export declare namespace LinkEndpointSummary {
     type Raw =
+        | LinkEndpointSummary.Account
         | LinkEndpointSummary.Capability
         | LinkEndpointSummary.Conversation
+        | LinkEndpointSummary.DevUser
         | LinkEndpointSummary.Enhancement
         | LinkEndpointSummary.Feature
+        | LinkEndpointSummary.Incident
         | LinkEndpointSummary.Issue
         | LinkEndpointSummary.Opportunity
         | LinkEndpointSummary.Product
+        | LinkEndpointSummary.RevOrg
+        | LinkEndpointSummary.RevUser
         | LinkEndpointSummary.Task
         | LinkEndpointSummary.Ticket;
+
+    interface Account extends OrgBaseSummary.Raw {
+        type: "account";
+    }
 
     interface Capability extends PartBaseSummary.Raw {
         type: "capability";
@@ -49,6 +68,10 @@ export declare namespace LinkEndpointSummary {
 
     interface Conversation extends ConversationSummary.Raw {
         type: "conversation";
+    }
+
+    interface DevUser extends UserBaseSummary.Raw {
+        type: "dev_user";
     }
 
     interface Enhancement extends PartBaseSummary.Raw {
@@ -59,16 +82,28 @@ export declare namespace LinkEndpointSummary {
         type: "feature";
     }
 
+    interface Incident extends IncidentSummary.Raw {
+        type: "incident";
+    }
+
     interface Issue extends IssueSummary.Raw {
         type: "issue";
     }
 
-    interface Opportunity extends WorkBaseSummary.Raw {
+    interface Opportunity extends OpportunitySummary.Raw {
         type: "opportunity";
     }
 
     interface Product extends PartBaseSummary.Raw {
         type: "product";
+    }
+
+    interface RevOrg extends OrgBaseSummary.Raw {
+        type: "rev_org";
+    }
+
+    interface RevUser extends RevUserSummary.Raw {
+        type: "rev_user";
     }
 
     interface Task extends WorkBaseSummary.Raw {

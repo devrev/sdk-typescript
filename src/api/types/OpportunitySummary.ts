@@ -4,4 +4,6 @@
 
 import * as DevRev from "../index";
 
-export type OpportunitySummary = DevRev.WorkBaseSummary;
+export interface OpportunitySummary extends DevRev.WorkBaseSummary {
+    account?: DevRev.AccountSummary;
+}

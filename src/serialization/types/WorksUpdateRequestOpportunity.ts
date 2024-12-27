@@ -15,6 +15,7 @@ export const WorksUpdateRequestOpportunity: core.serialization.ObjectSchema<
     amount: core.serialization.number().optional(),
     contacts: WorksUpdateRequestOpportunityContacts.optional(),
     customerBudget: core.serialization.property("customer_budget", core.serialization.number().optional()),
+    forecastCategoryV2: core.serialization.property("forecast_category_v2", core.serialization.number().optional()),
     probability: core.serialization.number().optional(),
 });
 
@@ -24,6 +25,7 @@ export declare namespace WorksUpdateRequestOpportunity {
         amount?: number | null;
         contacts?: WorksUpdateRequestOpportunityContacts.Raw | null;
         customer_budget?: number | null;
+        forecast_category_v2?: number | null;
         probability?: number | null;
     }
 }

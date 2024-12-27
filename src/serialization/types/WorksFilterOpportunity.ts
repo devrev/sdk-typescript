@@ -12,6 +12,10 @@ export const WorksFilterOpportunity: core.serialization.ObjectSchema<
 > = core.serialization.object({
     account: core.serialization.list(core.serialization.string()).optional(),
     contacts: core.serialization.list(core.serialization.string()).optional(),
+    forecastCategoryV2: core.serialization.property(
+        "forecast_category_v2",
+        core.serialization.list(core.serialization.number()).optional()
+    ),
     subtype: core.serialization.list(core.serialization.string()).optional(),
 });
 
@@ -19,6 +23,7 @@ export declare namespace WorksFilterOpportunity {
     interface Raw {
         account?: string[] | null;
         contacts?: string[] | null;
+        forecast_category_v2?: number[] | null;
         subtype?: string[] | null;
     }
 }

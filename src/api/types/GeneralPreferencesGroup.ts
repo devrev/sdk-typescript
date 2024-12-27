@@ -9,5 +9,6 @@ import * as DevRev from "../index";
  */
 export interface GeneralPreferencesGroup {
     availability?: DevRev.AvailabilityPreferencesGroup;
-    preferredLocale?: DevRev.GeneralPreferencesGroupPreferredLocale;
+    /** Preferred locale of the user. */
+    preferredLocale?: string;
 }

@@ -6,11 +6,23 @@ import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
 
-export const SchemaFieldUenumValue: core.serialization.Schema<
+export const SchemaFieldUenumValue: core.serialization.ObjectSchema<
     serializers.SchemaFieldUenumValue.Raw,
     DevRev.SchemaFieldUenumValue
-> = core.serialization.record(core.serialization.string(), core.serialization.unknown());
+> = core.serialization.object({
+    id: core.serialization.number(),
+    isDeprecated: core.serialization.property("is_deprecated", core.serialization.boolean().optional()),
+    label: core.serialization.string(),
+    ordinal: core.serialization.number(),
+    tooltip: core.serialization.string().optional(),
+});
 
 export declare namespace SchemaFieldUenumValue {
-    type Raw = Record<string, unknown>;
+    interface Raw {
+        id: number;
+        is_deprecated?: boolean | null;
+        label: string;
+        ordinal: number;
+        tooltip?: string | null;
+    }
 }

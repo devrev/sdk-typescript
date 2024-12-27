@@ -5,6 +5,7 @@
 import * as serializers from "../../../../index";
 import * as DevRev from "../../../../../api/index";
 import * as core from "../../../../../core";
+import { CustomSchemaSpec } from "../../../../types/CustomSchemaSpec";
 import { ConversationsCreateRequestMessage } from "../../../../types/ConversationsCreateRequestMessage";
 import { ConversationsCreateRequestMetadata } from "../../../../types/ConversationsCreateRequestMetadata";
 import { StageInit } from "../../../../types/StageInit";
@@ -14,6 +15,11 @@ export const ConversationsCreateRequest: core.serialization.Schema<
     serializers.ConversationsCreateRequest.Raw,
     DevRev.ConversationsCreateRequest
 > = core.serialization.object({
+    customFields: core.serialization.property(
+        "custom_fields",
+        core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
+    ),
+    customSchemaSpec: core.serialization.property("custom_schema_spec", CustomSchemaSpec.optional()),
     description: core.serialization.string().optional(),
     group: core.serialization.string().optional(),
     isSpam: core.serialization.property("is_spam", core.serialization.boolean().optional()),
@@ -33,6 +39,8 @@ export const ConversationsCreateRequest: core.serialization.Schema<
 
 export declare namespace ConversationsCreateRequest {
     interface Raw {
+        custom_fields?: Record<string, unknown> | null;
+        custom_schema_spec?: CustomSchemaSpec.Raw | null;
         description?: string | null;
         group?: string | null;
         is_spam?: boolean | null;

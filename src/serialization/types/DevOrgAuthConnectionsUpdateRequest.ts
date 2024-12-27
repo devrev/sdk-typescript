@@ -5,11 +5,12 @@
 import * as core from "../../core";
 import * as serializers from "../index";
 import * as DevRev from "../../api/index";
-import { AuthConnectionOptionsGoogleApps } from "./AuthConnectionOptionsGoogleApps";
+import { DevOrgAuthConnectionsUpdateRequestGoogleAppsOptions } from "./DevOrgAuthConnectionsUpdateRequestGoogleAppsOptions";
 import { Empty } from "./Empty";
-import { AuthConnectionOptionsOidc } from "./AuthConnectionOptionsOidc";
-import { AuthConnectionOptionsSaml } from "./AuthConnectionOptionsSaml";
-import { AuthConnectionOptionsAzureAd } from "./AuthConnectionOptionsAzureAd";
+import { DevOrgAuthConnectionsUpdateRequestOidcOptions } from "./DevOrgAuthConnectionsUpdateRequestOidcOptions";
+import { DevOrgAuthConnectionsUpdateRequestOktaOptions } from "./DevOrgAuthConnectionsUpdateRequestOktaOptions";
+import { DevOrgAuthConnectionsUpdateRequestSamlOptions } from "./DevOrgAuthConnectionsUpdateRequestSamlOptions";
+import { DevOrgAuthConnectionsUpdateRequestAzureAdOptions } from "./DevOrgAuthConnectionsUpdateRequestAzureAdOptions";
 
 const _Base = core.serialization.object({
     displayName: core.serialization.property("display_name", core.serialization.string().optional()),
@@ -20,15 +21,16 @@ export const DevOrgAuthConnectionsUpdateRequest: core.serialization.Schema<
     DevRev.DevOrgAuthConnectionsUpdateRequest
 > = core.serialization
     .union("type", {
-        google_apps: AuthConnectionOptionsGoogleApps.extend(_Base),
+        google_apps: DevOrgAuthConnectionsUpdateRequestGoogleAppsOptions.extend(_Base),
         none: core.serialization
             .object({
                 value: Empty,
             })
             .extend(_Base),
-        oidc: AuthConnectionOptionsOidc.extend(_Base),
-        samlp: AuthConnectionOptionsSaml.extend(_Base),
-        waad: AuthConnectionOptionsAzureAd.extend(_Base),
+        oidc: DevOrgAuthConnectionsUpdateRequestOidcOptions.extend(_Base),
+        okta: DevOrgAuthConnectionsUpdateRequestOktaOptions.extend(_Base),
+        samlp: DevOrgAuthConnectionsUpdateRequestSamlOptions.extend(_Base),
+        waad: DevOrgAuthConnectionsUpdateRequestAzureAdOptions.extend(_Base),
     })
     .transform<DevRev.DevOrgAuthConnectionsUpdateRequest>({
         transform: (value) => value,
@@ -40,10 +42,11 @@ export declare namespace DevOrgAuthConnectionsUpdateRequest {
         | DevOrgAuthConnectionsUpdateRequest.GoogleApps
         | DevOrgAuthConnectionsUpdateRequest.None
         | DevOrgAuthConnectionsUpdateRequest.Oidc
+        | DevOrgAuthConnectionsUpdateRequest.Okta
         | DevOrgAuthConnectionsUpdateRequest.Samlp
         | DevOrgAuthConnectionsUpdateRequest.Waad;
 
-    interface GoogleApps extends _Base, AuthConnectionOptionsGoogleApps.Raw {
+    interface GoogleApps extends _Base, DevOrgAuthConnectionsUpdateRequestGoogleAppsOptions.Raw {
         type: "google_apps";
     }
 
@@ -52,15 +55,19 @@ export declare namespace DevOrgAuthConnectionsUpdateRequest {
         value: Empty.Raw;
     }
 
-    interface Oidc extends _Base, AuthConnectionOptionsOidc.Raw {
+    interface Oidc extends _Base, DevOrgAuthConnectionsUpdateRequestOidcOptions.Raw {
         type: "oidc";
     }
 
-    interface Samlp extends _Base, AuthConnectionOptionsSaml.Raw {
+    interface Okta extends _Base, DevOrgAuthConnectionsUpdateRequestOktaOptions.Raw {
+        type: "okta";
+    }
+
+    interface Samlp extends _Base, DevOrgAuthConnectionsUpdateRequestSamlOptions.Raw {
         type: "samlp";
     }
 
-    interface Waad extends _Base, AuthConnectionOptionsAzureAd.Raw {
+    interface Waad extends _Base, DevOrgAuthConnectionsUpdateRequestAzureAdOptions.Raw {
         type: "waad";
     }
 

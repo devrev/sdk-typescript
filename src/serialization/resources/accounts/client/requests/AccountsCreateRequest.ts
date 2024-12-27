@@ -5,6 +5,7 @@
 import * as serializers from "../../../../index";
 import * as DevRev from "../../../../../api/index";
 import * as core from "../../../../../core";
+import { CustomSchemaSpec } from "../../../../types/CustomSchemaSpec";
 import { SetTagWithValue } from "../../../../types/SetTagWithValue";
 
 export const AccountsCreateRequest: core.serialization.Schema<
@@ -16,6 +17,7 @@ export const AccountsCreateRequest: core.serialization.Schema<
         "custom_fields",
         core.serialization.record(core.serialization.string(), core.serialization.unknown()).optional()
     ),
+    customSchemaSpec: core.serialization.property("custom_schema_spec", CustomSchemaSpec.optional()),
     description: core.serialization.string().optional(),
     displayName: core.serialization.property("display_name", core.serialization.string()),
     domains: core.serialization.list(core.serialization.string()).optional(),
@@ -37,6 +39,7 @@ export declare namespace AccountsCreateRequest {
     interface Raw {
         artifacts?: string[] | null;
         custom_fields?: Record<string, unknown> | null;
+        custom_schema_spec?: CustomSchemaSpec.Raw | null;
         description?: string | null;
         display_name: string;
         domains?: string[] | null;

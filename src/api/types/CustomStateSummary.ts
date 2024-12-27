@@ -5,6 +5,8 @@
 import * as DevRev from "../index";
 
 export interface CustomStateSummary extends DevRev.AtomBaseSummary {
+    /** True if this is a final state. */
+    isFinal?: boolean;
     /** The human readable name of the state. */
     name?: string;
 }

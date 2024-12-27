@@ -8,9 +8,7 @@
  */
 export interface AuthConnectionOptionsAzureAd {
     /** Client ID for the Azure authentication connection. */
-    clientId?: string;
-    /** Client secret for the Azure authentication connection. */
-    clientSecret?: string;
+    clientId: string;
     /** Domain URL of the Azure authentication connection. */
-    domain?: string;
+    domain: string;
 }

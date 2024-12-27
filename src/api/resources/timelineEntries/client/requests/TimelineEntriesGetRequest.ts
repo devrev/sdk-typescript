@@ -5,8 +5,7 @@
 /**
  * @example
  *     {
- *         externalRef: "string",
- *         id: "string"
+ *         id: "don:core:<partition>:devo/<dev-org-id>:ticket/123:timeline_event/<timeline-event-id>"
  *     }
  */
 export interface TimelineEntriesGetRequest {

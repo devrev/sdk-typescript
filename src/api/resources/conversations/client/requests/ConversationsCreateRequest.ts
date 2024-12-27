@@ -11,6 +11,9 @@ import * as DevRev from "../../../../index";
  *     }
  */
 export interface ConversationsCreateRequest {
+    /** Application-defined custom fields. */
+    customFields?: Record<string, unknown>;
+    customSchemaSpec?: DevRev.CustomSchemaSpec;
     /** Description for the conversation. */
     description?: string;
     /** The group that the conversation is associated with. */

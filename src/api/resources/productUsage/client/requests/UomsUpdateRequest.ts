@@ -7,18 +7,7 @@ import * as DevRev from "../../../../index";
 /**
  * @example
  *     {
- *         aggregationType: DevRev.AggregationDetailAggregationType.Duration,
- *         description: "string",
- *         dimensions: {
- *             add: ["string"],
- *             remove: ["string"]
- *         },
- *         id: "string",
- *         isEnabled: true,
- *         name: "string",
- *         partId: "string",
- *         productId: "string",
- *         unit: "string"
+ *         id: "id"
  *     }
  */
 export interface UomsUpdateRequest {

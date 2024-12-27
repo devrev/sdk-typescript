@@ -10,6 +10,7 @@ import { ArtifactSummary } from "./ArtifactSummary";
 import { ImpactedCustomerDetails } from "./ImpactedCustomerDetails";
 import { AccountSummary } from "./AccountSummary";
 import { UserSummary } from "./UserSummary";
+import { ArticleSummary } from "./ArticleSummary";
 import { EnumValue } from "./EnumValue";
 import { Stage } from "./Stage";
 import { TagWithValue } from "./TagWithValue";
@@ -18,6 +19,7 @@ import { AtomBase } from "./AtomBase";
 export const Incident: core.serialization.ObjectSchema<serializers.Incident.Raw, DevRev.Incident> = core.serialization
     .object({
         acknowledgedDate: core.serialization.property("acknowledged_date", core.serialization.date().optional()),
+        actualCloseDate: core.serialization.property("actual_close_date", core.serialization.date().optional()),
         appliesToParts: core.serialization.property(
             "applies_to_parts",
             core.serialization.list(PartSummary).optional()
@@ -40,6 +42,8 @@ export const Incident: core.serialization.ObjectSchema<serializers.Incident.Raw,
         ),
         mitigatedDate: core.serialization.property("mitigated_date", core.serialization.date().optional()),
         ownedBy: core.serialization.property("owned_by", core.serialization.list(UserSummary).optional()),
+        pia: core.serialization.list(ArticleSummary).optional(),
+        playbooks: core.serialization.list(ArticleSummary).optional(),
         reportedBy: core.serialization.property("reported_by", EnumValue.optional()),
         severity: EnumValue.optional(),
         source: EnumValue.optional(),
@@ -59,6 +63,7 @@ export const Incident: core.serialization.ObjectSchema<serializers.Incident.Raw,
 export declare namespace Incident {
     interface Raw extends AtomBase.Raw {
         acknowledged_date?: string | null;
+        actual_close_date?: string | null;
         applies_to_parts?: PartSummary.Raw[] | null;
         artifacts?: ArtifactSummary.Raw[] | null;
         body?: string | null;
@@ -69,6 +74,8 @@ export declare namespace Incident {
         impacted_customers?: AccountSummary.Raw[] | null;
         mitigated_date?: string | null;
         owned_by?: UserSummary.Raw[] | null;
+        pia?: ArticleSummary.Raw[] | null;
+        playbooks?: ArticleSummary.Raw[] | null;
         reported_by?: EnumValue.Raw | null;
         severity?: EnumValue.Raw | null;
         source?: EnumValue.Raw | null;

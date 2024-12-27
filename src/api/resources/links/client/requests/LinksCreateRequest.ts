@@ -8,8 +8,8 @@ import * as DevRev from "../../../../index";
  * @example
  *     {
  *         linkType: DevRev.LinkType.CustomLink,
- *         source: "string",
- *         target: "string"
+ *         source: "source",
+ *         target: "target"
  *     }
  */
 export interface LinksCreateRequest {

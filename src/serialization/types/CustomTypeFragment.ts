@@ -6,6 +6,7 @@ import * as serializers from "../index";
 import * as DevRev from "../../api/index";
 import * as core from "../../core";
 import { StageDiagramSummary } from "./StageDiagramSummary";
+import { StockFieldOverride } from "./StockFieldOverride";
 import { CustomSchemaFragmentBase } from "./CustomSchemaFragmentBase";
 
 export const CustomTypeFragment: core.serialization.ObjectSchema<
@@ -14,6 +15,10 @@ export const CustomTypeFragment: core.serialization.ObjectSchema<
 > = core.serialization
     .object({
         stageDiagram: core.serialization.property("stage_diagram", StageDiagramSummary.optional()),
+        stockFieldOverrides: core.serialization.property(
+            "stock_field_overrides",
+            core.serialization.list(StockFieldOverride).optional()
+        ),
         subtype: core.serialization.string().optional(),
         subtypeDisplayName: core.serialization.property("subtype_display_name", core.serialization.string().optional()),
     })
@@ -22,6 +27,7 @@ export const CustomTypeFragment: core.serialization.ObjectSchema<
 export declare namespace CustomTypeFragment {
     interface Raw extends CustomSchemaFragmentBase.Raw {
         stage_diagram?: StageDiagramSummary.Raw | null;
+        stock_field_overrides?: StockFieldOverride.Raw[] | null;
         subtype?: string | null;
         subtype_display_name?: string | null;
     }

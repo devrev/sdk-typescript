@@ -30,4 +30,9 @@ export interface Account extends DevRev.OrgBase {
     tags?: DevRev.TagWithValue[];
     /** The Tier of the corresponding Account. */
     tier?: string;
+    /**
+     * Company's website links. Filling in this property will also fill in
+     * domain. Example - 'www.devrev.ai'.
+     */
+    websites?: string[];
 }

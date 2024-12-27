@@ -8,7 +8,7 @@ export interface MetricDataPointDimension {
      * allowed to have more than one value with the same key. Key must be
      * at least one character long and cannot be longer than 64
      * characters.Key can only contain alphanumeric characters (A-Z, a-z,
-     * and 0-9) and underscores (\_). Key cannot start with a number and is
+     * and 0-9) and underscores (_). Key cannot start with a number and is
      * case-insensitive.
      */
     key: string;

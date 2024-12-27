@@ -7,6 +7,8 @@ import * as DevRev from "../index";
 export interface Incident extends DevRev.AtomBase {
     /** Timestamp when the incident was acknowledged. */
     acknowledgedDate?: Date;
+    /** Timestamp when the incident was actually resolved. */
+    actualCloseDate?: Date;
     /** Parts to which the incident is applicable to. */
     appliesToParts?: DevRev.PartSummary[];
     /** Artifacts attached to the incident. */
@@ -26,6 +28,10 @@ export interface Incident extends DevRev.AtomBase {
     mitigatedDate?: Date;
     /** The users that own the incident. */
     ownedBy?: DevRev.UserSummary[];
+    /** The article ids of the Post-Incident Analysis(PIA) of the incident. */
+    pia?: DevRev.ArticleSummary[];
+    /** The article ids of the playbook(s) associated with the incident. */
+    playbooks?: DevRev.ArticleSummary[];
     reportedBy?: DevRev.EnumValue;
     severity?: DevRev.EnumValue;
     source?: DevRev.EnumValue;

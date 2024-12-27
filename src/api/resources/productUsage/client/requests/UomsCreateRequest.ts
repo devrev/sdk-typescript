@@ -8,18 +8,14 @@ import * as DevRev from "../../../../index";
  * @example
  *     {
  *         aggregationDetail: {
- *             aggregationType: DevRev.AggregationDetailAggregationType.Duration,
- *             uniqueDimension: "string"
+ *             aggregationType: DevRev.AggregationDetailAggregationType.Duration
  *         },
- *         description: "string",
- *         dimensions: ["string"],
- *         metricName: "string",
- *         name: "string",
- *         partId: "string",
- *         productId: "string",
+ *         metricName: "metric_name",
+ *         name: "name",
+ *         productId: "PROD-12345",
  *         unit: {
  *             type: DevRev.UnitType.Boolean,
- *             name: "string"
+ *             name: "name"
  *         }
  *     }
  */
